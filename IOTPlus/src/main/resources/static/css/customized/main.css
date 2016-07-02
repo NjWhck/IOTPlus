@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+/*panel*/
+.panel {
+	margin-top:20px;
+}
+.panel-heading span {
+	margin-bottom:8px;
+}
+.panel-heading h3 {
+	margin-top:-2px;
+}
+
+/*panel ender*/
+
+/*justgage*/
+.gs {
+    width:180px; 
+    height:140px;			
+    margin-left: calc(50% - 90px);/*NOTO:减号两边的空格不能省略*/
+}
+/*justgage ender*/
+
+.fengye
+{
+    width: 25px;
+    height: 25px;
+    float: left;
+    animation:mymove 6s linear infinite;
+}

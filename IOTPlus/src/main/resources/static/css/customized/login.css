@@ -1,0 +1,56 @@
+@CHARSET "UTF-8";
+
+.login-box-plain {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #D8D8D8;
+  border-radius: 7px 7px 7px 7px;
+  box-shadow: 0 1px 4px #D3D3D3;
+  margin: 50px auto;
+  padding: 55px 60px 60px;
+  position: relative;
+  min-height: 300px;
+}
+.login-box-plain input,
+.login-box-plain textarea {
+  font-size: 15px;
+  margin: 0;
+  padding: 10px 8px 8px;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: none;
+  min-width: 0;
+  padding-left: 33px !important;
+}
+.login-box-plain button {
+  width: 100%;
+}
+.login-box-plain form i {
+  color: #CCCCCC;
+  display: block !important;
+  font-size: 16px;
+  height: 16px;
+  margin: 9px 2px 4px 10px;
+  position: absolute !important;
+  text-align: center;
+  width: 16px;
+  z-index: 1;
+}
+.login-box-plain .social-login a {
+  border: 0 none;
+  border-radius: 100% 100% 100% 100%;
+  height: 42px;
+  line-height: 42px;
+  margin: 0 5px;
+  padding: 0;
+  width: 42px;
+  text-decoration: none !important;
+}
+.bigintro {
+  font-size: 38px;
+  line-height: 50px;
+  text-align: center;
+}
+input[type="submit"].btn-block {
+  width: 100%;
+}
+

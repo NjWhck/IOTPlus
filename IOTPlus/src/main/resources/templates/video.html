@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>视频监控</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/global.css"/>
+    <link rel="stylesheet" href="/css/customized/sidenav.css"/>
+    <link rel="stylesheet" href="/css/video/hk.css"/>
+    <link rel="stylesheet" href="/css/video/video.css"/>
+</head>
+<body>
+	<div id="videoWindow" class="panel panel-primary">
+	    <div class="panel-heading draggin">
+	        <h3 class="panel-title">视频监控
+	            <a href="#videoRmv;" class="video-remove">
+	                <i class="fa fa-times" style="float: right;color: snow"></i>
+	            </a>
+	        </h3>
+	    </div>
+	    <div class="panel-body">
+	        <div class="video-container">
+	            <div id="divPlugin" class="plugin"></div>
+	        </div>
+	    </div>
+	    <div class="panel-footer draggin" style="background-color: royalblue"></div>
+	</div>
+	<div class="container-fluid">
+		<div class="header row">
+			<nav class="navbar navbar-default" id="top-navbar" role="navigation">
+		      <div class="navbar-brand">
+		          <a href="#">
+		              <img src="/images/logo.png" alt="wait..." class="img-responsive" height="30" width="120"/>
+		          </a>
+		      </div>
+		      <div class="collapse navbar-collapse">
+		         <ul class="nav navbar-nav pull-right">
+		             <li class="dropdown user" id="header-user">
+		                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		                     <img alt="" src="images/avatar3.jpg"/>
+		                     <span class="username">辅导员</span>
+		                     <i class="fa fa-angle-down"></i>
+		                 </a>
+		                 <ul class="dropdown-menu">
+		                     <li><a href="#"><i class="fa fa-user"></i>个人信息</a></li>
+		                     <li><a href="#"><i class="fa fa-comment"></i>消息</a></li>
+		                     <li><a href="login.html"><i class="fa fa-power-off"></i>注销</a></li>
+		                 </ul>
+		             </li>
+		         </ul>
+		     </div>
+			</nav>
+		</div>
+		<div id="main" class="row">
+			<div id="side" class="row col-lg-2">
+	           <nav class="left-nav" role="navigation">
+	               <a href="#base" class="nav-header menu-first collapse navbar-collapse" data-toggle="collapse"><i
+	                       class="fa fa-user"></i>&nbsp;基本模块</a>
+	               <ul class="nav nav-list collapse menu-second in" id="base">
+	                   <li role="presentation"><a href="main.html"><i class="fa fa-edit"></i>&nbsp;控制显示</a></li>
+	                   <li role="presentation"><a href="video.html"><i class="fa fa-key"></i>&nbsp;视频监控</a></li>
+	                   <li role="presentation"><a href="data.html"><i class="fa fa-key"></i>&nbsp;数据统计</a></li>
+	               </ul>
+	               <a href="#message" class="nav-header menu-first collapse navbar-collapse" data-toggle="collapse">
+	                   <i class="fa fa-comment"></i>&nbsp;溯源系统
+	               </a>
+	               <ul class="nav nav-list collapse menu-second in " id="message">
+	                   <li><a href="add.html"><i class="fa fa-pencil"></i>&nbsp;添加</a></li>
+	                   <li><a href="delete.html"><i class="fa fa-upload"></i>&nbsp;删除</a></li>
+	                   <li><a href="upload.html"><i class="fa fa-plus"></i>&nbsp;上传</a></li>
+	               </ul>
+	               <a href="#reserve" class="nav-header menu-first collapse navbar-collapse" data-toggle="collapse"><i
+	                       class="icon-book icon-large"></i>&nbsp;预留</a>
+	               <ul class="nav nav-list collapse menu-second in" id="reserve">
+	                   <li><a href="#"><i class="fa fa-pencil"></i>&nbsp;one</a></li>
+	                   <li><a href="#"><i class="fa fa-pencil"></i>&nbsp;two</a></li>
+	                   <li><a href="#"><i class="fa fa-pencil"></i>&nbsp;>three</a></li>
+	               </ul>
+	           </nav>
+		    </div>
+		    <div id="body" class="col-lg-10">
+			    <div class="row">
+	                <div id="settingZone" class="col-md-offset-1 col-md-10">
+		                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			                <div class="panel panel-default">
+			                    <div class="panel-heading panel-success" role="tab" id="headingOne">
+			                        <h4 class="panel-title">
+			                            <a role="button" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+			                                登录
+			                            </a>
+			                        </h4>
+			                    </div>
+			                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+			                        <div class="panel-body">
+			                            <form id="loginForm" class="form-horizontal" role="form">
+			                                <div class="col-md-4">
+			                                    <div class="form-group">
+			                                        <label for="loginip" class="col-md-4 control-label">IP地址</label>
+			                                        <div class="col-md-8">
+			                                            <input id="loginip" type="text" class="form-control input-sm" value="192.168.1.64"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <label for="username" class="col-md-4 control-label">用户名</label>
+			                                        <div class="col-md-8">
+			                                            <input id="username" type="text" class="form-control input-sm" value="admin"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <label for="deviceport" class="col-md-4 control-label">设备端口</label>
+			                                        <div class="col-md-8">
+			                                            <input id="deviceport" type="text" class="form-control input-sm" placeholder="可选参数"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-12 text-center">
+			                                            <input class="btn btn-default" value="登录" onclick="clickLogin();"/>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <div class="col-md-4">
+			                                    <div class="form-group">
+			                                        <label for="port" class="col-md-4 control-label">端口号</label>
+			                                        <div class="col-md-8">
+			                                            <input id="port" type="text" class="form-control input-sm" value="80"/>
+			                                        </div>
+			                                    </div>
+			
+			                                    <div class="form-group">
+			                                        <label for="password" class="col-md-4 control-label">端口号</label>
+			                                        <div class="col-md-8">
+			                                            <input id="password" type="password" class="form-control input-sm" value="admin123"/>
+			                                        </div>
+			                                    </div>
+			
+			                                    <div class="form-group">
+			                                        <label  class="col-md-4 control-label">窗口分割数</label>
+			                                        <div class="col-md-8">
+			                                            <select class="form-control input-sm" onchange="changeWndNum(this.value);">
+			                                                <option value="1">1x1</option>
+			                                                <option value="2" selected="selected">2x2</option>
+			                                                <option value="3">3x3</option>
+			                                                <option value="4">4x4</option>
+			                                                <option value="5">5x5</option>
+			                                                <option value="6">6x6</option>
+			                                            </select>
+			                                        </div>
+			
+			                                    </div>
+			
+			                                    <div class="form-group">
+			                                        <div class="col-md-12 text-center">
+			                                            <input class="btn btn-default" value="登出" onclick="clickLogout();"/>
+			                                        </div>
+			                                    </div>
+			
+			                                </div>
+			                                <div class="col-md-4">
+			                                    <div class="form-group col-md-12">
+			                                        <label class="col-md-12">已登录设备</label>
+			                                        <select id="ip" class="col-md-6 form-control input-sm" onchange="getChannelInfo();"></select>
+			                                    </div>
+			                                    <div class="form-group col-md-12">
+			                                        <label class="col-md-12">通道列表</label>
+			                                        <select id="channels" class="col-md-6 form-control input-sm">
+			                                        </select>
+			                                    </div>
+			                                </div>
+			                            </form>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="panel panel-default">
+			                    <div class="panel-heading panel-success" role="tab" id="localSet">
+			                        <h4 class="panel-title">
+			                            <a role="button" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapselocalSet" aria-expanded="false" aria-controls="collapselocalSet">
+			                                本地设置
+			                            </a>
+			                        </h4>
+			                    </div>
+			                    <div id="collapselocalSet" class="panel-collapse collapse" role="tabpanel" aria-labelledby="localSet">
+			                        <div class="panel-body">
+			                            <form class="form-horizontal" role="form">
+			                                <div class="col-md-12">
+			                                    <div class="form-group col-md-6">
+			                                        <label class="control-label col-md-6">播放性能</label>
+			                                        <div class="col-md-6">
+			                                            <select id="netsPreach" name="netsPreach" class="input-sm form-control">
+			                                                <option value="0">最短延时</option>
+			                                                <option value="1">实时性好</option>
+			                                                <option value="2">均衡</option>
+			                                                <option value="3">流畅性好</option>
+			                                            </select>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group col-md-6">
+			                                        <label class="control-label col-md-6">图像尺寸</label>
+			                                        <div class="col-md-6">
+			                                            <select id="wndSize" name="wndSize" class="input-sm form-control">
+			                                                <option value="0">充满</option>
+			                                                <option value="1">4:3</option>
+			                                                <option value="2">16:9</option>
+			                                            </select>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <div class="col-md-12">
+			                                    <div class="form-group col-md-6">
+			                                        <label class="control-label col-md-6">规则信息</label>
+			                                        <div class="col-md-6">
+			                                            <select id="rulesInfo" name="rulesInfo" class="input-sm form-control">
+			                                                <option value="1">启用</option>
+			                                                <option value="0">禁用</option>
+			                                            </select>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group col-md-6">
+			                                        <label class="control-label col-md-6">抓图文件格式</label>
+			                                        <div class="col-md-6">
+			                                            <select id="captureFileFormat" name="captureFileFormat" class="input-sm form-control">
+			                                                <option value="0">JPEG</option>
+			                                                <option value="1">BMP</option>
+			                                            </select>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <div class="col-md-12">
+			                                    <div class="form-group col-md-6">
+			                                        <label class="control-label col-md-6">录像文件打包大小</label>
+			                                        <div class="col-md-6">
+			                                            <select id="packSize" name="packSize" class="input-sm form-control">
+			                                                <option value="0">256M</option>
+			                                                <option value="1">512M</option>
+			                                                <option value="2">1G</option>
+			                                            </select>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group col-md-6">
+			                                        <label class="control-label col-md-6">协议类型</label>
+			                                        <div class="col-md-6">
+			                                            <select id="protocolType" name="protocolType" class="input-sm form-control">
+			                                                <option value="0">TCP</option>
+			                                                <option value="2">UDP</option>
+			                                            </select>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <div class="col-md-12">
+			                                    <div class="form-group col-md-11">
+			                                        <label class="col-md-4 control-label">录像文件保存路径</label>
+			                                        <div class="col-md-6">
+			                                            <input id="recordPath" type="text" class="form-control input-sm"/>
+			                                        </div>
+			                                        <div class="col-md-2">
+			                                            <input type="button" class="form-control input-sm" value="浏览" onclick="clickOpenFileDlg('recordPath', 0);"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group col-md-11">
+			                                        <label class="col-md-4 control-label">回放下载保存路径</label>
+			                                        <div class="col-md-6">
+			                                            <input id="downloadPath" type="text" class="form-control input-sm"/>
+			                                        </div>
+			                                        <div class="col-md-2">
+			                                            <input type="button" class="form-control input-sm" value="浏览" onclick="clickOpenFileDlg('downloadPath', 0);"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group col-md-11">
+			                                        <label class="col-md-4 control-label">预览抓图保存路径</label>
+			                                        <div class="col-md-6">
+			                                            <input id="previewPicPath" type="text" class="form-control input-sm"/>
+			                                        </div>
+			                                        <div class="col-md-2">
+			                                            <input type="button" class="form-control input-sm" value="浏览" onclick="clickOpenFileDlg('downloadPath', 0);"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group col-md-11">
+			                                        <label class="col-md-4 control-label">回放抓图保存路径</label>
+			                                        <div class="col-md-6">
+			                                            <input id="playbackPicPath" type="text" class="form-control input-sm"/>
+			                                        </div>
+			                                        <div class="col-md-2">
+			                                            <input type="button" class="form-control input-sm" value="浏览" onclick="clickOpenFileDlg('downloadPath', 0);"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group col-md-11">
+			                                        <label class="col-md-4 control-label">回放剪辑保存路径</label>
+			                                        <div class="col-md-6">
+			                                            <input  id="playbackFilePath" type="text" class="form-control input-sm"/>
+			                                        </div>
+			                                        <div class="col-md-2">
+			                                            <input type="button" class="form-control input-sm" value="浏览" onclick="clickOpenFileDlg('downloadPath', 0);"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group col-md-10">
+			                                        <div class="col-md-offset-6 col-md-2">
+			                                            <input type="button" class="btn btn-default btn-sm" value="获取" onclick="clickGetLocalCfg();"/>
+			                                        </div>
+			                                        <div class="col-md-2">
+			                                            <input type="button" class="btn btn-default btn-sm" value="设置" onclick="clickSetLocalCfg();"/>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </form>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="panel panel-default">
+			                    <div class="panel-heading" role="tab" id="headingTwo">
+			                        <h4 class="panel-title">
+			                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			                                预览
+			                            </a>
+			                        </h4>
+			                    </div>
+			                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+			                        <div class="panel-body">
+			                            <form role="form" class="form-horizontal">
+			                                <div class="col-md-4">
+			                                    <div class="form-group">
+			                                        <label class="col-md-4 control-label">码流类型</label>
+			                                        <div class="col-md-4">
+			                                            <select id="streamtype" class="form-control input-sm">
+			                                                <option value="1">主码流</option>
+			                                                <option value="2">子码流</option>
+			                                                <option value="3">第三码流</option>
+			                                                <option value="4">转码码流</option>
+			                                            </select>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <label class="col-md-4 control-label">音量(0-100)</label>
+			                                        <div class="col-md-4">
+			                                            <input id="volume" class="form-control input-sm" type="number" max="100" min="0" value="50"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default" value="音量确认" onclick="clickSetVolume();"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <label class="col-md-4 control-label">对讲通道</label>
+			                                        <div class="col-md-4">
+			                                            <select id="audiochannels" class="form-control input-sm"></select>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default" value="获取通道" onclick="clickGetAudioInfo();"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-offset-3 col-md-3">
+			                                            <input type="button" class="btn btn-default" value="抓图" onclick="clickCapturePic();"/>
+			                                        </div>
+			                                        <div class="col-md-3">
+			                                            <input type="button" class="btn btn-default" value="全屏" onclick="clickFullScreen();"/>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <div class="col-md-4">
+			                                    <div class="form-group">
+			                                        <div class="col-md-offset-2 col-md-5">
+			                                            <input type="button" class="btn btn-default" value="开始预览" onclick="clickStartRealPlay();"/>
+			                                        </div>
+			                                        <div class="col-md-5">
+			                                            <input type="button" class="btn btn-default" value="停止预览" onclick="clickStopRealPlay();" style="margin-left: -36%"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-offset-2 col-md-5">
+			                                            <input type="button" class="btn btn-default" value="打开声音" onclick="clickOpenSound();"/>
+			                                        </div>
+			                                        <div class="col-md-5">
+			                                            <input type="button" class="btn btn-default" value="关闭声音" onclick="clickCloseSound();" style="margin-left: -36%"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-offset-2 col-md-5">
+			                                            <input type="button" class="btn btn-default" value="开始对讲" onclick="clickStartVoiceTalk();"/>
+			                                        </div>
+			                                        <div class="col-md-5">
+			                                            <input type="button" class="btn btn-default" value="关闭对讲" onclick="clickStopVoiceTalk();" style="margin-left: -36%"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-offset-2 col-md-5">
+			                                            <input type="button" class="btn btn-default" value="开始录像" onclick="clickStartRecord();" />
+			                                        </div>
+			                                        <div class="col-md-5">
+			                                            <input type="button" class="btn btn-default" value="停止录像" onclick="clickStopRecord();" style="margin-left: -36%"/>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <div class="col-md-4">
+			                                    <div class="form-group">
+			                                        <div class="col-md-10">
+			                                            <input type="button" class="btn btn-default" value="启用电子放大" onclick="clickEnableEZoom();"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-10">
+			                                            <input type="button" class="btn btn-default" value="启用电子放大" onclick="clickDisableEZoom();"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-10">
+			                                            <input type="button" class="btn btn-default" value="启用3D放大" onclick="clickEnable3DZoom();" style="width: 42%"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-10">
+			                                            <input type="button" class="btn btn-default" value="禁用3D放大" onclick="clickDisable3DZoom();" style="width: 42%"/>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </form>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="panel panel-default">
+			                    <div class="panel-heading" role="tab" id="headingThree">
+			                        <h4 class="panel-title">
+			                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			                                云台控制
+			                            </a>
+			                        </h4>
+			                    </div>
+			                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+			                        <div class="panel-body">
+			                            <form role="form" class="form-horizontal">
+			                                <div class="col-md-4">
+			                                    <div class="form-group">
+			                                        <label class="col-md-4 control-label">云台速度</label>
+			                                        <div class="col-md-4">
+			                                            <select id="ptzspeed" class="form-control input-sm">
+			                                                <option>1</option>
+			                                                <option>2</option>
+			                                                <option>3</option>
+			                                                <option selected="selected">4</option>
+			                                                <option>5</option>
+			                                                <option>6</option>
+			                                                <option>7</option>
+			                                            </select>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <label class="col-md-4 control-label">预置点号</label>
+			                                        <div class="col-md-4">
+			                                            <input  id="preset" type="number" value="1" class="form-control input-sm"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-offset-1 col-md-4">
+			                                            <input type="button" class="btn btn-default" value="设置" onclick="clickSetPreset();"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default" value="调用" onclick="clickGoPreset();"/>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <div class="col-md-4">
+			                                    <div class="form-group">
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" value="左上" onmousedown="mouseDownPTZControl(5);" onmouseup="mouseUpPTZControl();"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" value="上" style="margin-left:-70%;width: 52%;" onmousedown="mouseDownPTZControl(1);" onmouseup="mouseUpPTZControl();"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" value="右上" style="margin-left:-140%;" onmousedown="mouseDownPTZControl(7);" onmouseup="mouseUpPTZControl();"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" value="左" style="width: 52%;" onmousedown="mouseDownPTZControl(3);" onmouseup="mouseUpPTZControl();"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" value="自动" style="margin-left:-70%;" onclick="mouseDownPTZControl(9);"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" value="右" style="margin-left:-140%;width: 52%;" onmousedown="mouseDownPTZControl(4);" onmouseup="mouseUpPTZControl();"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" value="左下" onmousedown="mouseDownPTZControl(6);" onmouseup="mouseUpPTZControl();"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" value="下" style="margin-left:-70%;width: 52%;" onmousedown="mouseDownPTZControl(2);" onmouseup="mouseUpPTZControl();"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" value="右下" style="margin-left:-140%;" onmousedown="mouseDownPTZControl(8);" onmouseup="mouseUpPTZControl();"/>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <div class="col-md-4" style="margin-left: -5%">
+			                                    <div class="form-group">
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" value="变倍+" onmousedown="PTZZoomIn()" onmouseup="PTZZoomStop()"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" style="margin-left: -60%" value="变倍-" onmousedown="PTZZoomout()" onmouseup="PTZZoomStop()"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm"  value="变焦+" onmousedown="PTZFocusIn()" onmouseup="PTZFoucusStop()"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" style="margin-left: -60%" value="变焦-" onmousedown="PTZFoucusOut()" onmouseup="PTZFoucusStop()"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" value="光圈+" onmousedown="PTZIrisIn()" onmouseup="PTZIrisStop()"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" style="margin-left: -60%" value="光圈-" onmousedown="PTZIrisOut()" onmouseup="PTZIrisStop()"/>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </form>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="panel panel-default">
+			                    <div class="panel-heading" role="tab" id="headingFour">
+			                        <h4 class="panel-title">
+			                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+			                                回放
+			                            </a>
+			                        </h4>
+			                    </div>
+			                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+			                        <div class="panel-body">
+			                            <form class="form-horizontal" role="form">
+			                                <div class="col-md-4">
+			                                    <div class="form-group">
+			                                        <label class="col-md-4 control-label">开始时间</label>
+			                                        <div class="col-md-8">
+			                                            <input id="starttime" type="datetime" class="form-control input-sm" value="2016-02-16 12:34:56" />(格式:2016-02-16 12:34:56)
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <label class="col-md-4 control-label">结束时间</label>
+			                                        <div class="col-md-8">
+			                                            <input id="endtime" type="datetime" class="form-control input-sm" value="2016-02-16 12:34:56"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-offset-4 col-md-4">
+			                                            <input type="button" class="btn btn-default btn-sm" value="搜索" onclick="clickRecordSearch(0);"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="searchdiv">
+			                                        <table id="searchlist" class="searchlist"></table>
+			                                    </div>
+			
+			                                </div>
+			                                <div class="col-md-4">
+			                                    <div class="form-group">
+			                                        <div class="col-md-4">
+			                                            <input  type="button" class="btn btn-default" value="开始回放" onclick="clickStartPlayback();"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input  type="button" class="btn btn-default" value="停止回放" style="margin-left: -20%" onclick="clickStopPlayback();"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-4">
+			                                            <input  type="button" class="btn btn-default" value="暂停" style="width: 93%" onclick="clickPause();"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input  type="button" class="btn btn-default" value="恢复" style="width: 93%;margin-left: -20%" onclick="clickResume();"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-4">
+			                                            <input  type="button" class="btn btn-default" value="慢放" style="width: 93%" onclick="clickPlaySlow();"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input  type="button" class="btn btn-default" value="快放" style="width: 93%;margin-left: -20%"  onclick="clickPlayFast();"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-4">
+			                                            <input  type="button" class="btn btn-default" value="倒放" style="width: 93%" onclick="clickReversePlayback();"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input  type="button" class="btn btn-default" value="单帧" style="width: 93%;margin-left: -20%" onclick="clickFrame();"/>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <div class="col-md-4">
+			                                    <div class="form-group">
+			                                        <div class="col-md-4">
+			                                            <input  type="button" class="btn btn-default" value="抓图"  onclick="clickCapturePic();"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input  type="button" class="btn btn-default" value="开始剪辑"  onclick="clickStartRecord();"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input  type="button" class="btn btn-default" value="停止剪辑"  onclick="clickStopRecord();"/>
+			                                        </div>
+			                                    </div>
+			                                    <div class="form-group">
+			                                        <div class="col-md-4">
+			                                            <input  type="button" class="btn btn-default" value="OSD时间"  onclick="clickGetOSDTime();"/>
+			                                        </div>
+			                                        <div class="col-md-4">
+			                                            <input id="osdtime" type="text" class="input-sm" onclick="clickStartPlayback();" readonly="readonly" />
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </form>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="panel panel-default">
+			                    <div class="panel-heading" role="tab" id="headingFive">
+			                        <h4 class="panel-title">
+			                            <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="true" aria-controls="collapseThree">
+			                                操作信息
+			                            </a>
+			                        </h4>
+			                    </div>
+			                    <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
+			                        <div class="panel-body">
+			                            <div id="opinfo" class="opinfo"></div>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="panel panel-default">
+	                    <div class="panel-heading" role="tab" id="headingSix">
+	                        <h4 class="panel-title">
+	                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="true" aria-controls="collapseThree">
+	                                事件回调信息
+	                            </a>
+	                        </h4>
+		                    </div>
+			                    <div id="collapseSix" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSix">
+			                        <div class="panel-body">
+			                            <div id="cbinfo" class="cbinfo"></div>
+			                        </div>
+			                    </div>
+		                	</div>
+	             		</div>
+          			</div>
+        		</div>
+			</div>
+		</div>
+	</div>
+	
+<script src="/js/jquery-2.2.0.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/video/webVideoCtrl.js"></script>
+<script src="/js/video/hk.js"></script>
+<script src="/js/video/video.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>主控模块</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="/css/bootstrapValidator.min.css"/>
+		<link rel="stylesheet" href="/css/font-awesome.min.css"/>
+		<link rel="stylesheet" href="/css/global.css"/>
+		<link rel="stylesheet" href="/css/customized/sidenav.css"/>
+		<link rel="stylesheet" href="/css/customized/main.css"/>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="header row">
+        		<nav class=" navbar navbar-default" id="top-navbar" role="navigation">
+		            <div class="navbar-brand">
+		                <a href="#">
+		                    <img src="/images/logo.png" alt="loading..." class="img-responsive" height="30" width="120"/>
+		                </a>
+		            </div>
+		            <div class="collapse navbar-collapse">
+		                <ul class="nav navbar-nav pull-right">
+		                    <li class="dropdown user" id="header-user">
+		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		                            <img alt="" src="images/avatar3.jpg"/>
+		                            <span class="username">辅导员</span>
+		                            <i class="fa fa-angle-down"></i>
+		                        </a>
+		                        <ul class="dropdown-menu">
+		                            <li><a href="#"><i class="fa fa-user"></i>个人信息</a></li>
+		                            <li><a href="#"><i class="fa fa-comment"></i>消息</a></li>
+		                            <li><a href="login.html"><i class="fa fa-power-off"></i>注销</a></li>
+		                        </ul>
+		                    </li>
+		                </ul>
+		            </div>
+        		</nav>
+    		</div>
+			<div id="main" class="row">
+				<div id="side" class="row col-lg-2">
+		            <nav class="left-nav" role="navigation">
+		                <a href="#base" class="nav-header menu-first collapse navbar-collapse" data-toggle="collapse"><i
+		                        class="fa fa-user"></i>&nbsp;基本模块</a>
+		                <ul class="nav nav-list collapse menu-second in" id="base">
+		                    <li role="presentation"><a href="main.html"><i class="fa fa-edit"></i>&nbsp;控制显示</a></li>
+		                    <li role="presentation"><a href="video.html"><i class="fa fa-key"></i>&nbsp;视频监控</a></li>
+		                    <li role="presentation"><a href="data.html"><i class="fa fa-key"></i>&nbsp;数据统计</a></li>
+		                </ul>
+		                <a href="#message" class="nav-header menu-first collapse navbar-collapse" data-toggle="collapse">
+		                    <i class="fa fa-comment"></i>&nbsp;溯源系统
+		                </a>
+		                <ul class="nav nav-list collapse menu-second in " id="message">
+		                    <li><a href="add.html"><i class="fa fa-pencil"></i>&nbsp;添加</a></li>
+		                    <li><a href="delete.html"><i class="fa fa-upload"></i>&nbsp;删除</a></li>
+		                    <li><a href="upload.html"><i class="fa fa-plus"></i>&nbsp;上传</a></li>
+		                </ul>
+		                <a href="#reserve" class="nav-header menu-first collapse navbar-collapse" data-toggle="collapse"><i
+		                        class="icon-book icon-large"></i>&nbsp;预留</a>
+		                <ul class="nav nav-list collapse menu-second in" id="reserve">
+		                    <li><a href="#"><i class="fa fa-pencil"></i>&nbsp;one</a></li>
+		                    <li><a href="#"><i class="fa fa-pencil"></i>&nbsp;two</a></li>
+		                    <li><a href="#"><i class="fa fa-pencil"></i>&nbsp;>three</a></li>
+		                </ul>
+		            </nav>
+		        </div>
+		        <div id="body" class="col-lg-10" th:object="${zones}">
+			        <ul class="nav nav-tabs" role="tablist">
+						<li th:each="zone:${zones}">
+							<a href="#tab_model" th:href="@{'#'+${zone.name}}" data-toggle="tab" role="tab">
+								<i class="fa fa-map-marker"></i>
+								<span th:text="${zone.alias}">分区</span>
+							</a>
+						</li>
+						<li class="active">
+							<a href="#addZone" data-toggle="tab" role="tab">
+								<i class="fa fa-plus"></i> 
+								<span>添加分区</span>
+							</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div th:each="zone:${zones}" class="tab-pane fade in" th:id="${zone.name}">
+							<div id="sinDevClm" class="col-md-4">
+								<div th:each="sinDev:${zone.sinDevices}" class="panel panel-danger">
+									<div class="panel-heading">
+										<h3 class="text-center" th:text="${sinDev.name}">
+											设备名
+										</h3>
+										<span th:if="${sinDev.online}==0" class="label label-default"> 
+											已停止运行 
+										</span>
+										<span th:if="${sinDev.online==1 and sinDev.ctrlMode==1}" class="label label-success"> 
+											自动模式运行 
+										</span>
+										<span th:if="${sinDev.online==1 and sinDev.ctrlMode==0}" class="label label-danger"> 
+											手动模式运行 
+										</span>
+										<div class="pull-right">
+											<a href="#deviceCfg" data-toggle="modal"
+											   class="config"> <i class="fa fa-cog"></i>
+											</a> 
+											<a href="javascript:;" class="reload" onclick="reloadSinDev(this)"><i
+												class="fa fa-refresh"></i>
+											</a> 
+											<a href="javascript:;" class="collapse"> <i
+												class="fa fa-chevron-up"></i>
+											</a> 
+											<a href="javascript:;" class="remove" onclick="removeSinDev(this)"> <i
+												class="fa fa-times"></i>
+											</a>
+										</div>
+									</div>
+									<div class="panel-body">
+										<table class="table">
+											<thead>
+											<tr>
+												<th>序号</th>
+												<th>关联传感器</th>
+												<th>传感器数据</th>
+												<th>传感器状态</th>
+											</tr>
+											</thead>
+											<tbody>
+											<tr th:each="sens:${sinDev.sensors}" th:name="${sens.name}">
+												<td th:text="${sensStat.count}">序号</td>
+												<td th:text="${sens.name}">名称</td>
+												<td th:text="${sens.value}">数值</td>
+												<td th:text="${sens.state}">状态</td>
+											</tr>
+											</tbody>
+											<tfoot>
+											<tr>
+												<th><img src="/images/fan.png" class="fengye" /></th>
+												<th><button type="button" class="btn btn-primary" onclick="startSinDev(this)">启动</button></th>
+												<th></th>
+												<th><button type="button" class="btn btn-success" onclick="stopSinDev(this)">关闭</button></th>
+											</tr>
+											</tfoot>
+										</table>
+									</div>
+								</div>
+								<div  class="panel panel-success">
+									<div class="panel-body" style="height: 250px">
+										<a id="sinDevAddModal_15850506481" th:id="${'addSinDevice_'+zone.name}" data-toggle="modal" class="a_setting"
+										   style="width: 100%">
+											<button class="btn btn-info" style="width: 100%;height: 100%">
+												<i class="fa fa-plus"></i>添加单点设备
+											</button>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div id="binDevClm" class="col-md-4">
+								<div th:each="binDev:${zone.binDevices}" class="panel panel-success">
+									<div class="panel-heading">
+										<h3 th:text="${binDev.name}" class="text-center">设备名</h3>
+										
+										<span th:if="${binDev.online}==0" class="label label-default">已停止运行</span>
+										<span th:if="${binDev.ctrlMode==1 and binDev.online==1}" class="label label-danger"> 自动模式</span>
+										<span th:if="${binDev.ctrlMode==0 and binDev.online==1}" class="label label-success"> 手动模式</span>
+										
+										<div class="pull-right">
+											<a href="#deviceCfg" data-toggle="modal"
+											   class="config"> <i class="fa fa-cog"></i>
+											</a> <a href="javascript:;" class="reload" onclick="reloadBinDev(this)"> <i
+												class="fa fa-refresh"></i>
+											</a> <a href="javascript:;" class="collapse"> <i
+												class="fa fa-chevron-up"></i>
+											</a> <a href="javascript:;" class="remove" onclick="removeBinDev(this)"> <i
+												class="fa fa-times"></i>
+											</a>
+										</div>
+									</div>
+									<div class="panel-body">
+										<table class="table">
+											<thead>
+											<tr>
+												<th>序号</th>
+												<th>关联传感器</th>
+												<th>传感器数据</th>
+												<th>传感器状态</th>
+											</tr>
+											</thead>
+											<tbody>
+											<tr th:each="sens:${binDev.sensors}">
+												<td th:text="${sensStat.count}">序号</td>
+												<td th:text="${sens.name}">名称</td>
+												<td th:text="${sens.value}">数值</td>
+												<td th:text="${sens.state}">状态</td>
+											</tr>
+											</tbody>
+											<tfoot>
+											<tr>
+												<th><img src="/images/fan.png" class="fengye" /></th>
+												<th><button type="button" class="btn btn-primary" onclick="binDevForward(this)">正转</button></th>
+												<th><button type="button" class="btn btn-danger" onclick="binDevStop(this)">停止</button></th>
+												<th><button type="button" class="btn btn-success" onclick="binDevBackward(this)">反转</button></th>
+											</tr>
+											</tfoot>
+										</table>
+									</div>
+								</div>
+								<div  class="panel panel-success">
+									<div class="panel-body" style="height: 250px">
+										<a id="binDevAddModal_15850506481" th:id="${'addBinDevice_'+zone.name}" data-toggle="modal" class="a_setting"
+										   style="width: 100%">
+											<button class="btn btn-info" style="width: 100%;height: 100%">
+												<i class="fa fa-plus"></i>添加电机设备
+											</button>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div id="sensorClm" class="col-md-4">
+								<div th:each="sensor:${zone.sensors}" class="col-md-6">
+								 	<div class="panel panel-danger">
+										<div class="panel-heading">
+											<h3 class="text-center" th:text="${sensor.name}">
+												降雨器
+											</h3>
+											<span th:if="${sensor.online}==0" class="label label-default"> 离线 </span>
+											<span th:if="${sensor.online}==1" class="label label-default"> 在线 </span>
+											<div class="pull-right">
+												<a href="#deviceCfg" data-toggle="modal"
+												   class="config"> <i class="fa fa-cog"></i>
+												</a> <a href="javascript:;" class="reload" onclick="reloadSensor(this)"> <i
+													class="fa fa-refresh"></i>
+												</a> <a href="javascript:;" class="collapse"> <i
+													class="fa fa-chevron-up"></i>
+											</a> <a href="javascript:;" class="remove" onclick="removeSensor(this)"> <i
+													class="fa fa-times"></i>
+											</a>
+											</div>
+										</div>
+										<div class="panel-body">
+											<form class="hidden">
+												<input name="name" type="text" th:value="${sensor.name}"/>
+												<input name="num" type="text" th:value="${sensorStat.count}"/>
+												<input name="unit" type="text" th:value="${sensor.unit}"/>
+												<input name="upvalue" type="text" th:value="${sensor.upValue}"/>
+												<input name="downvalue" type="text" th:value="${sensor.downValue}"/>
+											</form>
+											<div th:id="${'g'+zone.name+sensorStat.count}" class="gs" >
+											
+											</div>
+										</div>
+									</div>
+								</div>
+								<div  class="col-md-6">
+									<div class="panel panel-success">
+										<div class="panel-body" style="height: 246px">
+											<a id="sensorAddModal_15850506481" th:id="${'addSensor_'+zone.name}" class="a_setting"
+											   style="width: 100%">
+												<button class="btn btn-info" style="width: 100%;height: 100%">
+													<i class="fa fa-plus"></i>添加传感器
+												</button>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade in active" id="addZone">
+							<div class="row">
+								<div class="col-md-offset-3 col-md-4">
+									<form class="form-horizontal" action="@{/zone/add}" method="post">
+										<div class="form-group">
+											<label>区域编号</label> 
+											<input type="text" class="form-control" id="zoneName" placeholder="数据中心id" />
+										</div>
+										<div class="form-group">
+											<label>区域名称</label> 
+											<input type="text" class="form-control" id="zoneAlias" placeholder="区域别名" />
+										</div>
+										<div class="form-group">
+											<label>经度</label> 
+											<input type="text" class="form-control" id="longitude" placeholder="例:" />
+										</div>
+										<div class="form-group">
+											<label>纬度</label> 
+											<input type="text" class="form-control" id="latitude" placeholder="例:" />
+										</div>
+										<div class="form-group">
+											<label>区域面积</label> 
+											<input type="text" class="form-control" id="area" placeholder="单位:m²" />
+										</div>
+										<div class="form-group">
+											<input type="submit" class="btn btn-danger" value="添加"/>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+		        </div>
+			</div>
+		</div>
+		
+		<!--modal dialog-->
+
+		<!--传感器添加模态框-->
+		<div class="modal fade bs-example-modal-sm" id="sensorAddModal"
+			 tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+			 aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+						<h4 class="modal-title" align="center">添加传感器</h4>
+					</div>
+					<div class="modal-body clearfix">
+						<form id="addSensorForm" >
+								<div class="form-group col-md-10 col-md-offset-1" align="center">
+									<label>数据中心编号</label>
+									<input name="zoneName" type="text" class="form-control" readonly="readonly" />
+								</div>
+								<div class="form-group col-md-10 col-md-offset-1" align="center">
+									<label>采集点名称</label>
+									<input name="name" type="text" required="required" data-bv-trigger="keyup" data-bv-notempty-message="名称不能为空" class="form-control" />
+								</div>
+								<div class="form-group col-md-10 col-md-offset-1" align="center">
+									<label>采集点单位</label>
+									<input name="unit" type="text" required="required" data-bv-trigger="keyup" data-bv-notempty-message="单位不能为空" class="form-control" />
+								</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary pull-right" id="btnAddSensor">添加</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 单点控制器弹出框-->
+		<div class="modal fade bs-example-modal-sm" id="sinDevAddModal"
+			 tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+			 aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+						<h4 class="modal-title" align="center">增加单点控制器</h4>
+					</div>
+					<div class="modal-body clearfix">
+						<form id="addSinDevForm" action="/sindevice/add" method="post">
+								<div class="form-group col-md-10 col-md-offset-1" align="center">
+									<label>数据中心编号</label>
+									<input name="zoneName" type="text"  class="form-control" readonly="readonly" />
+								</div>
+								<div class="form-group col-md-10 col-md-offset-1" align="center">
+									<label>控制器名称</label>
+									<input name="name" type="text" required="required" data-bv-trigger="keyup" data-bv-notempty-message="名称不能为空" class="form-control" />
+								</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary pull-right" id="btnAddSinDevice">添加</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 电机控制器弹出框-->
+		<div class="modal fade bs-example-modal-sm" id="binDevAddModal"
+			 tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+			 aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+						<h4 class="modal-title" align="center">增加电机控制器</h4>
+					</div>
+					<div class="modal-body clearfix">
+						<form id="addBinDevForm">
+							<div class="form-group col-md-10 col-md-offset-1" align="center">
+								<label>数据中心编号</label>
+								<input name="zoneName" type="text" class="form-control" readonly="readonly" />
+							</div>
+							<div class="form-group col-md-10 col-md-offset-1" align="center" >
+								<label>控制器名称</label>
+								<input name="name" type="text" required="required" data-bv-trigger="keyup" data-bv-notempty-message="名称不能为空" class="form-control"/>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary pull-right" id="btnAddBinDevice">添加</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="/js/jquery-2.2.0.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/bootstrapValidator.min.js"></script>
+		<script src="/js/websocket/sockjs.min.js"></script>
+		<script src="/js/websocket/stomp.min.js"></script>
+		<script src="/js/justgage/raphael.2.1.0.min.js"></script>
+		<script src="/js/justgage/justgage.1.0.1.min.js"></script>
+		<script src="/js/tool/map.js"></script>
+		<script src="/js/main.js"></script>
+		
+		<script  type="text/javascript">
+	      window.onload = function(){
+	    	  initDevStatMap();
+	    	  initGS();		
+	    	  initConn();
+	      };
+	      $(document).ready(function(){
+	    	  addEventInit();
+	    	  validatorInit();
+	      });
+    	</script>
+	</body>
+</html>

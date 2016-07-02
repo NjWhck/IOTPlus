@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 id="msg">欢迎</h1>
+	
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/websocket/sockjs.min.js"></script>
+	<script src="/js/websocket/stomp.min.js"></script>
+	<script type="text/javascript">
+	var stompClient=null;
+	function connect(){
+		var socket = new SockJS('/senordata');
+		stompClient = Stomp.over(socket);
+		stompClient.connect({},function(frame){
+			console.log('Connected: '+frame);
+			stompClient.subscribe('sensor/update',function(data){
+				showData(data);
+			})
+		});
+	}
+	function showData(data){
+		$('#msg').innerHTML(data);
+	}
+		window.onload()=function(){
+			connect();
+		}
+	</script>
+</body>
+</html>

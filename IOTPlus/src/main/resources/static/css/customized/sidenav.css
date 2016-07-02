@@ -1,0 +1,59 @@
+#side{
+    margin-left: 0;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+/*一级菜单*/
+.menu-first{
+    height:51px;
+    line-height:51px;
+    background-color: #434343;
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+/*一级菜单鼠标划过状态*/
+.menu-first:hover{
+    text-decoration: none;
+    background-color: #666465;
+    /*border-top: 1px solid #b7b7b7;*/
+    border-bottom: 1px solid #6faf9f;
+}
+/*二级菜单*/
+.menu-second li a{
+    background-color: #b7b7b7;
+    height:39px;
+    line-height:39px;
+    /*border-top: 1px solid #6faf9f;*/
+    border-bottom: 1px solid #efefef;
+    font-size: 14px;
+    text-align:center;
+}
+/*二级菜单鼠标划过样式*/
+.menu-second li a:hover {
+    text-decoration: none;
+    background-color: #66c3ec;
+    border-top: 1px solid #83ceed;
+    border-bottom: 1px solid #83ceed;
+    border-right: 3px solid #f8881c;
+    border-left: 3px solid #66c3ec;
+}
+/*二级菜单选中状态*/
+.menu-second-selected {
+    background-color: #66c3ec;
+    height:31px;
+    line-height:31px;
+    border-top: 1px solid #83ceed;
+    border-bottom: 1px solid #83ceed;
+    border-right: 3px solid #f8881c;
+    border-left: 3px solid #66c3ec;
+    text-align:center;
+}
+/*覆盖bootstrap的样式*/
+.nav-list,.nav-list li a{
+    padding: 0px;
+    margin: 0px;
+}
