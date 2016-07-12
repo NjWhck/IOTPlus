@@ -15,10 +15,6 @@ public class ZoneServiceImpl implements ZoneService{
 	@Autowired
 	private ZoneDao zoneDao;
 	@Override
-	public Zone findByIp(String ip) {
-		return zoneDao.findByIp(ip);
-	}
-	@Override
 	public Zone findByName(String name) {
 		// TODO Auto-generated method stub
 		return zoneDao.findByName(name);

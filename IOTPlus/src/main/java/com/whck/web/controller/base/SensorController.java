@@ -1,11 +1,7 @@
 package com.whck.web.controller.base;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,17 +16,38 @@ public class SensorController {
 	
 	@RequestMapping(value="/add",method={RequestMethod.POST})
 	@ResponseBody
-	public Sensor addSensor(@RequestBody Sensor sensor){
-		return ss.addOrUpdateSensor(sensor);
+	public String addSensor(Sensor sensor){
+		try{
+			Sensor sens=ss.getSensor(sensor);
+			if(sens!=null)
+				return "exist";
+			ss.addOrUpdate(sensor);
+			return "success";
+		}catch(Exception e){
+			e.printStackTrace();
+			return "failed";
+		}
 	}
 	@RequestMapping(value="/update",method={RequestMethod.POST})
 	@ResponseBody
-	public Sensor updateSensor(@RequestBody Sensor sensor){
-		return ss.addOrUpdateSensor(sensor);
+	public String updateSensor(Sensor sensor){
+		try{
+			ss.addOrUpdate(sensor);
+			return  "success";
+		}catch(Exception e){
+			e.printStackTrace();
+			return "false";
+		}
 	}
-	@RequestMapping(value="/delete/{zone_name}/{sensor_name}",method={RequestMethod.DELETE})
+	@RequestMapping(value="/delete",method={RequestMethod.DELETE})
 	@ResponseBody
-	public Sensor deleteSensor(@PathVariable("zone_name")String zoneName,@PathVariable("sensor_name") String sensorName){
-		return ss.removeSensor(zoneName, sensorName);
+	public String deleteSensor(Sensor sensor){
+		try{
+			ss.removeSensor(sensor);
+			return "success";
+		}catch(Exception e){
+			e.printStackTrace();
+			return "failed";
+		}
 	}
 }

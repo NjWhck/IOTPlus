@@ -23,7 +23,7 @@ import com.whck.mina.message.SinDeviceParamsMessage;
 public class SinDeviceParams {
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private int id;
 	
 	@Column(name="zone_name",length=11)
 	private String zoneName;
@@ -37,9 +37,12 @@ public class SinDeviceParams {
 	@Temporal(TemporalType.TIME)
 	private Date time_1_end;
 	
-	@Max(value=43200)
+	@Max(value=1440)
+	@Min(value=0)
 	private Integer run_time_1;
-	@Max(value=43200)
+	
+	@Max(value=1440)
+	@Min(value=0)
 	private Integer idle_time_1;
 	
 	@Temporal(TemporalType.TIME)
@@ -154,10 +157,10 @@ public class SinDeviceParams {
 	@Column(name="downvalue_action_4")
 	private int downValueAction_4;
 	
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getZoneName() {
@@ -446,7 +449,7 @@ public class SinDeviceParams {
 	
 	public SinDeviceParamsMessage convert() throws IOException{
 		SinDeviceParamsMessage sdpm=new SinDeviceParamsMessage();
-		sdpm.setId(zoneName.getBytes("ISO-8859-1"));
+		sdpm.setId(zoneName.getBytes("GBK"));
 		sdpm.setLongitude(new byte[]{0,0,0});
 		sdpm.setLatitude(new byte[]{0,0,0});
 		byte[] devNameBytes=new byte[20];
@@ -594,7 +597,7 @@ public class SinDeviceParams {
 	}
 	@Override
 	public String toString() {
-		return "<单点设备参数>[id=" + id + ", zoneName=" + zoneName + ", deviceName=" + deviceName + ", workDays="
+		return "<单点设备参数>[ zoneName=" + zoneName + ", deviceName=" + deviceName + ", workDays="
 				+ workDays + ", time_1_start=" + time_1_start + ", time_1_end=" + time_1_end + ", run_time_1="
 				+ run_time_1 + ", idle_time_1=" + idle_time_1 + ", time_2_start=" + time_2_start + ", time_2_end="
 				+ time_2_end + ", run_time_2=" + run_time_2 + ", idle_time_2=" + idle_time_2 + ", time_3_start="

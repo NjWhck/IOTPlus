@@ -22,4 +22,15 @@ public class UserServiceImpl implements UserService{
 		return userDao.findByName(name);
 	}
 
+	@Override
+	public User getUser(User user) {
+		// TODO Auto-generated method stub
+		return userDao.findByNameAndPassword(user.getName(), user.getPassword());
+	}
+
+	@Override
+	public User add(User user) {
+		return userDao.save(user);
+	}
+
 }

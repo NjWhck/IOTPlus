@@ -12,12 +12,12 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer{
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
-		registry.enableSimpleBroker("/sensor","/sindevice","bindevice");
+		registry.enableSimpleBroker("/sensor","/sindevice","/bindevice");
 		registry.setApplicationDestinationPrefixes("/real");
 	}
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/sensordata","/sindevdata","/bindevdata").withSockJS();
+		registry.addEndpoint("/sensordata","/sindevdata","/bindevdata","/sindevparamdata","/bindevparamdata").withSockJS();
 	}
 
 }

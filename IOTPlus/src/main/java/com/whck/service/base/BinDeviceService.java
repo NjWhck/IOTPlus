@@ -7,8 +7,8 @@ import com.whck.domain.base.BinDevice;
 @Service
 public interface BinDeviceService {
 	List<BinDevice> getAll();
-	BinDevice getDevice(String zoneName,String devName);
+	BinDevice getDevice(BinDevice binDevice);
 	BinDevice addOrUpdate(BinDevice device);
-	BinDevice removeDevice(String zoneName,String devName);
+	BinDevice removeDevice(BinDevice binDevice);
 	List<BinDevice> getAllByZoneName(String zoneName);
 }

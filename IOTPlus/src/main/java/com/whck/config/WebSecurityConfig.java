@@ -18,7 +18,7 @@
 //				.anyRequest().authenticated()
 //				.and()
 //			.formLogin()
-//				.loginPage("/test/login")
+//				.loginPage("/user/login")
 //				.permitAll()
 //				.and()
 //			.logout()

@@ -8,5 +8,4 @@ public class Message {
 	public void setZoneName(String zoneName) {
 		this.zoneName = zoneName;
 	}
-	
 }

@@ -29,13 +29,13 @@ public class BinDeviceServiceImpl implements  BinDeviceService{
 	}
 
 	@Override
-	public BinDevice removeDevice(String zoneName, String devName) {
-		return deviceDao.deleteByZoneNameAndName(zoneName, devName);
+	public BinDevice removeDevice(BinDevice binDevice) {
+		return deviceDao.deleteByZoneNameAndName(binDevice.getZoneName(),binDevice.getName());
 	}
 
 	@Override
-	public BinDevice getDevice(String zoneName, String devName) {
-		return deviceDao.findByZoneNameAndName(zoneName, devName);
+	public BinDevice getDevice(BinDevice binDevice) {
+		return deviceDao.findByZoneNameAndName(binDevice.getZoneName(),binDevice.getName());
 	}
 
 	@Override

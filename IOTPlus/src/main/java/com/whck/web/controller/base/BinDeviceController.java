@@ -1,11 +1,9 @@
 package com.whck.web.controller.base;
 
 import java.io.IOException;
-
-import org.apache.mina.core.session.IoSession;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,9 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.whck.domain.base.BinDevice;
 import com.whck.domain.base.BinDeviceParams;
 import com.whck.domain.base.Sensor;
-import com.whck.mina.handler.ProtocolHandler;
 import com.whck.mina.message.BinDeviceParamsMessage;
-import com.whck.mina.message.DeviceStateMessage;
 import com.whck.mina.server.Broadcast;
 import com.whck.service.base.BinDeviceParamsService;
 import com.whck.service.base.BinDeviceService;
@@ -29,77 +25,81 @@ public class BinDeviceController {
 	private BinDeviceService bds;
 	@RequestMapping(value="/add",method = {RequestMethod.POST})
 	@ResponseBody
-	public String addDevice(@RequestBody BinDevice device){
-		BinDevice dev=bds.getDevice(device.getZoneName(),device.getName());
-		if(dev!=null)
-			return "exist";
-		bds.addOrUpdate(dev);
-		return "success";
-	}
-	@RequestMapping(value="/delete/{zone_name}/{device_name}")
-	@ResponseBody
-	public String deleteDevice(@PathVariable("zone_name") String zoneName,@PathVariable("device_name") String devName){
-		bds.removeDevice(zoneName,devName);
-		return "success";
-	}
-	@RequestMapping(value="/update/{zone_name}/{device_name}/{cmd}",method = {RequestMethod.POST})
-	@ResponseBody
-	public String updateDeviceState(@RequestBody BinDevice device){
-		DeviceStateMessage dsm=null;
-		try {
-			dsm = device.convert();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+	public String addDevice(BinDevice device){
+		try{
+			BinDevice dev=bds.getDevice(device);
+			if(dev!=null)
+				return "exist";
+			bds.addOrUpdate(dev);
+			return "success";
+		}catch(Exception e){
 			e.printStackTrace();
+			return "failed";
 		}
-		if(!Broadcast.broadcast(dsm))
-			return "disconnect";
-		bds.addOrUpdate(device);
-		return "success";
+	}
+	@RequestMapping(value="/delete",method = {RequestMethod.POST})
+	@ResponseBody
+	public String deleteDevice(BinDevice binDevice){
+		try{
+			bds.removeDevice(binDevice);
+			return "success";
+		}catch(Exception e){
+			e.printStackTrace();
+			return "failed";
+		}
+	}
+	@RequestMapping(value="/update",method = {RequestMethod.POST})
+	@ResponseBody
+	public String updateDevice(BinDevice device){
+		try {
+			bds.addOrUpdate(device);
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "failed";
+		}
 	}
 	
 	@RequestMapping(value="/params_update",method = {RequestMethod.POST})
 	@ResponseBody
-	public String updateDeviceParams(@RequestBody BinDeviceParams dp){
-		IoSession session=ProtocolHandler.sessions.get(bds.getDevice(dp.getZoneName(),dp.getDeviceName()).getIp());
-		if((session==null)||(!session.isConnected())){
-			return "error";
-		}
-		BinDeviceParamsMessage msg=null;
-		try {
-			msg = dp.convert();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		session.write(msg);
-		bdps.addOrUpdate(dp);
-		return "success";
+	public String updateDeviceParams(BinDeviceParams dp){
+		//broadcast
+				try {
+					BinDeviceParamsMessage msg = dp.convert();
+					if(Broadcast.broadcast(msg)){
+						bdps.addOrUpdate(dp);
+						return "success";
+					}else{
+						return "disconnected";
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+					return "failed";
+				}
 	}
 	
 	@RequestMapping(value="/params_load/{zone_name}/{device_name}",method = {RequestMethod.GET})
-	@ResponseBody
 	public BinDeviceParams loadDeviceParams(@PathVariable("zone_name") String zoneName,@PathVariable("device_name") String deviceName){
-		
-		return bdps.getBinDeviceParams(zoneName,deviceName);
+		try{
+			BinDeviceParams bdp=bdps.getBinDeviceParams(zoneName,deviceName);
+			return bdp;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	@RequestMapping(value="/sensor_bind/{zone_name}/{device_name}",method={RequestMethod.POST})
 	@ResponseBody
-	public String bindSensor(@RequestBody Sensor sensor,
+	public String bindSensor(List<Sensor> sensors,
 									@PathVariable("zone_name") String zoneName,
 											@PathVariable("device_name") String devName){
-		BinDevice device=bds.getDevice(zoneName, devName);
-		device.getSensors().add(sensor);
+		//TODO:Exception Handling
+		BinDevice dev=new BinDevice();
+		dev.setZoneName(zoneName);
+		dev.setName(devName);
+		BinDevice device=bds.getDevice(dev);
+		device.setSensors(sensors);
 		return "success";
-	}
-	
-	@RequestMapping(value="/sensor_unbind/{zone_name}/{device_name}")
-	@ResponseBody
-	public String unbindSensor(@RequestBody Sensor sensor,@PathVariable("zone_name")String zoneName,
-									@PathVariable("device_name")String devName){
-		BinDevice device=bds.getDevice(zoneName, devName);
-		device.getSensors().remove(sensor);
-		return  "success";
 	}
 }

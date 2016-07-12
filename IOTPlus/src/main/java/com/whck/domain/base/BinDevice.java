@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -20,7 +19,7 @@ import com.whck.mina.helper.Converter;
 import com.whck.mina.message.DeviceStateMessage;
 
 @Entity
-@Table(name="tb_device")
+@Table(name="tb_bindevice")
 public class BinDevice {
 	@Id
 	@GeneratedValue
@@ -49,9 +48,6 @@ public class BinDevice {
 	@Min(value=0)
 	@Max(value=1)
 	private int state;
-	@OneToOne(optional=false,fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="bdpid")//TODO: 表中添加此外键
-	private BinDeviceParams binDeviceParams;
 	
 	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.PERSIST)
 	@JoinTable(name="tb_bindevice_sensor",
@@ -59,6 +55,15 @@ public class BinDevice {
 			inverseJoinColumns=@JoinColumn(name="sid"))
 	private List<Sensor> sensors;
 	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getZoneName() {
 		return zoneName;
 	}
@@ -75,14 +80,6 @@ public class BinDevice {
 		this.sensors = sensors;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -97,14 +94,6 @@ public class BinDevice {
 
 	public void setIp(String ip) {
 		this.ip = ip;
-	}
-
-	public BinDeviceParams getBinDeviceParams() {
-		return binDeviceParams;
-	}
-
-	public void setBinDeviceParams(BinDeviceParams binDeviceParams) {
-		this.binDeviceParams = binDeviceParams;
 	}
 
 	public int getType() {
@@ -141,7 +130,7 @@ public class BinDevice {
 	
 	public DeviceStateMessage convert() throws IOException{
 		DeviceStateMessage m=new DeviceStateMessage();
-		byte[] id=zoneName.getBytes("ISO-8859-1");
+		byte[] id=zoneName.getBytes("GBK");
 		m.setId(id);
 		m.setLongitude(new byte[]{0,0,0});
 		m.setLatitude(new byte[]{0,0,0});
@@ -166,9 +155,8 @@ public class BinDevice {
 
 	@Override
 	public String toString() {
-		return "<电机设备>[id=" + id + ", zoneName=" + zoneName + ", name=" + name + ", ip=" + ip + ", type=" + type
-				+ ", ctrlMode=" + ctrlMode + ", online=" + online + ", state=" + state + ", binDeviceParams="
-				+ binDeviceParams + ", sensors=" + sensors + "]";
+		return "<电机设备>[ zoneName=" + zoneName + ", name=" + name + ", ip=" + ip + ", type=" + type
+				+ ", ctrlMode=" + ctrlMode + ", online=" + online + ", state=" + state + ", sensors=" + sensors + "]";
 	}
 	
 	

@@ -29,13 +29,13 @@ public class SinDeviceServiceImpl implements  SinDeviceService{
 	}
 
 	@Override
-	public SinDevice removeDevice(String zoneName, String devName) {
-		return deviceDao.deleteByZoneNameAndName(zoneName, devName);
+	public SinDevice removeDevice(SinDevice sinDevice) {
+		return deviceDao.deleteByZoneNameAndName(sinDevice.getZoneName(),sinDevice.getName());
 	}
 
 	@Override
-	public SinDevice getDevice(String zoneName, String devName) {
-		return deviceDao.findByZoneNameAndName(zoneName, devName);
+	public SinDevice getDevice(SinDevice sinDevice) {
+		return deviceDao.findByZoneNameAndName(sinDevice.getZoneName(),sinDevice.getName());
 	}
 
 	@Override

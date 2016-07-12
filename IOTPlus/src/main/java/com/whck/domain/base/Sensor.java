@@ -16,7 +16,7 @@ import javax.validation.constraints.Min;
 public class Sensor {
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private int id;
 	@Column(name="zone_name")
 	private String zoneName;
 	@Column(length=15)
@@ -33,22 +33,22 @@ public class Sensor {
 	private double value;
 	@Min(value=0)
 	@Max(value=1)
-	private Integer online;
+	private int online;
 	
 	@Min(value=0)
 	@Max(value=1)
-	private Integer state;
+	private int state;
 	
 	@ManyToMany(fetch=FetchType.LAZY,cascade={CascadeType.PERSIST,CascadeType.MERGE},mappedBy="sensors")
 	private List<SinDevice> sinDevice;
 	@ManyToMany(fetch=FetchType.LAZY,cascade={CascadeType.PERSIST,CascadeType.MERGE},mappedBy="sensors")
 	private List<BinDevice> binDevice;
 	
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -108,11 +108,11 @@ public class Sensor {
 		this.value = value;
 	}
 
-	public Integer getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(Integer state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 
@@ -132,17 +132,17 @@ public class Sensor {
 		this.binDevice = binDevice;
 	}
 
-	public Integer getOnline() {
+	public int getOnline() {
 		return online;
 	}
 
-	public void setOnline(Integer online) {
+	public void setOnline(int online) {
 		this.online = online;
 	}
 
 	@Override
 	public String toString() {
-		return "<传感器>[id=" + id + ", zoneName=" + zoneName + ", ip=" + ip + ", name=" + name + ", unit=" + unit
+		return "<传感器>[zoneName=" + zoneName + ", ip=" + ip + ", name=" + name + ", unit=" + unit
 				+ ", upValue=" + upValue + ", downValue=" + downValue + ", online=" + online + ", sinDevice="
 				+ sinDevice + ", binDevice=" + binDevice + "]";
 	}

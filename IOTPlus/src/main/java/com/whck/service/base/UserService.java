@@ -8,4 +8,6 @@ import com.whck.domain.base.User;
 public interface UserService {
 	User getByNameAndPassword(String name,String password);
 	User getByName(String name);
+	User getUser(User user);
+	User add(User user);
 }

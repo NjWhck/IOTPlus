@@ -1,79 +1,82 @@
 package com.whck.web.controller.base;
 
-import java.io.IOException;
-import org.apache.mina.core.session.IoSession;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import com.whck.domain.base.Sensor;
 import com.whck.domain.base.SinDevice;
 import com.whck.domain.base.SinDeviceParams;
-import com.whck.mina.handler.ProtocolHandler;
 import com.whck.mina.message.DeviceStateMessage;
 import com.whck.mina.message.SinDeviceParamsMessage;
 import com.whck.mina.server.Broadcast;
 import com.whck.service.base.SinDeviceParamsService;
 import com.whck.service.base.SinDeviceService;
 
-@RestController
+@Controller
 @RequestMapping(value="/sindevice")
 public class SinDeviceController {
 	@Autowired
 	private SinDeviceParamsService sdps;
 	@Autowired
 	private SinDeviceService sds;
+	
 	@RequestMapping(value="/add",method = {RequestMethod.POST})
 	@ResponseBody
-	public String addDevice(@RequestBody SinDevice device){
-		SinDevice dev=sds.getDevice(device.getZoneName(),device.getName());
-		if(dev!=null)
-			return "exist";
-		sds.addOrUpdate(dev);
-		return "success";
+	public String addDevice(SinDevice device){
+		try{
+			SinDevice dev=sds.getDevice(device);
+			if(dev!=null)
+				return "exist";
+			sds.addOrUpdate(dev);
+			return "success";
+		}catch(Exception e){
+			e.printStackTrace();
+			return "failed";
+		}
 	}
-	@RequestMapping(value="/delete/{zone_name}/{device_name}")
+	@RequestMapping(value="/delete")
 	@ResponseBody
-	public String deleteDevice(@PathVariable("zone_name") String zoneName,@PathVariable("device_name") String devName){
-		sds.removeDevice(zoneName,devName);
-		return "success";
+	public String deleteDevice(SinDevice device){
+		try{
+			sds.removeDevice(device);
+			return "success";
+		}catch(Exception e){
+			e.printStackTrace();
+			return "failed";
+		}
 	}
 	@RequestMapping(value="/update",method = {RequestMethod.POST})
 	@ResponseBody
-	public String updateDeviceState(@RequestBody SinDevice device){
-		DeviceStateMessage m=null;
+	public String updateDeviceState(SinDevice device){
 		try {
-			m = device.convert();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			DeviceStateMessage	m = device.convert();
+			if(!Broadcast.broadcast(m))
+				return "disconnect";
+			sds.addOrUpdate(device);
+			return "success";
+		} catch (Exception e) {
 			e.printStackTrace();
+			return "failed";
 		}
-		if(!Broadcast.broadcast(m))
-			return "disconnect";
-		sds.addOrUpdate(device);
-		return "success";
 	}
 	
 	@RequestMapping(value="/params_update",method = {RequestMethod.POST})
 	@ResponseBody
-	public String updateDeviceParams(@RequestBody SinDeviceParams dp){
-		IoSession session=ProtocolHandler.sessions.get(sds.getDevice(dp.getZoneName(),dp.getDeviceName()).getIp());
-		if((session==null)||(!session.isConnected())){
-			return "error";
-		}
-		SinDeviceParamsMessage sdp=null;
+	public String updateDeviceParams(SinDeviceParams dp){
 		try {
-			sdp = dp.convert();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			SinDeviceParamsMessage	m = dp.convert();
+			if(!Broadcast.broadcast(m))
+				return "disconnected";
+			sdps.addOrUpdate(dp);
+			return "success";
+		} catch (Exception e) {
 			e.printStackTrace();
+			return "failed";
 		}
-		session.write(sdp);
-		sdps.addOrUpdate(dp);
-		return "success";
 	}
 	
 	@RequestMapping(value="/params_load/{zone_name}/{device_name}",method = {RequestMethod.GET})
@@ -85,20 +88,14 @@ public class SinDeviceController {
 	
 	@RequestMapping(value="/sensor_bind/{zone_name}/{device_name}",method={RequestMethod.POST})
 	@ResponseBody
-	public String bindSensor(@RequestBody Sensor sensor,
+	public String bindSensor(List<Sensor> sensors,
 									@PathVariable("zone_name") String zoneName,
 											@PathVariable("device_name") String devName){
-		SinDevice device=sds.getDevice(zoneName, devName);
-		device.getSensors().add(sensor);
+		SinDevice dev=new SinDevice();
+		dev.setZoneName(zoneName);
+		dev.setName(devName);
+		SinDevice device=sds.getDevice(dev);
+		device.setSensors(sensors);
 		return "success";
-	}
-	
-	@RequestMapping(value="/sensor_unbind/{zone_name}/{device_name}")
-	@ResponseBody
-	public String unbindSensor(@RequestBody Sensor sensor,@PathVariable("zone_name")String zoneName,
-									@PathVariable("device_name")String devName){
-		SinDevice device=sds.getDevice(zoneName, devName);
-		device.getSensors().remove(sensor);
-		return  "success";
 	}
 }

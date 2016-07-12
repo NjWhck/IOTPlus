@@ -8,7 +8,7 @@ import com.whck.domain.base.SinDevice;
 public interface SinDeviceService {
 	List<SinDevice> getAll();
 	List<SinDevice> getAllByZoneName(String zoneName);
-	SinDevice getDevice(String zoneName,String devName);
+	SinDevice getDevice(SinDevice sinDevice);
 	SinDevice addOrUpdate(SinDevice device);
-	SinDevice removeDevice(String zoneName,String devName);
+	SinDevice removeDevice(SinDevice sinDevice);
 }

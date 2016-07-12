@@ -15,7 +15,7 @@ public class SensorServiceImpl implements SensorService{
 	@Autowired
 	private SensorDao sensorDao;
 	@Override
-	public Sensor addOrUpdateSensor(Sensor sensor) {
+	public Sensor addOrUpdate(Sensor sensor) {
 		Sensor ss=sensorDao.findByZoneNameAndName(sensor.getZoneName(), sensor.getName());
 		if(ss!=null){
 			ss.setIp(sensor.getIp());
@@ -32,18 +32,17 @@ public class SensorServiceImpl implements SensorService{
 	}
 
 	@Override
-	public Sensor removeSensor(String zoneName, String sensorName) {
-		return sensorDao.deleteByZoneNameAndName(zoneName, sensorName);
+	public Sensor removeSensor(Sensor sensor) {
+		return sensorDao.deleteByZoneNameAndName(sensor.getZoneName(), sensor.getName());
 	}
 
 	@Override
-	public Sensor getSensor(String zoneName, String sensorName) {
-		return sensorDao.findByZoneNameAndName(zoneName, sensorName);
+	public Sensor getSensor(Sensor sensor) {
+		return sensorDao.findByZoneNameAndName(sensor.getZoneName(),sensor.getName());
 	}
 
 	@Override
 	public List<Sensor> getAllByZoneName(String zoneName) {
 		return sensorDao.findByZoneName(zoneName);
 	}
-
 }

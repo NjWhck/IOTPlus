@@ -2,7 +2,6 @@ package com.whck.domain.base;
 
 import java.math.BigDecimal;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,10 +14,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="tb_zone")
 public class Zone {
-	@Id
-	@Column(nullable=false,unique=true)
-	private Integer id;
 
+	@Id
 	@Column(unique=true,nullable=false)
 	private String name;
 	
@@ -42,25 +39,16 @@ public class Zone {
 	private String administrator;
 	
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="sd_id")//TODO:sindevice表中添加外键
+	@JoinColumn(name="sd_id",referencedColumnName="name")
 	private List<SinDevice> sinDevices;
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="bd_id")//TODO:bindevice表中添加外键
+	@JoinColumn(name="bd_id",referencedColumnName="name")
 	private List<BinDevice> binDevices;
 	
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.PERSIST)
-	@JoinColumn(name="zid",referencedColumnName="id")
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name="zid",referencedColumnName="name")
 	private List<Sensor> sensors;
 	private String remark;
-
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public List<Sensor> getSensors() {
 		return sensors;

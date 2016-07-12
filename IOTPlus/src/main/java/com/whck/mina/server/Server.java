@@ -32,6 +32,7 @@ import com.whck.mina.message.RealDataMessage;
 import com.whck.mina.message.SinDeviceParamsMessage;
 
 //@Component
+//@Order(2)
 //public class Server implements CommandLineRunner{
 //	private SocketAcceptor acceptor;
 //	
@@ -57,6 +58,9 @@ import com.whck.mina.message.SinDeviceParamsMessage;
 //       
 //        protoCodecFactory.addMessageDecoder(new SinDeviceParamsMessageDecoder(SinDeviceParamsMessage.COMMAND));
 //        protoCodecFactory.addMessageEncoder(SinDeviceParamsMessage.class, new SinDeviceParamsMessageEncoder());
+
+//    		protoCodecFactory.addMessageEncoder(SinDeviceParamsRequestMessage.class, new SinDeviceParamsRequestMessageEncoder());
+//			protoCodecFactory.addMessageEncoder(BinDeviceParamsRequestMessage.class, new BinDeviceParamsRequestMessageEncoder());
 //       
 //        protoCodecFactory.addMessageDecoder(new FileRequestMessageDecoder(FileRequestMessage.COMMAND));
 //        protoCodecFactory.addMessageEncoder(FileResponseMessage.class, new FileResponseMessageEncoder());

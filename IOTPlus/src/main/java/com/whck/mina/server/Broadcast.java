@@ -12,7 +12,11 @@ public class Broadcast {
 		if(sessions.size()==0)
 			return false;
 		for(Iterator<IoSession> it=sessions.values().iterator(); it.hasNext();){
-			it.next().write(message);
+			IoSession session=it.next();
+			if(session==null||(!session.isConnected())){
+				continue;
+			}
+			session.write(message);
 		}
 		return true;
 	}

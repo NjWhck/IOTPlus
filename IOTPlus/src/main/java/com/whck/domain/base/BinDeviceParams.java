@@ -22,7 +22,7 @@ import com.whck.mina.message.BinDeviceParamsMessage;
 public class BinDeviceParams {
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private int id;
 	
 	@Column(name="zone_name",length=11)
 	private String zoneName;
@@ -68,19 +68,19 @@ public class BinDeviceParams {
 	@Min(value=0)
 	private int sensor_1_enable;
 	private String sensor_1_name;
-	@Max(value=100)
+	@Max(value=1)
 	@Min(value=0)
 	@Column(name="upvalue_action_1")
 	private int upValueAction_1;
 	@Column(name="upvalue_1",precision=12,scale=2)
 	private double upValue_1;
-	@Max(value=100)
+	@Max(value=1)
 	@Min(value=0)
 	@Column(name="midvalue_action_1")
 	private int midValueAction_1;
 	@Column(name="downvalue_1",precision=12,scale=2)
 	private double downValue_1;
-	@Max(value=100)
+	@Max(value=1)
 	@Min(value=0)
 	@Column(name="downvalue_action_1")
 	private int downValueAction_1;
@@ -147,11 +147,24 @@ public class BinDeviceParams {
 	@Min(value=0)
 	@Column(name="downvalue_action_4")
 	private int downValueAction_4;
-	public Integer getId() {
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
+	}
+	public void setOpening_1(int opening_1) {
+		this.opening_1 = opening_1;
+	}
+	public void setOpening_2(int opening_2) {
+		this.opening_2 = opening_2;
+	}
+	public void setOpening_3(int opening_3) {
+		this.opening_3 = opening_3;
+	}
+	public void setOpening_4(int opening_4) {
+		this.opening_4 = opening_4;
 	}
 	public String getZoneName() {
 		return zoneName;
@@ -415,7 +428,7 @@ public class BinDeviceParams {
 	
 	public BinDeviceParamsMessage convert() throws IOException{
 		BinDeviceParamsMessage bdpm=new BinDeviceParamsMessage();
-		bdpm.setId(zoneName.getBytes("ISO-8859-1"));
+		bdpm.setId(zoneName.getBytes("GBK"));
 		bdpm.setLongitude(new byte[]{0,0,0});
 		bdpm.setLatitude(new byte[]{0,0,0});
 		byte[] devNameBytes=new byte[20];
@@ -558,7 +571,7 @@ public class BinDeviceParams {
 	}
 	@Override
 	public String toString() {
-		return "<电机设备参数> [id=" + id + ", zoneName=" + zoneName + ", deviceName=" + deviceName + ", workDays="
+		return "<电机设备参数> [zoneName=" + zoneName + ", deviceName=" + deviceName + ", workDays="
 				+ workDays + ", time_1_start=" + time_1_start + ", time_1_end=" + time_1_end + ", opening_1="
 				+ opening_1 + ", time_2_start=" + time_2_start + ", time_2_end=" + time_2_end + ", opening_2="
 				+ opening_2 + ", time_3_start=" + time_3_start + ", time_3_end=" + time_3_end + ", opening_3="

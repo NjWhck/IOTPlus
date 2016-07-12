@@ -11,18 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-
 import com.whck.mina.constants.Constants;
 import com.whck.mina.helper.Converter;
 import com.whck.mina.message.DeviceStateMessage;
 
 @Entity
-@Table(name="tb_device")
-public class SinDevice {
+@Table(name="tb_sindevice")
+public class SinDevice{
 	@Id
 	@GeneratedValue
 	private int id;
@@ -50,9 +48,6 @@ public class SinDevice {
 	@Min(value=0)
 	@Max(value=1)
 	private int state;
-	@OneToOne(optional=false,fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="sdpid")  //TODO:数据库加入此外键
-	private SinDeviceParams sinDeviceParams;
 	
 	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.PERSIST)
 	@JoinTable(name="tb_sindevice_sensor",
@@ -60,6 +55,14 @@ public class SinDevice {
 			inverseJoinColumns=@JoinColumn(name="sid"))
 	private List<Sensor> sensors;
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getZoneName() {
 		return zoneName;
 	}
@@ -68,13 +71,6 @@ public class SinDevice {
 		this.zoneName = zoneName;
 	}
 
-	public SinDeviceParams getSinDeviceParams() {
-		return sinDeviceParams;
-	}
-
-	public void setSinDeviceParams(SinDeviceParams sinDeviceParams) {
-		this.sinDeviceParams = sinDeviceParams;
-	}
 
 	public List<Sensor> getSensors() {
 		return sensors;
@@ -82,14 +78,6 @@ public class SinDevice {
 
 	public void setSensors(List<Sensor> sensors) {
 		this.sensors = sensors;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -141,7 +129,7 @@ public class SinDevice {
 	}
 	public DeviceStateMessage convert() throws IOException{
 		DeviceStateMessage m=new DeviceStateMessage();
-		byte[] id=zoneName.getBytes("ISO-8859-1");
+		byte[] id=zoneName.getBytes("GBK");
 		m.setId(id);
 		m.setLongitude(new byte[]{0,0,0});
 		m.setLatitude(new byte[]{0,0,0});
@@ -164,9 +152,8 @@ public class SinDevice {
 
 	@Override
 	public String toString() {
-		return "<单点设备>[id=" + id + ", zoneName=" + zoneName + ", name=" + name + ", ip=" + ip + ", type=" + type
-				+ ", ctrlMode=" + ctrlMode + ", online=" + online + ", state=" + state + ", sinDeviceParams="
-				+ sinDeviceParams + ", sensors=" + sensors + "]";
+		return "<单点设备>[zoneName=" + zoneName + ", name=" + name + ", ip=" + ip + ", type=" + type
+				+ ", ctrlMode=" + ctrlMode + ", online=" + online + ", state=" + state +", sensors=" + sensors + "]";
 	}
 	
 }

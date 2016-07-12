@@ -8,8 +8,8 @@ import com.whck.domain.base.Sensor;
 
 @Service
 public interface SensorService {
-	Sensor addOrUpdateSensor(Sensor sensor);
-	Sensor removeSensor(String zoneName,String sensorName);
-	Sensor getSensor(String zoneName,String sensorName);
+	Sensor addOrUpdate(Sensor sensor);
+	Sensor removeSensor(Sensor sensor);
+	Sensor getSensor(Sensor sensor);
 	List<Sensor> getAllByZoneName(String zoneName);
 }

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SySData>
+    <Project>
+        <ID>13913970850</ID>
+    </Project>
+    <ControlData>
+        <Data Number="0">
+            <Name>控制点1</Name>
+            <Mode>2</Mode>
+        </Data>
+    </ControlData>
+    <SensorData>
+        <Data Number="0">
+            <Name>采集点1</Name>
+            <Mode>2</Mode>
+        </Data>
+        <Data Number="1">
+            <Name>QQ</Name>
+            <Mode>2</Mode>
+        </Data>
+    </SensorData>
+    <ControlSysData>
+        <Data Number="0">
+            <Father>控制点1</Father>
+            <Name>水泵</Name>
+            <Mode>1</Mode>
+        </Data>
+        <Data Number="1">
+            <Father>控制点1</Father>
+            <Name>水泵1</Name>
+            <Mode>1</Mode>
+        </Data>
+        <Data Number="2">
+            <Father>控制点1</Father>
+            <Name>水泵2</Name>
+            <Mode>1</Mode>
+        </Data>
+        <Data Number="3">
+            <Father>控制点1</Father>
+            <Name>水泵3</Name>
+            <Mode>1</Mode>
+        </Data>
+        <Data Number="4">
+            <Father>控制点1</Father>
+            <Name>电机1</Name>
+            <Mode>2</Mode>
+        </Data>
+        <Data Number="5">
+            <Father>控制点1</Father>
+            <Name>电机2</Name>
+            <Mode>2</Mode>
+        </Data>
+    </ControlSysData>
+    <SensorSysData>
+        <Data Number="0">
+            <Father>采集点1</Father>
+            <Name>温度</Name>
+            <Unit>摄氏度</Unit>
+            <Channel>0</Channel>
+            <K>1</K>
+            <B>0</B>
+        </Data>
+        <Data Number="1">
+            <Father>采集点1</Father>
+            <Name>湿度</Name>
+            <Unit>摄氏度</Unit>
+            <Channel>1</Channel>
+            <K>1</K>
+            <B>0</B>
+        </Data>
+        <Data Number="2">
+            <Father>采集点1</Father>
+            <Name>大气压力</Name>
+            <Unit>Pa</Unit>
+            <Channel>2</Channel>
+            <K>1</K>
+            <B>0</B>
+        </Data>
+        <Data Number="3">
+            <Father>采集点1</Father>
+            <Name>压强</Name>
+            <Unit>Ks</Unit>
+            <Channel>3</Channel>
+            <K>1</K>
+            <B>0</B>
+        </Data>
+        <Data Number="4">
+            <Father>采集点1</Father>
+            <Name>开度</Name>
+            <Unit>%</Unit>
+            <Channel>6</Channel>
+            <K>1</K>
+            <B>0</B>
+        </Data>
+    </SensorSysData>
+    <ControlConfigData>
+        <Data Number="0">
+            <Name>水泵</Name>
+            <Time1Start>01:00:00</Time1Start>
+            <Time1Stop>02:00:00</Time1Stop>
+            <Run1>9</Run1>
+            <Stop1>9</Stop1>
+            <Time2Start>03:00:00</Time2Start>
+            <Time2Stop>04:00:00</Time2Stop>
+            <Run2>9</Run2>
+            <Stop2>9</Stop2>
+            <Time3Start>05:00:00</Time3Start>
+            <Time3Stop>06:00:00</Time3Stop>
+            <Run3>9</Run3>
+            <Stop3>9</Stop3>
+            <Time4Start>07:00:00</Time4Start>
+            <Time4Stop>08:00:00</Time4Stop>
+            <Run4>9</Run4>
+            <Stop4>9</Stop4>
+            <Sensor1Bit>1</Sensor1Bit>
+            <Sensor1>温度</Sensor1>
+            <Upvalue1>1</Upvalue1>
+            <Downvalue1>2</Downvalue1>
+            <SysRun1X1>1</SysRun1X1>
+            <SysRun1X2>1</SysRun1X2>
+            <SysRun1X3>1</SysRun1X3>
+            <Sensor2Bit>0</Sensor2Bit>
+            <Sensor2>温度</Sensor2>
+            <Upvalue2>0</Upvalue2>
+            <Downvalue2>0</Downvalue2>
+            <SysRun2X1>0</SysRun2X1>
+            <SysRun2X2>0</SysRun2X2>
+            <SysRun2X3>0</SysRun2X3>
+            <Sensor3Bit>1</Sensor3Bit>
+            <Sensor3>温度</Sensor3>
+            <Upvalue3>3</Upvalue3>
+            <Downvalue3>4</Downvalue3>
+            <SysRun3X1>1</SysRun3X1>
+            <SysRun3X2>1</SysRun3X2>
+            <SysRun3X3>1</SysRun3X3>
+            <Sensor4Bit>0</Sensor4Bit>
+            <Sensor4>温度</Sensor4>
+            <Upvalue4>0</Upvalue4>
+            <Downvalue4>0</Downvalue4>
+            <SysRun4X1>0</SysRun4X1>
+            <SysRun4X2>0</SysRun4X2>
+            <SysRun4X3>0</SysRun4X3>
+            <SysDay>65</SysDay>
+        </Data>
+    </ControlConfigData>
+    <OpenControlConfigData>
+        <Data Number="0">
+            <Name>电机1</Name>
+            <Sensor>开度</Sensor>
+            <Time1Start>01:00:00</Time1Start>
+            <Time1Stop>02:00:00</Time1Stop>
+            <Run1>9</Run1>
+            <Time2Start>03:00:00</Time2Start>
+            <Time2Stop>04:00:00</Time2Stop>
+            <Run2>9</Run2>
+            <Time3Start>05:00:00</Time3Start>
+            <Time3Stop>06:00:00</Time3Stop>
+            <Run3>9</Run3>
+            <Time4Start>07:00:00</Time4Start>
+            <Time4Stop>08:00:00</Time4Stop>
+            <Run4>9</Run4>
+            <Sensor1Bit>0</Sensor1Bit>
+            <Sensor1>温度</Sensor1>
+            <Upvalue1>0</Upvalue1>
+            <Downvalue1>0</Downvalue1>
+            <SysRun1X1>0</SysRun1X1>
+            <SysRun1X2>0</SysRun1X2>
+            <SysRun1X3>0</SysRun1X3>
+            <Sensor2Bit>1</Sensor2Bit>
+            <Sensor2>温度</Sensor2>
+            <Upvalue2>11</Upvalue2>
+            <Downvalue2>11</Downvalue2>
+            <SysRun2X1>11</SysRun2X1>
+            <SysRun2X2>11</SysRun2X2>
+            <SysRun2X3>11</SysRun2X3>
+            <Sensor3Bit>0</Sensor3Bit>
+            <Sensor3>温度</Sensor3>
+            <Upvalue3>0</Upvalue3>
+            <Downvalue3>0</Downvalue3>
+            <SysRun3X1>0</SysRun3X1>
+            <SysRun3X2>0</SysRun3X2>
+            <SysRun3X3>0</SysRun3X3>
+            <Sensor4Bit>1</Sensor4Bit>
+            <Sensor4>温度</Sensor4>
+            <Upvalue4>22</Upvalue4>
+            <Downvalue4>22</Downvalue4>
+            <SysRun4X1>22</SysRun4X1>
+            <SysRun4X2>22</SysRun4X2>
+            <SysRun4X3>22</SysRun4X3>
+            <SysDay>65</SysDay>
+        </Data>
+    </OpenControlConfigData>
+</SySData>

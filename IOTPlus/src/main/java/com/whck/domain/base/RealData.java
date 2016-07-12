@@ -13,8 +13,7 @@ import javax.persistence.TemporalType;
 public class RealData {
 	@Id
 	@GeneratedValue
-	private Integer id;
-	
+	private int id;
 	@Column(name="zone_name",length=11)
 	private String zoneName;
 	private String name;
@@ -25,12 +24,13 @@ public class RealData {
 	private double value;
 	@Column(length=12)
 	private String unit;
+
 	
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -76,7 +76,7 @@ public class RealData {
 
 	@Override
 	public String toString() {
-		return "<实时数据>[id=" + id + ", zoneName=" + zoneName + ", name=" + name + ", dateTime=" + dateTime
+		return "<实时数据>[ zoneName=" + zoneName + ", name=" + name + ", dateTime=" + dateTime
 				+ ", value=" + value + ", unit=" + unit + "]";
 	}
 	
