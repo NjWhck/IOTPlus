@@ -43,7 +43,6 @@ function initDevStatMap(){
 			var panelHeading=$(tabPane).find(".panel-heading")[0];
 			var panelBody=$(tabPane).find(".panel-body")[0];
 			var tag=$(panelHeading).find("button")[0];
-			$(tag).
 			var statImg=$(panelBody).find(".fengye")[0];
 		    var devName=$($(panelHeading).find("h3")[0]).html();
 		    binDevStatMap.put(devName,tag);
@@ -73,7 +72,7 @@ function initGS(){
 	        var value = min;
 	        var name =  $("input[name='name']",form).val();
 	        var title=name.split("传感器")[0];
-	        
+	    //    alert("id:"+id+",name:"+name+",max:"+max+",min:"+min+",unit:"+unit);
 	        var panel=$(gs).closest(".panel");
 	        var panelHeading=$(panel).find(".panel-heading")[0];
 	        var statSpan=$(panelHeading).find("span")[0];
@@ -118,9 +117,11 @@ function sinDevConnect(zoneName) {
     sinDevStompClient.connect({}, function(frame) {
         /*初始化数据请求*/
         sinDevStompClient.send("/real/sindevmsg",{},JSON.stringify({'zoneName':zoneName}));
-        sinDevStompClient.subscribe('/sindevice/update/'+zoneName, function(data){
-            refreshSinDevices(data);
-        });
+        setInterval(function(){
+        	sinDevStompClient.subscribe('/sindevice/update/'+zoneName, function(data){
+  	            refreshSinDevices(data);
+  	        });
+		},3000);
     });
     
 }
@@ -130,9 +131,12 @@ function binDevConnect(zoneName) {
     binDevStompClient.connect({}, function(frame) {
         /*初始化数据请求*/
         binDevStompClient.send("/real/bindevmsg",{},JSON.stringify({'zoneName':zoneName}));
-        binDevStompClient.subscribe('/bindevice/update/'+zoneName, function(data){
-            refreshBinDevices(data);
-        });
+    	setInterval(function(){
+    		  binDevStompClient.subscribe('/bindevice/update/'+zoneName, function(data){
+    	            refreshBinDevices(data);
+    	        });
+		},3000);
+      
     });
 }
 function sensorConnect(zoneName) {
@@ -141,9 +145,11 @@ function sensorConnect(zoneName) {
     sensorStompClient.connect({}, function(frame) {
         /*初始化数据请求*/
         sensorStompClient.send("/real/sensormsg", {}, JSON.stringify({'zoneName':zoneName}));
-        sensorStompClient.subscribe('/sensor/update/'+zoneName, function(data){
-            refreshSensors(data);
-        });
+        setInterval(function(){
+        	sensorStompClient.subscribe('/sensor/update/'+zoneName, function(data){
+        		refreshSensors(data);
+  	        });
+		},3000);
     });
 }
 function sinDeviceParamConnect(zoneName){
@@ -317,7 +323,7 @@ function changeSinDevState(tar){
     
     var url="/sindevice/operation/"+zoneName+"/"+devName+"/";
     if(curMode.indexOf("自动")>=0){
-    	url+="Manual";
+    	url+="manual";
     }else{
     	url+="auto";
     }
@@ -347,7 +353,7 @@ function changeBinDevState(tar){
     
     var url="/bindevice/operation/"+zoneName+"/"+devName+"/";
     if(curMode.indexOf("自动")>=0){
-    	url+="Manual";
+    	url+="manual";
     }else{
     	url+="auto";
     }
@@ -368,6 +374,52 @@ function changeBinDevState(tar){
         }
     })
 }
+function sinDevConfiguration(tar){
+	var tabPane=tar.closest(".tab-pane");
+    var zoneName=$(tabPane).attr("id");
+    var panelHeading=$(tabPane).find(".panel-heading");
+    var devName=$($(panelHeading).find("h3")[0]).html();
+    $.ajax({
+        type:"GET",
+        url:"/sindevice/params_load/"+zoneName+"/"+devName,
+        dataType:"json",	
+        beforeSend:function(){
+        	$("#loadingModal").modal();
+        },
+        success:function(data){
+        	$("#loadingModal").modal("hide");
+        	//TODO:如果data不为空,为modal设置参数data
+        	$("#binDeviceCfg").modal();
+        },
+        error:function(){
+        	$("#loadingModal").modal("hide");
+        	alert("请求出错");
+        }
+    })
+}
+function binDevConfiguration(tar){
+	var tabPane=tar.closest(".tab-pane");
+    var zoneName=$(tabPane).attr("id");
+    var panelHeading=$(tabPane).find(".panel-heading");
+    var devName=$($(panelHeading).find("h3")[0]).html();
+    $.ajax({
+        type:"GET",
+        url:"/bindevice/params_load/"+zoneName+"/"+devName,
+        dataType:"json",	
+        beforeSend:function(){
+        	$("#loadingModal").modal();
+        },
+        success:function(data){
+        	$("#loadingModal").modal("hide");
+        	//TODO:如果data不为空,为modal设置参数data
+        	$("#binDeviceCfg").modal();
+        },
+        error:function(){
+        	$("#loadingModal").modal("hide");
+        	alert("请求出错");
+        }
+    })
+}
 function startSinDev(tar){
 	var tabPane=tar.closest(".tab-pane");
     var zoneName=$(tabPane).attr("id");
@@ -375,29 +427,26 @@ function startSinDev(tar){
     var devName=$($(panelHeading).find("h3")[0]).html();
     var panelBody=$(tabPane).find(".panel-body");
     var statSpan=$(panelHeading).find("button")[0];
-    $.ajax({
-        type:"GET", 
-        timeout:10000,
-        url:"/sindevice/operation/"+zoneName+"/"+devName+"/"+"start",
-        dataType:"text",	
-        beforeSend:function(){
-        	statSpan.html("命令发送中....");
-        },
-        success:function(result){
-            var msg="";
-            if(result=="success")
-                msg="手动模式运行";
-            else if(result=="disconnected")
-                msg="设备离线";
-            $(statSpan).html(msg);
-        },
-        error:function(){
-        	$(statSpan).html("访问出错");
-        },
-        complete:function(XMLHttpRequest,status){
-        	$(statSpan).html("访问超时");
-        }
-    })
+    var curMode=$(statSpan).html();
+    alert(curMode);
+    if(curMode.indeOf("手动")>=0){
+    	$.ajax({
+            type:"POST", 
+            timeout:10000,
+            url:"/sindevice/update/"+zoneName+"/"+devName+"/"+"start",
+            beforeSend:function(){
+            	statSpan.html("命令发送中....");
+            },
+            error:function(){
+            	alert("访问出错");
+            },
+            complete:function(XMLHttpRequest,status){
+            	alert("访问超时");
+            }
+        })
+    }else{
+    	alert("只有手动模式下才能进行此操作");
+    }
 }
 function stopSinDev(tar){
 	var tabPane=tar.closest(".tab-pane");
@@ -406,31 +455,26 @@ function stopSinDev(tar){
     var devName=$($(panelHeading).find("h3")[0]).html();
     var panelBody=$(tabPane).find(".panel-body");
     var statSpan=$(panelHeading).find("button")[0];
-    $.ajax({
-        type:"GET",
-        timeout:12000,
-        url:"/sindevice/operation/"+zoneName+"/"+devName+"/"+"stop",
-        dataType:"text",	
-        beforeSend:function(){
-        	$(statSpan).html("命令发送中....");
-        },
-        success:function(result){
-            var msg="";
-            if(reslut=="success")
-                msg="已停止运行";
-            else if(result=="disconnected")
-                msg="设备离线，操作失败";
-            $(statSpan).html(msg);
-        },
-        error:function(){
-        	$(statSpan).html("访问出错");
-        },
-        complete:function(XMLHttpRequest,status){
-        	$(statSpan).html("访问超时");
-        }
-    })
+    var curMode=$(statSpan).html();
+    if(curMode.indeOf("手动")>=0){
+    	$.ajax({
+            type:"POST",
+            timeout:10000,
+            url:"/sindevice/update/"+zoneName+"/"+devName+"/"+"stop",
+            beforeSend:function(){
+            	$(statSpan).html("命令发送中....");
+            },
+            error:function(){
+            	alert("访问出错");
+            },
+            complete:function(XMLHttpRequest,status){
+            	alert("访问超时");
+            }
+        })
+    }else{
+    	alert("只有手动模式下才能进行此操作");
+    }
 }
-
 function binDevForward(tar){
 	var tabPane=tar.closest(".tab-pane");
     var zoneName=$(tabPane).attr("id");
@@ -438,29 +482,25 @@ function binDevForward(tar){
     var devName=$($(panelHeading).find("h3")[0]).html();
     var panelBody=$(tabPane).find(".panel-body");
     var statSpan=$(panelHeading).find("button")[0];
-    $.ajax({
-        type:"GET",
-        timeout:12000,
-        url:"/bindevice/operation/"+zoneName+"/"+devName+"/"+"forward",
-        dataType:"text",	
-        beforeSend:function(){
-        	$(statSpan).html("命令发送中....");
-        },
-        success:function(result){
-            var msg="";
-            if(reslut=="success")
-                msg="正转";
-            else if(result=="disconnected")
-                msg="设备离线，操作失败";
-            $(statSpan).html(msg);
-        },
-        error:function(){
-        	$(statSpan).html("访问出错");
-        },
-        complete:function(XMLHttpRequest,status){
-        	$(statSpan).html("访问超时");
-        }
-    })
+    var curMode=$(statSpan).html();
+    if(curMode.indeOf("手动")>=0){
+    	$.ajax({
+            type:"POST",
+            timeout:12000,
+            url:"/bindevice/update/"+zoneName+"/"+devName+"/"+"forward",
+            beforeSend:function(){
+            	$(statSpan).html("命令发送中....");
+            },
+            error:function(){
+            	alert("访问出错");
+            },
+            complete:function(XMLHttpRequest,status){
+            	alert("访问超时");
+            }
+        })
+    }else{
+    	alert("只有手动模式下才能进行此操作");
+    }
 }
 function binDevBackward(tar){
 	var tabPane=tar.closest(".tab-pane");
@@ -469,29 +509,26 @@ function binDevBackward(tar){
     var devName=$($(panelHeading).find("h3")[0]).html();
     var panelBody=$(tabPane).find(".panel-body");
     var statSpan=$(panelHeading).find("button")[0];
-    $.ajax({
-        type:"GET",
-        timeout:12000,
-        url:"/bindevice/operation/"+zoneName+"/"+devName+"/"+"backward",
-        dataType:"text",	
-        beforeSend:function(){
-        	$(statSpan).html("命令发送中....");
-        },
-        success:function(result){
-            var msg="";
-            if(reslut=="success")
-                msg="正转";
-            else if(result=="disconnected")
-                msg="设备离线，操作失败";
-            $(statSpan).html(msg);
-        },
-        error:function(){
-        	$(statSpan).html("访问出错");
-        },
-        complete:function(XMLHttpRequest,status){
-        	$(statSpan).html("访问超时");
-        }
-    })
+    var curMode=$(statSpan).html();
+    if(curMode.indeOf("手动")>=0){
+    	 $.ajax({
+    	        type:"POST",
+    	        timeout:12000,
+    	        url:"/bindevice/update/"+zoneName+"/"+devName+"/"+"backward",
+    	        dataType:"text",	
+    	        beforeSend:function(){
+    	        	$(statSpan).html("命令发送中....");
+    	        },
+    	        error:function(){
+    	        	alert("访问出错");
+    	        },
+    	        complete:function(XMLHttpRequest,status){
+    	        	alert("访问超时");
+    	        }
+    	    })
+    }else{
+    	alert("只有手动模式下才能进行此操作");
+    }
 }
 function binDevStop(tar){
 	var tabPane=tar.closest(".tab-pane");
@@ -500,29 +537,25 @@ function binDevStop(tar){
     var devName=$($(panelHeading).find("h3")[0]).html();
     var panelBody=$(tabPane).find(".panel-body");
     var statSpan=$(panelHeading).find("button")[0];
-    $.ajax({
-        type:"GET",
-        timeout:12000,
-        url:"/bindevice/operation/"+zoneName+"/"+devName+"/"+"stop",
-        dataType:"text",	
-        beforeSend:function(){
-        	$(statSpan).html("命令发送中....");
-        },
-        success:function(result){
-            var msg="";
-            if(reslut=="success")
-                msg="正转";
-            else if(result=="disconnected")
-                msg="设备离线，操作失败";
-            $(statSpan).html(msg);
-        },
-        error:function(){
-        	$(statSpan).html("访问出错");
-        },
-        complete:function(XMLHttpRequest,status){
-        	$(statSpan).html("访问超时");
-        }
-    })
+    var curMode=$(statSpan).html();
+    if(curMode.indeOf("手动")>=0){
+    	$.ajax({
+            type:"POST",
+            timeout:12000,
+            url:"/bindevice/update/"+zoneName+"/"+devName+"/"+"stop",
+            beforeSend:function(){
+            	$(statSpan).html("命令发送中....");
+            },
+            error:function(){
+            	alert("访问出错");
+            },
+            complete:function(XMLHttpRequest,status){
+            	alert("访问超时");
+            }
+        })
+    }else{
+    	alert("只有手动模式下才能进行此操作");
+    }
 }
 /* Add sensor、sindevice、bindevice*/
 function addEventInit(){

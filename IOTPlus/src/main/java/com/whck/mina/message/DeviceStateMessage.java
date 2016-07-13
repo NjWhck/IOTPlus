@@ -15,7 +15,7 @@ public class DeviceStateMessage extends AbstractMessage{
 	@Override
 	public Object convert() throws IOException {
 		byte[] data=getData();
-		String zoneName=new String(getId(),"ISO-8859-1");
+		String zoneName=new String(getId(),"GBK");
 
 		byte[] devNameBytes=new byte[20];
 		System.arraycopy(data, 0, devNameBytes, 0, 20);

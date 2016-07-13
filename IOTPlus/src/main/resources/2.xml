@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SySData>
+    <Project>
+        <ID>31716071203</ID>
+    </Project>
+    <ControlData>
+        <Data Number="0">
+            <Name>3号温室控制</Name>
+            <Mode>2</Mode>
+        </Data>
+    </ControlData>
+    <SensorData>
+        <Data Number="0">
+            <Name>3号温室</Name>
+            <Mode>2</Mode>
+        </Data>
+    </SensorData>
+    <ControlSysData>
+        <Data Number="0">
+            <Father>3号温室控制</Father>
+            <Name>卷被一号</Name>
+            <Mode>2</Mode>
+        </Data>
+        <Data Number="1">
+            <Father>3号温室控制</Father>
+            <Name>放风一号</Name>
+            <Mode>2</Mode>
+        </Data>
+        <Data Number="2">
+            <Father>3号温室控制</Father>
+            <Name>放风二号</Name>
+            <Mode>2</Mode>
+        </Data>
+        <Data Number="3">
+            <Father>3号温室控制</Father>
+            <Name>备用</Name>
+            <Mode>1</Mode>
+        </Data>
+        <Data Number="4">
+            <Father>3号温室控制</Father>
+            <Name>备用二号</Name>
+            <Mode>1</Mode>
+        </Data>
+    </ControlSysData>
+    <SensorSysData>
+        <Data Number="0">
+            <Father>3号温室</Father>
+            <Name>环境温度</Name>
+            <Unit>℃</Unit>
+            <Channel>0</Channel>
+            <K>50</K>
+            <B>-50</B>
+        </Data>
+        <Data Number="1">
+            <Father>3号温室</Father>
+            <Name>环境湿度</Name>
+            <Unit>%RH</Unit>
+            <Channel>1</Channel>
+            <K>41.6667</K>
+            <B>-25</B>
+        </Data>
+        <Data Number="2">
+            <Father>3号温室</Father>
+            <Name>光照度</Name>
+            <Unit>LUX</Unit>
+            <Channel>2</Channel>
+            <K>83333.3</K>
+            <B>-50000</B>
+        </Data>
+    </SensorSysData>
+    <ControlConfigData/>
+    <OpenControlConfigData/>
+</SySData>

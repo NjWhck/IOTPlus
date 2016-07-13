@@ -49,18 +49,26 @@ public class SinDeviceController {
 			return "failed";
 		}
 	}
-	@RequestMapping(value="/update",method = {RequestMethod.POST})
-	@ResponseBody
-	public String updateDeviceState(SinDevice device){
+	@RequestMapping(value="/update/{zoneName}/{devName}/{cmd}",method = {RequestMethod.POST})
+	public void updateDeviceState(@PathVariable String zoneName,@PathVariable String devName,@PathVariable String cmd){
 		try {
+			SinDevice sinDev=new SinDevice();
+			sinDev.setZoneName(zoneName);
+			sinDev.setName(devName);
+			SinDevice device=sds.getDevice(sinDev);
+			if(cmd.equals("manual")){
+				device.setCtrlMode(1);
+			}else if(cmd.equals("auto")){
+				device.setCtrlMode(0);
+			}else if(cmd.equals("start")){
+				device.setState(1);
+			}else if(cmd.equals("stop")){
+				device.setState(0);
+			}
 			DeviceStateMessage	m = device.convert();
-			if(!Broadcast.broadcast(m))
-				return "disconnect";
-			sds.addOrUpdate(device);
-			return "success";
+			Broadcast.broadcast(m);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "failed";
 		}
 	}
 	

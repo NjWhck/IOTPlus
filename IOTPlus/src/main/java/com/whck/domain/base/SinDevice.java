@@ -9,8 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -34,25 +33,23 @@ public class SinDevice{
 	@Column(length=15)
 	private String ip;
 	
-	private int type;
+	private int type=1;
 	
 	@Column(name="ctrl_mode")
 	@Max(value=1)
 	@Min(value=0)
 	private int ctrlMode;
 	
-	@Min(value=0)
-	@Max(value=1)
+	@Min(value=0)  	//off
+	@Max(value=1)	//on
 	private int online;
 	
-	@Min(value=0)
-	@Max(value=1)
+	@Min(value=0) //shutdown
+	@Max(value=1)//running
 	private int state;
 	
-	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.PERSIST)
-	@JoinTable(name="tb_sindevice_sensor",
-			joinColumns=@JoinColumn(name="sdid"),
-			inverseJoinColumns=@JoinColumn(name="sid"))
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.PERSIST)
+	@JoinColumn(name="dev_name", referencedColumnName = "name")
 	private List<Sensor> sensors;
 	
 	public int getId() {

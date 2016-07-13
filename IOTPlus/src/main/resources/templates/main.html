@@ -94,7 +94,7 @@
 									 <button th:if="${sinDev.online==1 and sinDev.ctrlMode==0}"
 										class="btn btn-info" onclick="changeSinDevState(this)"> 正在手动模式运行 </button>
 									<div class="pull-right">
-										<a href="#sinDeviceCfg" data-toggle="modal" class="config">
+										<a href="javascript:;"  data-toggle="modal" class="config" onclick="sinDevConfiguration(this)">
 											<i class="fa fa-cog"></i>
 										</a> <a href="javascript:;" class="reload"
 											onclick="reloadSinDev(this)"><i class="fa fa-refresh"></i>
@@ -166,7 +166,7 @@
 										class="btn btn-info" onclick="changeBinDevState(this)"> 正在手动模式</button>
 
 									<div class="pull-right">
-										<a href="#binDeviceCfg" data-toggle="modal" class="config">
+										<a href="javascript:;"  data-toggle="modal" class="config" onclick="binDevConfiguration(this)">
 											<i class="fa fa-cog"></i>
 										</a> <a href="javascript:;" class="reload"
 											onclick="reloadBinDev(this)"> <i class="fa fa-refresh"></i>
@@ -843,6 +843,17 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade bs-example-modal-sm" id="loadingModal"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h2>正在请求.....</h2>
+            </div>
+        </div>
+    </div>
+</div>
 	<script src="/js/jquery-2.2.0.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/bootstrapValidator.min.js"></script>
@@ -857,7 +868,7 @@
 		window.onload = function() {
 			initDevStatMap();
 			initGS();
-			//    	  initConn();
+			initConn();
 		};
 		$(document).ready(function() {
 			addEventInit();

@@ -9,8 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -34,25 +33,23 @@ public class BinDevice {
 	@Column(length=15)
 	private String ip;
 	
-	private int type;
+	private int type=2;
 	
 	@Column(name="ctrl_mode")
-	@Max(value=1)
-	@Min(value=0)
+	@Max(value=1)  	//manual
+	@Min(value=0)	//auto
 	private int ctrlMode;
 	
 	@Min(value=0)
 	@Max(value=1)
 	private int online;
 	
-	@Min(value=0)
-	@Max(value=1)
+	@Min(value=0)  //0:shut down;1:forward;2 :backward
+	@Max(value=2)
 	private int state;
 	
-	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.PERSIST)
-	@JoinTable(name="tb_bindevice_sensor",
-			joinColumns=@JoinColumn(name="bdid"),
-			inverseJoinColumns=@JoinColumn(name="sid"))
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.PERSIST)
+	@JoinColumn(name="dev_name", referencedColumnName = "name")
 	private List<Sensor> sensors;
 	
 	

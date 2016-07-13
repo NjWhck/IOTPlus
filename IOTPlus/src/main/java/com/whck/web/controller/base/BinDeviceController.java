@@ -12,6 +12,7 @@ import com.whck.domain.base.BinDevice;
 import com.whck.domain.base.BinDeviceParams;
 import com.whck.domain.base.Sensor;
 import com.whck.mina.message.BinDeviceParamsMessage;
+import com.whck.mina.message.DeviceStateMessage;
 import com.whck.mina.server.Broadcast;
 import com.whck.service.base.BinDeviceParamsService;
 import com.whck.service.base.BinDeviceService;
@@ -48,15 +49,28 @@ public class BinDeviceController {
 			return "failed";
 		}
 	}
-	@RequestMapping(value="/update",method = {RequestMethod.POST})
-	@ResponseBody
-	public String updateDevice(BinDevice device){
+	@RequestMapping(value="/update/{zoneName}/{devName}/{cmd}",method = {RequestMethod.POST})
+	public void updateDeviceState(@PathVariable String zoneName,@PathVariable String devName,@PathVariable String cmd){
 		try {
-			bds.addOrUpdate(device);
-			return "success";
+			BinDevice binDev=new BinDevice();
+			binDev.setZoneName(zoneName);
+			binDev.setName(devName);
+			BinDevice device=bds.getDevice(binDev);
+			if(cmd.equals("manual")){
+				device.setCtrlMode(1);
+			}else if(cmd.equals("auto")){
+				device.setCtrlMode(0);
+			}else if(cmd.equals("stop")){
+				device.setState(0);
+			}else if(cmd.equals("forward")){
+				device.setState(1);
+			}else if(cmd.equals("backward")){
+				device.setState(2);
+			}
+			DeviceStateMessage	m = device.convert();
+			Broadcast.broadcast(m);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "failed";
 		}
 	}
 	

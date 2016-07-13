@@ -45,19 +45,21 @@ public class LoadDataCenter implements CommandLineRunner{
 			List<SinDevice> sinDevices=XMLUtil.getSinDevices(zone);
 			List<BinDevice> binDevices=XMLUtil.getBinDevices(zone);
 			List<Sensor> sensors=XMLUtil.getSensors(zone);
+			
 			zone.setSinDevices(sinDevices);
 			zone.setBinDevices(binDevices);
 			zone.setSensors(sensors);
 			zs.addOrUpdate(zone);
-			for(Iterator<SinDevice> it=sinDevices.iterator();it.hasNext();){
-				sds.addOrUpdate(it.next());
-			}
-			for(Iterator<BinDevice> it=binDevices.iterator();it.hasNext();){
-				bds.addOrUpdate(it.next());
-			}
-			for(Iterator<Sensor> it=sensors.iterator();it.hasNext();){
-				ss.addOrUpdate(it.next());
-			}
+			
+//			for(Iterator<SinDevice> it=sinDevices.iterator();it.hasNext();){
+//					sds.addOrUpdate(it.next());
+//			}
+//			for(Iterator<BinDevice> it=binDevices.iterator();it.hasNext();){
+//					bds.addOrUpdate(it.next());
+//			}
+//			for(Iterator<Sensor> it=sensors.iterator();it.hasNext();){
+//					ss.addOrUpdate(it.next());
+//			}
 		}
 	}
 }

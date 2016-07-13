@@ -1,13 +1,9 @@
 package com.whck.domain.base;
 
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -19,6 +15,8 @@ public class Sensor {
 	private int id;
 	@Column(name="zone_name")
 	private String zoneName;
+	@Column(name="dev_name")
+	private String devName;
 	@Column(length=15)
 	private String ip;
 	@Column(length=24,nullable=false,unique=true)
@@ -39,11 +37,6 @@ public class Sensor {
 	@Max(value=1)
 	private int state;
 	
-	@ManyToMany(fetch=FetchType.LAZY,cascade={CascadeType.PERSIST,CascadeType.MERGE},mappedBy="sensors")
-	private List<SinDevice> sinDevice;
-	@ManyToMany(fetch=FetchType.LAZY,cascade={CascadeType.PERSIST,CascadeType.MERGE},mappedBy="sensors")
-	private List<BinDevice> binDevice;
-	
 	public int getId() {
 		return id;
 	}
@@ -58,6 +51,14 @@ public class Sensor {
 
 	public void setZoneName(String zoneName) {
 		this.zoneName = zoneName;
+	}
+
+	public String getDevName() {
+		return devName;
+	}
+
+	public void setDevName(String devName) {
+		this.devName = devName;
 	}
 
 	public String getIp() {
@@ -116,22 +117,6 @@ public class Sensor {
 		this.state = state;
 	}
 
-	public List<SinDevice> getSinDevice() {
-		return sinDevice;
-	}
-
-	public void setSinDevice(List<SinDevice> sinDevice) {
-		this.sinDevice = sinDevice;
-	}
-
-	public List<BinDevice> getBinDevice() {
-		return binDevice;
-	}
-
-	public void setBinDevice(List<BinDevice> binDevice) {
-		this.binDevice = binDevice;
-	}
-
 	public int getOnline() {
 		return online;
 	}
@@ -143,8 +128,7 @@ public class Sensor {
 	@Override
 	public String toString() {
 		return "<传感器>[zoneName=" + zoneName + ", ip=" + ip + ", name=" + name + ", unit=" + unit
-				+ ", upValue=" + upValue + ", downValue=" + downValue + ", online=" + online + ", sinDevice="
-				+ sinDevice + ", binDevice=" + binDevice + "]";
+				+ ", upValue=" + upValue + ", downValue=" + downValue + ", online=" + online +  "]";
 	}
 
 }
