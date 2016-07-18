@@ -13,16 +13,16 @@ var zoneBinDevStatImgMap=new Map();
 var zoneGsMap=new Map();
 var zoneSensorStatMap=new Map();
 
-/*初始化要用到的Map*/
+/*init maps which stores zones devices sensors statSpans statImgs and gses*/
 function initDevStatMap(){
 	var zoneTabs=$('.tab-pane');
-	for(var j=0;j<zoneTabs.size()-1;j++){
+	for(var j=0;j<zoneTabs.size();j++){
 		var zoneTab=zoneTabs[j];
 		var zoneName=$(zoneTab).attr('id'); 
 		var sinTabs=$('#sinDevClm',zoneTab).find('.panel');
 		var sinDevStatMap=new Map();
 		var sinDevStatImgMap=new Map();
-		for(var i=0;i<sinTabs.size()-1;i++){
+		for(var i=0;i<sinTabs.size();i++){
 			var tabPane=sinTabs[i];
 			var panelHeading=$(tabPane).find(".panel-heading")[0];
 			var panelBody=$(tabPane).find(".panel-body")[0];
@@ -30,15 +30,15 @@ function initDevStatMap(){
 			var statImg=$(panelBody).find(".fengye")[0];
 		    var devName=$($(panelHeading).find("h3")[0]).html();
 		    sinDevStatMap.put(devName,tag);
-		    sinDevStatImgMap.put(devName.statImg);
+		    sinDevStatImgMap.put(devName,statImg);
 		}
 		zoneSinDevStatMap.put(zoneName,sinDevStatMap);
-		zoneSinDevStatMap.put(zoneName,sinDevStatImgMap);
+		zoneSinDevStatImgMap.put(zoneName,sinDevStatImgMap);
 		
 		var binTabs=$('#binDevClm',zoneTab).find('.panel');
 		var binDevStatMap=new Map();
 		var binDevStatImgMap=new Map();
-		for(var i=0;i<binTabs.size()-1;i++){
+		for(var i=0;i<binTabs.size();i++){
 			var tabPane=binTabs[i];
 			var panelHeading=$(tabPane).find(".panel-heading")[0];
 			var panelBody=$(tabPane).find(".panel-body")[0];
@@ -49,10 +49,10 @@ function initDevStatMap(){
 		    binDevStatImgMap.put(devName,statImg);
 		}
 		zoneBinDevStatMap.put(zoneName,binDevStatMap);
-		zoneBinDevStatMap.put(zoneName,binDevStatImgMap);
+		zoneBinDevStatImgMap.put(zoneName,binDevStatImgMap);
 	}
 }
-/*初始化传感器中的仪表盘*/
+/*init JustGage*/
 function initGS(){
 	var zoneTabs=$('.tab-pane');
 	for(var j=0;j<zoneTabs.size()-1;j++){
@@ -72,7 +72,6 @@ function initGS(){
 	        var value = min;
 	        var name =  $("input[name='name']",form).val();
 	        var title=name.split("传感器")[0];
-	    //    alert("id:"+id+",name:"+name+",max:"+max+",min:"+min+",unit:"+unit);
 	        var panel=$(gs).closest(".panel");
 	        var panelHeading=$(panel).find(".panel-heading")[0];
 	        var statSpan=$(panelHeading).find("span")[0];
@@ -96,9 +95,7 @@ function initGS(){
 		zoneGsMap.put(zoneName,gsMap);
 		zoneSensorStatMap.put(zoneName,sensorStatMap);
 	}
-	
 }
-
 /*websocket*/
 function initConn(){
 	  var panels=$('.tab-pane');
@@ -116,25 +113,24 @@ function sinDevConnect(zoneName) {
     sinDevStompClient = Stomp.over(socket);
     sinDevStompClient.connect({}, function(frame) {
         /*初始化数据请求*/
-        sinDevStompClient.send("/real/sindevmsg",{},JSON.stringify({'zoneName':zoneName}));
+    	sinDevStompClient.subscribe('/sindevice/update/'+zoneName, function(data){
+	            refreshSinDevices(data);
+	        });
         setInterval(function(){
-        	sinDevStompClient.subscribe('/sindevice/update/'+zoneName, function(data){
-  	            refreshSinDevices(data);
-  	        });
+        	  sinDevStompClient.send("/real/sindevmsg",{},JSON.stringify({'zoneName':zoneName}));
 		},3000);
     });
-    
 }
 function binDevConnect(zoneName) {
     var socket = new SockJS('/bindevdata');
     binDevStompClient = Stomp.over(socket);
     binDevStompClient.connect({}, function(frame) {
         /*初始化数据请求*/
-        binDevStompClient.send("/real/bindevmsg",{},JSON.stringify({'zoneName':zoneName}));
+    	 binDevStompClient.subscribe('/bindevice/update/'+zoneName, function(data){
+	            refreshBinDevices(data);
+	        });
     	setInterval(function(){
-    		  binDevStompClient.subscribe('/bindevice/update/'+zoneName, function(data){
-    	            refreshBinDevices(data);
-    	        });
+    		binDevStompClient.send("/real/bindevmsg",{},JSON.stringify({'zoneName':zoneName}));
 		},3000);
       
     });
@@ -144,11 +140,11 @@ function sensorConnect(zoneName) {
     sensorStompClient = Stomp.over(socket);
     sensorStompClient.connect({}, function(frame) {
         /*初始化数据请求*/
-        sensorStompClient.send("/real/sensormsg", {}, JSON.stringify({'zoneName':zoneName}));
+    	sensorStompClient.subscribe('/sensor/update/'+zoneName, function(data){
+    		refreshSensors(data);
+	        });
         setInterval(function(){
-        	sensorStompClient.subscribe('/sensor/update/'+zoneName, function(data){
-        		refreshSensors(data);
-  	        });
+        	 sensorStompClient.send("/real/sensormsg", {}, JSON.stringify({'zoneName':zoneName}));
 		},3000);
     });
 }
@@ -178,24 +174,24 @@ function refreshSinDevices(data){
 		var device=devices[i];
 		var zoneName=device.zoneName;
 		var name=device.name;
-		var online=device.onLine;
-		var mode=device.mode;
+		var online=device.online;
+		var mode=device.ctrlMode;
 		var sinDevStatMap=zoneSinDevStatMap.get(zoneName);
 		var statSpan=sinDevStatMap.get(name);
 		var sinDevStatImgMap=zoneSinDevStatImgMap.get(zoneName);
 		var statImg=sinDevStatImgMap.get(name);
 		if(0==online){
 			$(statSpan).attr('class','btn btn-dafault');
-			$(statSpan).html("已停止运行");
-			$(statImg).removeAttr('style');
+			$(statSpan).html("设备离线");
+			$(statImg).css('animation','');
 		}else{
-				$(statImg).attr('style','animation:mymove 6s linear infinite');
+				$(statImg).css('animation','mymove 6s linear infinite');
 			if(0==mode){
 				$(statSpan).attr('class','btn btn-success');
-				$(statSpan).html("手动模式运行");
+				$(statSpan).html("正在手动模式运行");
 			}else{
 				$(statSpan).attr('class','btn btn-info');
-				$(statSpan).html("自动模式运行");
+				$(statSpan).html("正在自动模式运行");
 			}
 		}
 	}
@@ -206,24 +202,24 @@ function refreshBinDevices(data){
 		var device=devices[i];
 		var zoneName=device.zoneName;
 		var name=device.name;
-		var online=device.onLine;
-		var mode=device.mode;
+		var online=device.online;
+		var mode=device.ctrMode;
 		var binDevStatMap=zoneBinDevStatMap.get(zoneName);
 		var statSpan=binDevStatMap.get(name);
 		var binDevStatImgMap=zoneBinDevStatImgMap.get(zoneName);
 		var statImg=binDevStatImgMap.get(name);
 		if(0==online){
 			$(statSpan).attr('class','btn btn-dafault');
-			$(statSpan).html("已停止运行");
-			$(statImg).removeAttr('style');
+			$(statSpan).html("设备离线");
+			$(statImg).css('animation','');
 		}else{
-				$(statImg).attr('style','animation:mymove 6s linear infinite');
+				$(statImg).css('animation','mymove 6s linear infinite');
 			if(0==mode){
 				$(statSpan).attr('class','btn btn-success');
-				$(statSpan).html("手动模式运行");
+				$(statSpan).html("正在手动模式运行");
 			}else{
 				$(statSpan).attr('class','btn btn-info');
-				$(statSpan).html("自动模式运行");
+				$(statSpan).html("正在自动模式运行");
 			}
 		}
 	}
@@ -236,9 +232,10 @@ function refreshSensors(data){
 		var name=sensor.name;
 		var online=sensor.online;
 		var value=sensor.value;
+		
 		var statSpanMap=zoneSensorStatMap.get(zoneName);
 		var statSpan=statSpanMap.get(name);
-		if(0==value){
+		if(0==online){
 			$(statSpan).attr('class','label label-default');
 			$(statSpan).html('离线');
 		}
@@ -248,12 +245,219 @@ function refreshSensors(data){
 		}
 		var gsMap=zoneGsMap.get(zoneName);
 		var gs=gsMap.get(name);
+		
+		var value=parseFloat(value.toFixed(1));
+		
 		gs.refresh(value);
 	}
 }
-
 /*websocket end*/
 
+/*operations*/
+function changeSinDevState(tar){
+	var curMode=$(tar).html();
+	var tabPane=$(tar).closest(".tab-pane");
+    var zoneName=$(tabPane).attr("id");
+    var panel=$(tar).closest(".panel");
+    var panelHeading=$(panel).find(".panel-heading")[0];
+    var devName=$($(panelHeading).find("h3")[0]).html();
+    var payload={
+    		zoneName:zoneName,
+    		devName:devName
+    };
+    statSpan=zoneSinDevStatMap.get(zoneName).get(devName);
+    var url="/sindevctrl/operation/";
+    if(curMode.indexOf("自动")>=0){
+    	url+="manual";
+    }else{
+    	url+="auto";
+    }
+    alert("url:"+url);
+    $.ajax({
+        type:"post", 
+        timeout:10000,
+        url:url,
+        data:payload,	
+        beforeSend:function(){
+        	$(statSpan).html("命令发送中....");
+        },
+        error:function(){
+        	alert("访问出错");
+        },
+        complete:function(XMLHttpRequest,status){
+        	if(status=="timeout"){
+        		alert("请求超时");
+        		$(statSpan).html("请求超时");
+        	}
+        }
+    })
+}
+function changeBinDevState(tar){
+	var curMode=$(tar).html();
+	var tabPane=$(tar).closest(".tab-pane");
+    var zoneName=$(tabPane).attr("id");
+    var panel=$(tar).closest(".panel");
+    var panelHeading=$(panel).find(".panel-heading")[0];
+    var devName=$($(panelHeading).find("h3")[0]).html();
+    var payload={
+    		zoneName:zoneName,
+    		devName:devName
+    };
+    statSpan=zoneBinDevStatMap.get(zoneName).get(devName);
+    var url="/bindevctrl/operation/";
+    if(curMode.indexOf("自动")>=0){
+    	url+="manual";
+    }else{
+    	url+="auto";
+    }
+    $.ajax({
+        type:"post", 
+        timeout:10000,
+        url:url,
+        data:payload,	
+        beforeSend:function(){
+        	$(statSpan).html("命令发送中....");
+        },
+        error:function(){
+        	alert("访问出错");
+        },
+        complete:function(XMLHttpRequest,status){
+        	if(status=="timeout"){
+        		alert("请求超时");
+        		$(statSpan).html("请求超时");
+        	}
+        }
+    })
+}
+function sinDevOperation(tar,cmd){
+	var tabPane=$(tar).closest(".tab-pane");
+    var zoneName=$(tabPane).attr("id");
+    var panel=$(tar).closest(".panel");
+    var panelHeading=$(panel).find(".panel-heading")[0];
+    var devName=$($(panelHeading).find("h3")[0]).html();
+    var panelBody=$(panel).find(".panel-body");
+    var statSpan=$(panelHeading).find("button")[0];
+    var curMode=$(statSpan).html();
+    var payload={
+    		zoneName:zoneName,
+    		devName:devName
+    };
+    if(curMode.indexOf("手动")>=0){
+    	$.ajax({
+            type:"POST", 
+            timeout:10000,
+            url:"/sindevctrl/operation/"+cmd,
+            data:payload,
+            beforeSend:function(){
+            	$(statSpan).html("命令发送中....");
+            },
+            error:function(){
+            	alert("访问出错");
+            },
+            complete:function(XMLHttpRequest,status){
+            	if(status=="timeout"){
+            		alert("请求超时");
+            		$(statSpan).html("请求超时");
+            	}
+            }
+        })
+    }else{
+    	alert("只有手动模式下才能进行此操作");
+    }
+}
+function binDevOperation(tar,cmd){
+	var tabPane=$(tar).closest(".tab-pane");
+    var zoneName=$(tabPane).attr("id");
+    var panel=$(tar).closest(".panel");
+    var panelHeading=$(panel).find(".panel-heading")[0];
+    var devName=$($(panelHeading).find("h3")[0]).html();
+    var panelBody=$(panel).find(".panel-body");
+    var statSpan=$(panelHeading).find("button")[0];
+    var curMode=$(statSpan).html();
+    var payload={
+    		zoneName:zoneName,
+    		devName:devName
+    };
+    if(curMode.indexOf("手动")>=0){
+    	 $.ajax({
+    	        type:"POST",
+    	        timeout:12000,
+    	        url:"/bindevctrl/operation/"+cmd,
+    	        data:payload,
+    	        beforeSend:function(){
+    	        	$(statSpan).html("命令发送中....");
+    	        },
+    	        error:function(){
+    	        	alert("访问出错");
+    	        },
+    	        complete:function(XMLHttpRequest,status){
+    	        	if(status=="timeout"){
+    	        		alert("请求超时");
+    	        		$(statSpan).html("请求超时");
+    	        	}
+    	        }
+    	    })
+    }else{
+    	alert("只有手动模式下才能进行此操作");
+    }
+}
+function sinDevConfiguration(tar){
+	var tabPane=tar.closest(".tab-pane");
+    var zoneName=$(tabPane).attr("id");
+    var panelHeading=$(tabPane).find(".panel-heading");
+    var devName=$($(panelHeading).find("h3")[0]).html();
+    var payload={
+    		zoneName:zoneName,
+    		devName:devName
+    };
+    $.ajax({
+        type:"post",
+        url:"/sindevctrl/params_load",
+        dataType:"json",	
+        data:payload,
+        beforeSend:function(){
+        	$("#loadingModal").modal();
+        },
+        success:function(data){
+        	$("#loadingModal").modal("hide");
+        	//TODO:如果data不为空,为modal设置参数data
+        	$("#binDeviceCfg").modal();
+        },
+        error:function(){
+        	$("#loadingModal").modal("hide");
+        	alert("请求出错");
+        }
+    })
+}
+function binDevConfiguration(tar){
+	var tabPane=tar.closest(".tab-pane");
+    var zoneName=$(tabPane).attr("id");
+    var panelHeading=$(tabPane).find(".panel-heading");
+    var devName=$($(panelHeading).find("h3")[0]).html();
+    var payload={
+    		zoneName:zoneName,
+    		devName:devName
+    };
+    $.ajax({
+        type:"post",
+        url:"/bindevctrl/params_load",
+        dataType:"json",	
+        data:payload,
+        beforeSend:function(){
+        	$("#loadingModal").modal();
+        },
+        success:function(data){
+        	$("#loadingModal").modal("hide");
+        	//TODO:如果data不为空,为modal设置参数data
+        	$("#binDeviceCfg").modal();
+        },
+        error:function(){
+        	$("#loadingModal").modal("hide");
+        	alert("请求出错");
+        }
+    })
+}
+/**
 function removeSensor(tar){
 	var tabPane=tar.closest(".tab-pane");
     var zoneName=$(tabPane).attr("id");
@@ -313,251 +517,10 @@ function removeBinDev(tar){
         	alert("删除删除电机设备失败");
         }
     })
-}
-function changeSinDevState(tar){
-	var curMode=$(tar).html();
-	var tabPane=tar.closest(".tab-pane");
-    var zoneName=$(tabPane).attr("id");
-    var panelHeading=$(tabPane).find(".panel-heading");
-    var devName=$($(panelHeading).find("h3")[0]).html();
-    
-    var url="/sindevice/operation/"+zoneName+"/"+devName+"/";
-    if(curMode.indexOf("自动")>=0){
-    	url+="manual";
-    }else{
-    	url+="auto";
-    }
-    $.ajax({
-        type:"GET", 
-        timeout:10000,
-        url:url,
-        dataType:"text",	
-        beforeSend:function(){
-        	statSpan.html("命令发送中....");
-        },
-        error:function(){
-        	alert("访问出错");
-        },
-        complete:function(XMLHttpRequest,status){
-        	if(status=="timeout")
-        		alert("请求超时");
-        }
-    })
-}
-function changeBinDevState(tar){
-	var curMode=$(tar).html();
-	var tabPane=tar.closest(".tab-pane");
-    var zoneName=$(tabPane).attr("id");
-    var panelHeading=$(tabPane).find(".panel-heading");
-    var devName=$($(panelHeading).find("h3")[0]).html();
-    
-    var url="/bindevice/operation/"+zoneName+"/"+devName+"/";
-    if(curMode.indexOf("自动")>=0){
-    	url+="manual";
-    }else{
-    	url+="auto";
-    }
-    $.ajax({
-        type:"GET", 
-        timeout:10000,
-        url:url,
-        dataType:"text",	
-        beforeSend:function(){
-        	statSpan.html("命令发送中....");
-        },
-        error:function(){
-        	alert("访问出错");
-        },
-        complete:function(XMLHttpRequest,status){
-        	if(status=="timeout")
-        		alert("请求超时");
-        }
-    })
-}
-function sinDevConfiguration(tar){
-	var tabPane=tar.closest(".tab-pane");
-    var zoneName=$(tabPane).attr("id");
-    var panelHeading=$(tabPane).find(".panel-heading");
-    var devName=$($(panelHeading).find("h3")[0]).html();
-    $.ajax({
-        type:"GET",
-        url:"/sindevice/params_load/"+zoneName+"/"+devName,
-        dataType:"json",	
-        beforeSend:function(){
-        	$("#loadingModal").modal();
-        },
-        success:function(data){
-        	$("#loadingModal").modal("hide");
-        	//TODO:如果data不为空,为modal设置参数data
-        	$("#binDeviceCfg").modal();
-        },
-        error:function(){
-        	$("#loadingModal").modal("hide");
-        	alert("请求出错");
-        }
-    })
-}
-function binDevConfiguration(tar){
-	var tabPane=tar.closest(".tab-pane");
-    var zoneName=$(tabPane).attr("id");
-    var panelHeading=$(tabPane).find(".panel-heading");
-    var devName=$($(panelHeading).find("h3")[0]).html();
-    $.ajax({
-        type:"GET",
-        url:"/bindevice/params_load/"+zoneName+"/"+devName,
-        dataType:"json",	
-        beforeSend:function(){
-        	$("#loadingModal").modal();
-        },
-        success:function(data){
-        	$("#loadingModal").modal("hide");
-        	//TODO:如果data不为空,为modal设置参数data
-        	$("#binDeviceCfg").modal();
-        },
-        error:function(){
-        	$("#loadingModal").modal("hide");
-        	alert("请求出错");
-        }
-    })
-}
-function startSinDev(tar){
-	var tabPane=tar.closest(".tab-pane");
-    var zoneName=$(tabPane).attr("id");
-    var panelHeading=$(tabPane).find(".panel-heading");
-    var devName=$($(panelHeading).find("h3")[0]).html();
-    var panelBody=$(tabPane).find(".panel-body");
-    var statSpan=$(panelHeading).find("button")[0];
-    var curMode=$(statSpan).html();
-    alert(curMode);
-    if(curMode.indeOf("手动")>=0){
-    	$.ajax({
-            type:"POST", 
-            timeout:10000,
-            url:"/sindevice/update/"+zoneName+"/"+devName+"/"+"start",
-            beforeSend:function(){
-            	statSpan.html("命令发送中....");
-            },
-            error:function(){
-            	alert("访问出错");
-            },
-            complete:function(XMLHttpRequest,status){
-            	alert("访问超时");
-            }
-        })
-    }else{
-    	alert("只有手动模式下才能进行此操作");
-    }
-}
-function stopSinDev(tar){
-	var tabPane=tar.closest(".tab-pane");
-    var zoneName=$(tabPane).attr("id");
-    var panelHeading=$(tabPane).find(".panel-heading");
-    var devName=$($(panelHeading).find("h3")[0]).html();
-    var panelBody=$(tabPane).find(".panel-body");
-    var statSpan=$(panelHeading).find("button")[0];
-    var curMode=$(statSpan).html();
-    if(curMode.indeOf("手动")>=0){
-    	$.ajax({
-            type:"POST",
-            timeout:10000,
-            url:"/sindevice/update/"+zoneName+"/"+devName+"/"+"stop",
-            beforeSend:function(){
-            	$(statSpan).html("命令发送中....");
-            },
-            error:function(){
-            	alert("访问出错");
-            },
-            complete:function(XMLHttpRequest,status){
-            	alert("访问超时");
-            }
-        })
-    }else{
-    	alert("只有手动模式下才能进行此操作");
-    }
-}
-function binDevForward(tar){
-	var tabPane=tar.closest(".tab-pane");
-    var zoneName=$(tabPane).attr("id");
-    var panelHeading=$(tabPane).find(".panel-heading");
-    var devName=$($(panelHeading).find("h3")[0]).html();
-    var panelBody=$(tabPane).find(".panel-body");
-    var statSpan=$(panelHeading).find("button")[0];
-    var curMode=$(statSpan).html();
-    if(curMode.indeOf("手动")>=0){
-    	$.ajax({
-            type:"POST",
-            timeout:12000,
-            url:"/bindevice/update/"+zoneName+"/"+devName+"/"+"forward",
-            beforeSend:function(){
-            	$(statSpan).html("命令发送中....");
-            },
-            error:function(){
-            	alert("访问出错");
-            },
-            complete:function(XMLHttpRequest,status){
-            	alert("访问超时");
-            }
-        })
-    }else{
-    	alert("只有手动模式下才能进行此操作");
-    }
-}
-function binDevBackward(tar){
-	var tabPane=tar.closest(".tab-pane");
-    var zoneName=$(tabPane).attr("id");
-    var panelHeading=$(tabPane).find(".panel-heading");
-    var devName=$($(panelHeading).find("h3")[0]).html();
-    var panelBody=$(tabPane).find(".panel-body");
-    var statSpan=$(panelHeading).find("button")[0];
-    var curMode=$(statSpan).html();
-    if(curMode.indeOf("手动")>=0){
-    	 $.ajax({
-    	        type:"POST",
-    	        timeout:12000,
-    	        url:"/bindevice/update/"+zoneName+"/"+devName+"/"+"backward",
-    	        dataType:"text",	
-    	        beforeSend:function(){
-    	        	$(statSpan).html("命令发送中....");
-    	        },
-    	        error:function(){
-    	        	alert("访问出错");
-    	        },
-    	        complete:function(XMLHttpRequest,status){
-    	        	alert("访问超时");
-    	        }
-    	    })
-    }else{
-    	alert("只有手动模式下才能进行此操作");
-    }
-}
-function binDevStop(tar){
-	var tabPane=tar.closest(".tab-pane");
-    var zoneName=$(tabPane).attr("id");
-    var panelHeading=$(tabPane).find(".panel-heading");
-    var devName=$($(panelHeading).find("h3")[0]).html();
-    var panelBody=$(tabPane).find(".panel-body");
-    var statSpan=$(panelHeading).find("button")[0];
-    var curMode=$(statSpan).html();
-    if(curMode.indeOf("手动")>=0){
-    	$.ajax({
-            type:"POST",
-            timeout:12000,
-            url:"/bindevice/update/"+zoneName+"/"+devName+"/"+"stop",
-            beforeSend:function(){
-            	$(statSpan).html("命令发送中....");
-            },
-            error:function(){
-            	alert("访问出错");
-            },
-            complete:function(XMLHttpRequest,status){
-            	alert("访问超时");
-            }
-        })
-    }else{
-    	alert("只有手动模式下才能进行此操作");
-    }
-}
-/* Add sensor、sindevice、bindevice*/
+}*/
+/*operation end*/
+
+/*setting dialogs init*/
 function addEventInit(){
 	$(".a_setting").each(function(){
 		$(this).click(function() {
@@ -570,6 +533,7 @@ function addEventInit(){
 		});
 	});
 }
+/**
 function validatorInit(){
 	$('#zoneAddForm').bootstrapValidator({
 		message: '内容不合法',
@@ -598,7 +562,6 @@ function validatorInit(){
 		            	alert("错误:添加传感器失败");
 		            }
             });
-        
         },
 		fields: {
 			zoneName: {
@@ -784,90 +747,4 @@ function validatorInit(){
 		}
 	});
 }
-///*backup*/
-//
-///*Sin Device operations*/
-//function reloadSinDev(tar){
-//    var tabPane=tar.closest(".tab-pane");
-//    var zoneName=tabPane.attr("id");
-//    var panelHeading=tabPane.find(".panel-heading");
-//    var devName=panelHeading.find("h3")[0].innerHTML;
-//
-//    var panelBody=tabPane.find(".panel-body");
-//
-//    $.ajax({
-//        type:"GET",
-//        url:"/sindevice/reload/"+zoneName+"/"+devName,
-//        dataType:"text",
-//        success:function(device){
-//            var msg="";
-//            if(device.online==0)
-//                msg="已停止运行";
-//            else
-//                if(device.ctrlMode==0)
-//                    msg="自动模式运行";
-//                else
-//                    msg="手动模式运行";
-//            panelHeading.find("span").innerHTML(msg);
-//            var sensors=device.sensors;
-//            var content="";
-//            for(var i=0;i<sensors.size();i++){
-//                var sensor=sensors[i];
-//                var state=sensor.state==0?"离线":"在线";
-//                content+="<tr>" +
-//                            "<td>"+(i+1)+"</td>" +
-//                            "<td>"+sensor.name+"</td>" +
-//                            "<td>"+sensor.value+"</td>" +
-//                            "<td>"+state+"</td>" +
-//                        "</tr>";
-//            }
-//            panelBody.innerHTML(content);
-//        },
-//        error:function(){
-//        	alert("刷新失败");
-//        }
-//    })
-//}
-
-///*Bin Device operations*/
-//function reloadBinDev(tar){
-//    var tabPane=tar.closest(".tab-pane");
-//    var zoneName=tabPane.attr("id");
-//    var panelHeading=tabPane.find(".panel-heading");
-//    var devName=panelHeading.find("h3").html();
-//    var panelBody=tabPane.find(".panel-body");
-//
-//    $.ajax({
-//        type:"GET",
-//        url:"/bindevice/reload/"+zoneName+"/"+devName,
-//        dataType:"text",	
-//        success:function(device){
-//            var msg="";
-//            if(device.online==0)
-//                msg="已停止运行";
-//            else
-//                if(device.ctrlMode==0)
-//                    msg="自动模式运行";
-//                else
-//                    msg="手动模式运行";
-//            panelHeading.find("span").html(msg);
-//            var sensors=device.sensors;
-//            var content="";
-//            for(var i=0;i<sensors.size();i++){
-//                var sensor=sensors[i];
-//                var state=sensor.state==0?"离线":"在线";
-//                content+="<tr>" +
-//                            "<td>"+(i+1)+"</td>" +
-//                            "<td>"+sensor.name+"</td>" +
-//                            "<td>"+sensor.value+"</td>" +
-//                            "<td>"+state+"</td>" +
-//                        "</tr>";
-//            }
-//            panelBody.html(content);
-//        },
-//        error:function(){
-//        	alert("刷新失败");
-//        }
-//    })
-//}
-
+*/

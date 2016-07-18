@@ -84,6 +84,7 @@ public class XMLUtil {
 		Element zoneElm = (Element)root.selectSingleNode("SensorSysData");
 		List data=zoneElm.elements("Data");
 		for(Iterator it=data.iterator();it.hasNext();){
+			boolean exist=false;
 			Element dataElm=(Element)it.next();
 			String name=dataElm.elementText("Name").trim();
 			
@@ -100,7 +101,13 @@ public class XMLUtil {
 					String[] limits=range.split("~");
 					sensor.setDownValue(Double.valueOf(limits[0]));
 					sensor.setUpValue(Double.valueOf(limits[1]));
+					exist=true;
+					break;
 				}
+			}
+			if(!exist){
+				sensor.setDownValue(0);
+				sensor.setUpValue(1000);
 			}
 			sensors.add(sensor);
 		}

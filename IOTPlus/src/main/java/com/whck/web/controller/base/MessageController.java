@@ -2,6 +2,8 @@ package com.whck.web.controller.base;
 
 import java.util.Iterator;
 import java.util.List;
+
+import org.apache.mina.core.session.IoSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -12,9 +14,9 @@ import com.whck.domain.base.Sensor;
 import com.whck.domain.base.SinDevice;
 import com.whck.domain.base.Zone;
 import com.whck.mina.constants.Constants;
+import com.whck.mina.handler.ProtocolHandler;
 import com.whck.mina.message.BinDeviceParamsRequestMessage;
 import com.whck.mina.message.SinDeviceParamsRequestMessage;
-import com.whck.mina.server.Broadcast;
 import com.whck.service.base.BinDeviceService;
 import com.whck.service.base.SinDeviceService;
 import com.whck.service.base.ZoneService;
@@ -72,9 +74,15 @@ public class MessageController {
 							BinDeviceParamsRequestMessage request=new BinDeviceParamsRequestMessage();
 							int dataLen=devNameBytes.length+Constants.CRC_LEN+Constants.ENDER_LEN;
 							request.setId(zoneNameBytes);
+							request.setCmd(BinDeviceParamsRequestMessage.COMMAND);
 							request.setData(devNameBytes);
+							request.setLatitude(new byte[]{0,0,0});
+							request.setLongitude(new byte[]{0,0,0});
 							request.setDataLen(new byte[]{(byte) (dataLen/256),(byte) (dataLen%256)});
-							Broadcast.broadcast(request);
+							IoSession session=ProtocolHandler.sessions.get(zoneName);
+							if(session!=null&&session.isConnected()){
+								session.write(request);
+							}
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -98,9 +106,16 @@ public class MessageController {
 							SinDeviceParamsRequestMessage request=new SinDeviceParamsRequestMessage();
 							int dataLen=devNameBytes.length+Constants.CRC_LEN+Constants.ENDER_LEN;
 							request.setId(zoneNameBytes);
+							request.setCmd(SinDeviceParamsRequestMessage.COMMAND);
+							request.setLatitude(new byte[]{0,0,0});
+							request.setLongitude(new byte[]{0,0,0});
 							request.setData(devNameBytes);
 							request.setDataLen(new byte[]{(byte) (dataLen/256),(byte) (dataLen%256)});
-							Broadcast.broadcast(request);
+							IoSession session=ProtocolHandler.sessions.get(zoneName);
+							if(session!=null&&session.isConnected()){
+								session.write(request);
+							}
+						//	Broadcast.broadcast(request);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

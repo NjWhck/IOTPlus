@@ -18,17 +18,15 @@ public class SensorServiceImpl implements SensorService{
 	public Sensor addOrUpdate(Sensor sensor) {
 		Sensor ss=sensorDao.findByZoneNameAndName(sensor.getZoneName(), sensor.getName());
 		if(ss!=null){
-			ss.setIp(sensor.getIp());
-			ss.setName(sensor.getName());
-			ss.setZoneName(sensor.getZoneName());
 			ss.setUnit(sensor.getUnit());
 			ss.setUpValue(sensor.getUpValue());
+			ss.setValue(sensor.getValue());
 			ss.setDownValue(sensor.getDownValue());
 			ss.setOnline(sensor.getOnline());
 			
 			return sensorDao.save(ss);
 		}
-		return sensorDao.save(ss);
+		return sensorDao.save(sensor);
 	}
 
 	@Override
@@ -44,5 +42,10 @@ public class SensorServiceImpl implements SensorService{
 	@Override
 	public List<Sensor> getAllByZoneName(String zoneName) {
 		return sensorDao.findByZoneName(zoneName);
+	}
+
+	@Override
+	public Sensor getSensor(String zoneName, String sensorName) {
+		return sensorDao.findByZoneNameAndName(zoneName, sensorName);
 	}
 }

@@ -20,7 +20,6 @@ public class RealData {
 	@Column(name="date_time")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTime;
-	@Column(precision=16,scale=3)
 	private double value;
 	@Column(length=12)
 	private String unit;

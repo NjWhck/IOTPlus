@@ -3,10 +3,12 @@ package com.whck.service.base;
 import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.whck.domain.base.RealData;
 
 @Service
+@Transactional
 public interface RealDataService {
 	RealData addOne(RealData realData);
 	List<RealData> getByName(String zoneName,String name);

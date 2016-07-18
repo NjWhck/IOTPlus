@@ -43,4 +43,9 @@ public class SinDeviceServiceImpl implements  SinDeviceService{
 		return deviceDao.findByZoneName(zoneName);
 	}
 
+	@Override
+	public SinDevice getDevice(String zoneName, String devName) {
+		return deviceDao.findByZoneNameAndName(zoneName, devName);
+	}
+
 }

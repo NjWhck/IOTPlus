@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SySData>
+    <Project>
+        <ID>31716071203</ID>
+    </Project>
+    <ControlData>
+        <Data Number="0">
+            <Name>3号温室控制</Name>
+            <Mode>2</Mode>
+        </Data>
+    </ControlData>
+    <SensorData>
+        <Data Number="0">
+            <Name>3号温室</Name>
+            <Mode>2</Mode>
+        </Data>
+    </SensorData>
+    <ControlSysData>
+        <Data Number="0">
+            <Father>3号温室控制</Father>
+            <Name>卷被一号</Name>
+            <Mode>2</Mode>
+        </Data>
+        <Data Number="1">
+            <Father>3号温室控制</Father>
+            <Name>放风一号</Name>
+            <Mode>2</Mode>
+        </Data>
+        <Data Number="2">
+            <Father>3号温室控制</Father>
+            <Name>备用</Name>
+            <Mode>1</Mode>
+        </Data>
+        <Data Number="3">
+            <Father>3号温室控制</Father>
+            <Name>放风二号</Name>
+            <Mode>2</Mode>
+        </Data>
+        <Data Number="4">
+            <Father>3号温室控制</Father>
+            <Name>备用二号</Name>
+            <Mode>1</Mode>
+        </Data>
+    </ControlSysData>
+    <SensorSysData>
+        <Data Number="0">
+            <Father>3号温室</Father>
+            <Name>环境温度</Name>
+            <Unit>℃</Unit>
+            <Channel>0</Channel>
+            <K>55</K>
+            <B>-40</B>
+        </Data>
+        <Data Number="1">
+            <Father>3号温室</Father>
+            <Name>环境湿度</Name>
+            <Unit>%RH</Unit>
+            <Channel>1</Channel>
+            <K>33.3</K>
+            <B>0</B>
+        </Data>
+        <Data Number="2">
+            <Father>3号温室</Father>
+            <Name>CO2 电流</Name>
+            <Unit>PPM</Unit>
+            <Channel>5</Channel>
+            <K>4167</K>
+            <B>-2500</B>
+        </Data>
+        <Data Number="3">
+            <Father>3号温室</Father>
+            <Name>光照</Name>
+            <Unit>LUX</Unit>
+            <Channel>4</Channel>
+            <K>83333.3</K>
+            <B>-50000</B>
+        </Data>
+        <Data Number="4">
+            <Father>3号温室</Father>
+            <Name>CO2</Name>
+            <Unit>PPM</Unit>
+            <Channel>2</Channel>
+            <K>3333.3</K>
+            <B>0</B>
+        </Data>
+    </SensorSysData>
+    <ControlConfigData/>
+    <OpenControlConfigData/>
+</SySData>

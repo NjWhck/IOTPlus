@@ -1,83 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SySData>
     <Project>
-        <ID>31716071201</ID>
+        <ID>31716071202</ID>
     </Project>
     <ControlData>
         <Data Number="0">
-            <Name>1号温室控制1</Name>
+            <Name>1号控制器</Name>
             <Mode>2</Mode>
         </Data>
         <Data Number="1">
-            <Name>1号温室控制2</Name>
-            <Mode>2</Mode>
-        </Data>
-        <Data Number="2">
-            <Name>1号温室控制3</Name>
+            <Name>2号控制器</Name>
             <Mode>2</Mode>
         </Data>
     </ControlData>
     <SensorData>
         <Data Number="0">
-            <Name>1号温室</Name>
+            <Name>2号温室</Name>
             <Mode>2</Mode>
         </Data>
     </SensorData>
     <ControlSysData>
         <Data Number="0">
-            <Father>1号温室控制1</Father>
-            <Name>卷被一号</Name>
-            <Mode>2</Mode>
+            <Father>2号控制器</Father>
+            <Name>灯光</Name>
+            <Mode>1</Mode>
         </Data>
         <Data Number="1">
-            <Father>1号温室控制1</Father>
-            <Name>卷被二号</Name>
-            <Mode>2</Mode>
+            <Father>2号控制器</Father>
+            <Name>空调</Name>
+            <Mode>1</Mode>
         </Data>
         <Data Number="2">
-            <Father>1号温室控制1</Father>
-            <Name>卷被三号</Name>
-            <Mode>2</Mode>
+            <Father>2号控制器</Father>
+            <Name>水泵</Name>
+            <Mode>1</Mode>
         </Data>
         <Data Number="3">
-            <Father>1号温室控制1</Father>
-            <Name>卷被四号</Name>
-            <Mode>2</Mode>
+            <Father>2号控制器</Father>
+            <Name>电磁阀</Name>
+            <Mode>1</Mode>
         </Data>
         <Data Number="4">
-            <Father>1号温室控制2</Father>
-            <Name>放风一号</Name>
+            <Father>1号控制器</Father>
+            <Name>外遮阳</Name>
             <Mode>2</Mode>
         </Data>
         <Data Number="5">
-            <Father>1号温室控制2</Father>
-            <Name>放风二号</Name>
+            <Father>1号控制器</Father>
+            <Name>内遮阳</Name>
             <Mode>2</Mode>
         </Data>
         <Data Number="6">
-            <Father>1号温室控制2</Father>
-            <Name>放风三号</Name>
+            <Father>1号控制器</Father>
+            <Name>内保温</Name>
             <Mode>2</Mode>
         </Data>
         <Data Number="7">
-            <Father>1号温室控制2</Father>
-            <Name>放风四号</Name>
-            <Mode>2</Mode>
-        </Data>
-        <Data Number="8">
-            <Father>1号温室控制3</Father>
-            <Name>放风五号</Name>
-            <Mode>2</Mode>
-        </Data>
-        <Data Number="9">
-            <Father>1号温室控制3</Father>
-            <Name>放风六号</Name>
+            <Father>1号控制器</Father>
+            <Name>外保温</Name>
             <Mode>2</Mode>
         </Data>
     </ControlSysData>
     <SensorSysData>
         <Data Number="0">
-            <Father>1号温室</Father>
+            <Father>2号温室</Father>
             <Name>环境温度</Name>
             <Unit>℃</Unit>
             <Channel>0</Channel>
@@ -85,7 +71,7 @@
             <B>-50</B>
         </Data>
         <Data Number="1">
-            <Father>1号温室</Father>
+            <Father>2号温室</Father>
             <Name>环境湿度</Name>
             <Unit>%RH</Unit>
             <Channel>1</Channel>
@@ -93,7 +79,7 @@
             <B>-25</B>
         </Data>
         <Data Number="2">
-            <Father>1号温室</Father>
+            <Father>2号温室</Father>
             <Name>光照度</Name>
             <Unit>LUX</Unit>
             <Channel>2</Channel>

@@ -14,7 +14,7 @@ public class FileSegmentMessageDecoder extends AbstractDecoder{
 	}
 	@Override
 	protected AbstractMessage decodeBody(IoSession session, IoBuffer in) {
-		if(in.remaining()>=Constants.BASE_PROTOL_LENGTH-Constants.HEADER_LEN-1){
+			in.mark();
 			FileSegmentMessage m=new FileSegmentMessage();
 			byte[] sequence=new byte[2];
 			in.get(sequence);
@@ -32,24 +32,23 @@ public class FileSegmentMessageDecoder extends AbstractDecoder{
 			in.get(latitude);
 			m.setLatitude(latitude);
 			
-			byte[] dataLen=new byte[Constants.LENGTH_LEN];
-			in.get(dataLen);
-			m.setDataLen(dataLen);
+			byte[] dataLenCache=new byte[Constants.LENGTH_LEN];
+			in.get(dataLenCache);
+			m.setDataLen(dataLenCache);
+			IoBuffer buf=IoBuffer.wrap(dataLenCache);
+			int dataLen=Short.toUnsignedInt(buf.getShort());
 			
-			IoBuffer buf=IoBuffer.wrap(dataLen);
-			byte[] data=new byte[Short.toUnsignedInt(buf.getShort())-Constants.CRC_LEN-Constants.ENDER_LEN];
-			in.get(data);
-			m.setData(data);
-			
-			byte[] crc=new byte[Constants.CRC_LEN];
-			in.get(crc);
-			m.setCrc(crc);
-			
-			in.get(new byte[Constants.ENDER_LEN]);
-			
-			return m;
-		}
-		return null;
+			if(in.remaining()>=dataLen){
+				byte[] data=new byte[dataLen-Constants.CRC_LEN-Constants.ENDER_LEN];
+				in.get(data);
+				m.setData(data);
+				byte[] crc=new byte[Constants.CRC_LEN];
+				in.get(crc);
+				m.setCrc(crc);
+				in.get(new byte[Constants.ENDER_LEN]);
+				return m;
+			}
+			in.reset();
+			return null;
 	}
-
 }

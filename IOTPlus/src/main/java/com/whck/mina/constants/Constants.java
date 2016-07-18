@@ -30,7 +30,7 @@ public class Constants {
 	public final static int LENGTH_LEN=2;
 	public final static int CRC_LEN=2;
 	public final static int ENDER_LEN=8;
-	public final static int BASE_PROTOL_LENGTH=HEADER_LEN+CMD_LEN+ID_LEN+LONGITUDE_LEN+LATITUDE_LEN+LENGTH_LEN+CRC_LEN+ENDER_LEN;
+	public final static int BASE_PROTOL_LENGTH=HEADER_LEN+CMD_LEN+ID_LEN+LONGITUDE_LEN+LATITUDE_LEN+LENGTH_LEN;
 	
 	public final static byte[] REQ_DOWNLOAD_BIN={(byte) 0xD0,0,1};
 	public final static byte[] RESP_NEED_TO_UPDATE={(byte) 0xD0,0,1};

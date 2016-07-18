@@ -1,24 +1,22 @@
 package com.whck.mina.helper;
 
 import java.io.IOException;
+import java.nio.DoubleBuffer;
 
 import org.apache.mina.core.buffer.IoBuffer;
 
 public class Test {
 
 	public static void main(String[] args) throws IOException {
-		IoBuffer buf=IoBuffer.allocate(8);
-		buf.putDouble(1);
-		byte[] upvalue1Bytes=buf.array();
-		for(int i=0;i<upvalue1Bytes.length;i++){
-			System.out.println(upvalue1Bytes[i]);	
-		}
-	System.out.println("==================");
-		buf.clear();
-		buf.putDouble(16);
-		byte[] downvalue1Bytes=buf.array();
-		for(int i=0;i<downvalue1Bytes.length;i++){
-			System.out.println(downvalue1Bytes[i]);	
-		}
+		byte[] array={(byte) 0xE8,(byte) 0xE8, (byte) 0xE8, (byte) 0xE8, (byte) 0xE8,
+				(byte) 0xE8 ,(byte) 0xE8, (byte) 0xE8 ,(byte) 0xE0,0,0x01,0x33,0x31,0x37,
+				0x31,0x36,0x30,0x37,0x31,0x32,0x30,0x33,0x00,0x00,0x00,0x00,0x00,0x00,
+				0x00,0x32,0x43 ,0x4F,0x32,0x20,(byte) 0xB5,(byte) 0xE7,(byte) 0xC1,(byte) 0xF7,0x00 ,0x00 ,0x00 ,0x00 ,
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x34 ,(byte) 0x92 ,(byte) 0xA4 ,0x7B ,(byte) 0x92 ,0x40 ,0x50 ,0x50 ,0x4D ,0x00,
+				0, 0, 0, 0, 0, 0, 0, 0};
+			byte[] rslt=CRC16M.getSendBuf_bigEndian(CRC16M.getBufHexStr(array));
+			for(int i=0;i<rslt.length;i++){
+				System.out.print(" "+rslt[i]);
+			}
 	}
 }

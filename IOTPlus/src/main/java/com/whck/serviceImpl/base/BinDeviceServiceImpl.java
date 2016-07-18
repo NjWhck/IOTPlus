@@ -42,4 +42,9 @@ public class BinDeviceServiceImpl implements  BinDeviceService{
 	public List<BinDevice> getAllByZoneName(String zoneName) {
 		return deviceDao.findByZoneName(zoneName);
 	}
+
+	@Override
+	public BinDevice getDevice(String zoneName, String devName) {
+		return deviceDao.findByZoneNameAndName(zoneName, devName);
+	}
 }

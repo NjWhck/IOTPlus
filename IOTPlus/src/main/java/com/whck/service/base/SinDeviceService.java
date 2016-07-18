@@ -9,6 +9,7 @@ public interface SinDeviceService {
 	List<SinDevice> getAll();
 	List<SinDevice> getAllByZoneName(String zoneName);
 	SinDevice getDevice(SinDevice sinDevice);
+	SinDevice getDevice(String zoneName,String devName);
 	SinDevice addOrUpdate(SinDevice device);
 	SinDevice removeDevice(SinDevice sinDevice);
 }

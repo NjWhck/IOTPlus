@@ -21,7 +21,7 @@ public class Zone {
 	
 	private String alias;
 	
-	@Column(length=15)
+	@Column(length=21)
 	private String ip;
 	
 	@Column(name="zip_code",length=6)
@@ -39,14 +39,14 @@ public class Zone {
 	private String administrator;
 	
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="sd_id",referencedColumnName="name")
+	@JoinColumn(name="zs_id",referencedColumnName="name")
 	private List<SinDevice> sinDevices;
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="bd_id",referencedColumnName="name")
+	@JoinColumn(name="zb_id",referencedColumnName="name")
 	private List<BinDevice> binDevices;
 	
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="zid",referencedColumnName="name")
+	@JoinColumn(name="zs_id",referencedColumnName="name")
 	private List<Sensor> sensors;
 	private String remark;
 
@@ -153,6 +153,13 @@ public class Zone {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Zone [name=" + name + ", alias=" + alias + ", ip=" + ip + ", zipCode=" + zipCode + ", address="
+				+ address + ", area=" + area + ", longitude=" + longitude + ", latitude=" + latitude
+				+ ", administrator=" + administrator + ", sinDevices=" + sinDevices + ", binDevices=" + binDevices
+				+ ", sensors=" + sensors + ", remark=" + remark + "]";
+	}
 	
 }

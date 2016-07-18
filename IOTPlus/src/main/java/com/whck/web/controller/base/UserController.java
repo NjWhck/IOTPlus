@@ -20,10 +20,10 @@ public class UserController {
 	private ZoneService zs;
 	@RequestMapping("/login")
 	public String login(){
-//		User user=new User();
-//		user.setName("JSexy");
-//		user.setPassword("123456");
-//		us.add(user);
+		User user=new User();
+		user.setName("JSexy");
+		user.setPassword("123456");
+		us.add(user);
 		return "login";
 	}
 	@RequestMapping("/checkuser")
@@ -43,6 +43,8 @@ public class UserController {
 	@RequestMapping("/main")
 	public String index(Model model){
 		List<Zone> zones=zs.findAll();
+		Zone zone=zones.get(0);
+		System.out.println("zone:"+zone);
 		model.addAttribute("zones", zones);
 		return "main";
 	}

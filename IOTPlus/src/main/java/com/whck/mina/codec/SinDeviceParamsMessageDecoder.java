@@ -16,7 +16,6 @@ public class SinDeviceParamsMessageDecoder extends AbstractDecoder{
 
 	@Override
 	protected AbstractMessage decodeBody(IoSession session, IoBuffer in) {
-		if(in.remaining()>=Constants.ID_LEN+Constants.LONGITUDE_LEN+Constants.LATITUDE_LEN+Constants.LENGTH_LEN){
 			in.mark();
 			SinDeviceParamsMessage m=new SinDeviceParamsMessage();
 			byte[] id=new byte[Constants.ID_LEN];
@@ -50,7 +49,6 @@ public class SinDeviceParamsMessageDecoder extends AbstractDecoder{
 				return m;
 			}
 			in.reset();
-		}
-		return null;
+			return null;
 	}
 }

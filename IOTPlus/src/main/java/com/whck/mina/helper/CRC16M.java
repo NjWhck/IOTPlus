@@ -162,6 +162,7 @@ public class CRC16M {
 			return ret;
 		}
 
+		//Little_Endian
 		public static byte[] getSendBuf(String toSend){
 			byte[] bb = HexString2Buf(toSend);
 			CRC16M crc16 = new CRC16M();
@@ -171,12 +172,33 @@ public class CRC16M {
 			bb[bb.length-2]=(byte) ((0xff00 & ri) >> 8);
 			return bb;
 		}
+		//Big_Endian
+		public static byte[] getSendBuf_bigEndian(String toSend){
+			byte[] bb = HexString2Buf(toSend);
+			CRC16M crc16 = new CRC16M();
+			crc16.update(bb, bb.length-2);
+			int ri = crc16.getValue();
+			bb[bb.length-2]=(byte) (0xff & ri);
+			bb[bb.length-1]=(byte) ((0xff00 & ri) >> 8);
+			return bb;
+		}
+		//Little_Endian
 		public static boolean checkBuf(byte[] bb){
 			CRC16M crc16 = new CRC16M();
 			crc16.update(bb, bb.length-2);
 			int ri = crc16.getValue();
 			if(bb[bb.length-1]==(byte)(ri&0xff) 
 					&& bb[bb.length-2]==(byte) ((0xff00 & ri) >> 8))
+				return true;
+			return false;
+		}
+		//Big_Endian
+		public static boolean checkBuf_bigEndian(byte[] bb){
+			CRC16M crc16 = new CRC16M();
+			crc16.update(bb, bb.length-2);
+			int ri = crc16.getValue();
+			if(bb[bb.length-2]==(byte)(ri&0xff) 
+					&& bb[bb.length-1]==(byte) ((0xff00 & ri) >> 8))
 				return true;
 			return false;
 		}

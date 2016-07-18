@@ -6,4 +6,5 @@ import com.whck.domain.base.Zone;
 public interface ZoneDao extends JpaRepository<Zone, String>{
 	Zone findByName(String name);
 	Zone deleteByName(String name);
+	Zone findByIp(String ip);
 }

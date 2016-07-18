@@ -85,7 +85,7 @@ public abstract class AbstractMessage {
 										getId()), getLongitude()),
 										getLatitude()), getDataLen()),
 										getData()),getCrc());
-		return CRC16M.checkBuf(data);
+		return CRC16M.checkBuf_bigEndian(data);
 	}
 	
 	public byte[] appendCrcAndEnder(){
@@ -98,7 +98,8 @@ public abstract class AbstractMessage {
 									getId()), getLongitude()),
 										getLatitude()), getDataLen()),
 											getData());
-		byte[] appendCrc=CRC16M.getSendBuf(CRC16M.getBufHexStr(data));
+		byte[] appendCrc=CRC16M.getSendBuf_bigEndian(CRC16M.getBufHexStr(data));
+		
 		byte[] appendEnder=Converter.byteArrsMerger(appendCrc,Constants.RESP_ENDER);
 		return appendEnder;
 	}

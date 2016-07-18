@@ -8,6 +8,7 @@ import org.apache.mina.filter.codec.demux.DemuxingProtocolCodecFactory;
 import org.apache.mina.transport.socket.SocketAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -40,7 +41,8 @@ import com.whck.mina.message.SinDeviceParamsRequestMessage;
 @Order(2)
 public class Server implements CommandLineRunner{
 	private SocketAcceptor acceptor;
-	
+	@Value("${mina.server.port}")
+	private String port;
 	@Autowired
 	private ProtocolHandler handler;
 	@Override
@@ -64,8 +66,8 @@ public class Server implements CommandLineRunner{
         protoCodecFactory.addMessageDecoder(new SinDeviceParamsMessageDecoder(SinDeviceParamsMessage.COMMAND));
         protoCodecFactory.addMessageEncoder(SinDeviceParamsMessage.class, new SinDeviceParamsMessageEncoder());
 
-    		protoCodecFactory.addMessageEncoder(SinDeviceParamsRequestMessage.class, new SinDeviceParamsRequestMessageEncoder());
-			protoCodecFactory.addMessageEncoder(BinDeviceParamsRequestMessage.class, new BinDeviceParamsRequestMessageEncoder());
+		protoCodecFactory.addMessageEncoder(SinDeviceParamsRequestMessage.class, new SinDeviceParamsRequestMessageEncoder());
+		protoCodecFactory.addMessageEncoder(BinDeviceParamsRequestMessage.class, new BinDeviceParamsRequestMessageEncoder());
        
         protoCodecFactory.addMessageDecoder(new FileRequestMessageDecoder(FileRequestMessage.COMMAND));
         protoCodecFactory.addMessageEncoder(FileResponseMessage.class, new FileResponseMessageEncoder());
@@ -75,10 +77,8 @@ public class Server implements CommandLineRunner{
        
         acceptor.getFilterChain().addLast("codec",  
                 new ProtocolCodecFilter(protoCodecFactory));
-//        acceptor.getSessionConfig().setReadBufferSize(64);
-//        acceptor.getSessionConfig().setReceiveBufferSize(64);
         try {
-            acceptor.bind(new InetSocketAddress(5000));  //外部配置
+            acceptor.bind(new InetSocketAddress(Integer.valueOf(port))); 
         } catch (IOException e) {
             e.printStackTrace();
         }

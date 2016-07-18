@@ -14,7 +14,6 @@ public class BinDeviceParamsMessageDecoder extends AbstractDecoder{
 
 	@Override
 	protected AbstractMessage decodeBody(IoSession session, IoBuffer in) {
-		if(in.remaining()>=Constants.ID_LEN+Constants.LONGITUDE_LEN+Constants.LATITUDE_LEN+Constants.LENGTH_LEN){
 			in.mark();
 			BinDeviceParamsMessage m=new BinDeviceParamsMessage();
 			byte[] id=new byte[Constants.ID_LEN];
@@ -48,7 +47,6 @@ public class BinDeviceParamsMessageDecoder extends AbstractDecoder{
 				return m;
 			}
 			in.reset();
-		}
 		return null;
 	}
 

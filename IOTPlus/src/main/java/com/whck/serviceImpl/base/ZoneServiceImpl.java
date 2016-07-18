@@ -44,5 +44,12 @@ public class ZoneServiceImpl implements ZoneService{
 	public List<Zone> findAll() {
 		return zoneDao.findAll();
 	}
-
+	@Override
+	public Zone addZone(Zone zone) {
+		return zoneDao.save(zone);
+	}
+	@Override
+	public Zone findByIp(String ip) {
+		return zoneDao.findByIp(ip);
+	}
 }

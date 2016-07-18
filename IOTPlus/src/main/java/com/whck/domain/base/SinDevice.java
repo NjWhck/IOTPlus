@@ -27,7 +27,7 @@ public class SinDevice{
 	@Column(name="zone_name",length=11)
 	private String zoneName;
 	
-	@Column(nullable=false,unique=true)
+	@Column(nullable=false)
 	private String name;
 	
 	@Column(length=15)
@@ -49,7 +49,7 @@ public class SinDevice{
 	private int state;
 	
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.PERSIST)
-	@JoinColumn(name="dev_name", referencedColumnName = "name")
+	@JoinColumn(name="ss_id", referencedColumnName = "id")
 	private List<Sensor> sensors;
 	
 	public int getId() {
@@ -93,7 +93,7 @@ public class SinDevice{
 		this.ip = ip;
 	}
 
-	public Integer getType() {
+	public int getType() {
 		return type;
 	}
 
@@ -127,6 +127,7 @@ public class SinDevice{
 	public DeviceStateMessage convert() throws IOException{
 		DeviceStateMessage m=new DeviceStateMessage();
 		byte[] id=zoneName.getBytes("GBK");
+		m.setCmd(DeviceStateMessage.COMMAND);
 		m.setId(id);
 		m.setLongitude(new byte[]{0,0,0});
 		m.setLatitude(new byte[]{0,0,0});

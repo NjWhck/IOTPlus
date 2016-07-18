@@ -25,7 +25,6 @@
     width: 25px;
     height: 25px;
     float: left;
-    animation:mymove 6s linear infinite;
 }
 @keyframes mymove {
     from {

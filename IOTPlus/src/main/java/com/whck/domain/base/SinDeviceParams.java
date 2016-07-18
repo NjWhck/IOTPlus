@@ -13,6 +13,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import org.apache.mina.core.buffer.IoBuffer;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.whck.mina.constants.Constants;
 import com.whck.mina.helper.Converter;
 import com.whck.mina.message.SinDeviceParamsMessage;
@@ -28,13 +30,16 @@ public class SinDeviceParams {
 	@Column(name="zone_name",length=11)
 	private String zoneName;
 	
-	@Column(name="device_name",nullable=false,unique=true)
+	@Column(name="device_name",nullable=false)
 	private String deviceName;
 	@Column(name="work_days")
 	private int workDays;
 	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date time_1_start;
+	
 	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date time_1_end;
 	
 	@Max(value=1440)
@@ -46,8 +51,11 @@ public class SinDeviceParams {
 	private Integer idle_time_1;
 	
 	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date time_2_start;
+	
 	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date time_2_end;
 	@Max(value=43200)
 	private Integer run_time_2;
@@ -55,8 +63,11 @@ public class SinDeviceParams {
 	private Integer idle_time_2;
 	
 	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date time_3_start;
+	
 	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date time_3_end;
 	@Max(value=43200)
 	private Integer run_time_3;
@@ -64,8 +75,11 @@ public class SinDeviceParams {
 	private Integer idle_time_3;
 	
 	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date time_4_start;
+	
 	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date time_4_end;
 	@Max(value=43200)
 	private Integer run_time_4;

@@ -20,6 +20,7 @@ public class Constants {
 		variables.put("紫外辐射", "0~200");
 		variables.put("蒸发", "0~10");
 		variables.put("照度", "0~200000");
+		variables.put("光照", "0~200000");
 		variables.put("雨量", "0~1000");
 		
 		variables.put("日照时数", "0~24");
@@ -31,9 +32,14 @@ public class Constants {
 		variables.put("位移", "0~100");
 		variables.put("盐导", "0~1500");
 		variables.put("一氧化碳", "0~1000");
+		variables.put("CO1", "0~1000");
+		variables.put("CO2电流", "0~99999");
 		variables.put("二氧化碳", "0~5000");
+		variables.put("CO2", "0~5000");
 		variables.put("二氧化氮", "0~100");
+		variables.put("NO2", "0~100");
 		variables.put("硫化氢", "0~100");
+		variables.put("HS", "0~100");
 		
 		variables.put("氨气", "0~100");
 		variables.put("氮气", "0~100");

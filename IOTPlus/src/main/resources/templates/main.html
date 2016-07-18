@@ -73,7 +73,7 @@
 				<ul class="nav nav-tabs" role="tablist">
 					<li th:each="zone:${zones}"><a href="#tab_model"
 						th:href="@{'#'+${zone.name}}" data-toggle="tab" role="tab"> <i
-							class="fa fa-map-marker"></i> <span th:text="${zone.alias}">分区</span>
+							class="fa fa-map-marker"></i> <span th:text="${zone.name}">分区</span>
 					</a></li>
 					<li class="active"><a href="#addZone" data-toggle="tab"
 						role="tab"> <i class="fa fa-plus"></i> <span>添加分区</span>
@@ -131,10 +131,10 @@
 											</th>
 												
 												<th><button type="button" class="btn btn-primary"
-														onclick="startSinDev(this)">启动</button></th>
+														onclick="sinDevOperation(this,'start')">启动</button></th>
 												<th></th>
 												<th><button type="button" class="btn btn-success"
-														onclick="stopSinDev(this)">关闭</button></th>
+														onclick="sinDevOperation(this,'stop')">关闭</button></th>
 											</tr>
 										</tfoot>
 									</table>
@@ -160,10 +160,10 @@
 									<h3 th:text="${binDev.name}" class="text-center">设备名</h3>
 									<button th:if="${binDev.online==0}" class="btn btn-default" >设备离线</button>
 									<button th:if="${binDev.ctrlMode==1 and binDev.online==1}"
-										class="btn btn-success"  onclick="changeBinDevState(this)"> 正在自动模式</button> 
+										class="btn btn-success"  onclick="changeBinDevState(this)"> 正在自动模式运行</button> 
 									<button
 										th:if="${binDev.ctrlMode==0 and binDev.online==1}"
-										class="btn btn-info" onclick="changeBinDevState(this)"> 正在手动模式</button>
+										class="btn btn-info" onclick="changeBinDevState(this)"> 正在手动模式运行</button>
 
 									<div class="pull-right">
 										<a href="javascript:;"  data-toggle="modal" class="config" onclick="binDevConfiguration(this)">
@@ -202,11 +202,11 @@
 													<img th:if="${binDev.online}==1"  src="/images/fan.png" class="fengye" style="animation:mymove 6s linear infinite;"/>
 												</th>
 												<th><button type="button" class="btn btn-primary"
-														onclick="binDevForward(this)">正转</button></th>
+														onclick="binDevOperation(this,'forward')">正转</button></th>
 												<th><button type="button" class="btn btn-danger"
-														onclick="binDevStop(this)">停止</button></th>
+														onclick="binDevOperation(this,'stop')">停止</button></th>
 												<th><button type="button" class="btn btn-success"
-														onclick="binDevBackward(this)">反转</button></th>
+														onclick="binDevOperation(this,'backward')">反转</button></th>
 											</tr>
 										</tfoot>
 									</table>
@@ -872,7 +872,7 @@
 		};
 		$(document).ready(function() {
 			addEventInit();
-			validatorInit();
+	//		validatorInit();
 		});
 	</script>
 </body>

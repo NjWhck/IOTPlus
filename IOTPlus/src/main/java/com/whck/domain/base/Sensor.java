@@ -19,15 +19,14 @@ public class Sensor {
 	private String devName;
 	@Column(length=15)
 	private String ip;
-	@Column(length=24,nullable=false,unique=true)
+	@Column(length=24,nullable=false)
 	private String name;
 	@Column(length=20)
 	private String unit;
-	@Column(name="up_value",precision=12,scale=3)
+	@Column(name="up_value")
 	private double upValue;
-	@Column(name="down_value",precision=12,scale=3)
+	@Column(name="down_value")
 	private double downValue;
-	@Column(precision=12,scale=3)
 	private double value;
 	@Min(value=0)
 	@Max(value=1)
