@@ -2,7 +2,6 @@ package com.whck.web.controller.base;
 
 import java.io.IOException;
 import java.util.List;
-
 import org.apache.mina.core.session.IoSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +15,6 @@ import com.whck.domain.base.Sensor;
 import com.whck.mina.handler.ProtocolHandler;
 import com.whck.mina.message.BinDeviceParamsMessage;
 import com.whck.mina.message.DeviceStateMessage;
-import com.whck.mina.server.Broadcast;
 import com.whck.service.base.BinDeviceParamsService;
 import com.whck.service.base.BinDeviceService;
 
@@ -51,7 +49,7 @@ public class BinDeviceController {
 		}
 	}
 	@RequestMapping(value="/operation/{cmd}",method = {RequestMethod.POST})
-	public void updateDeviceState(@RequestParam String zoneName,@RequestParam String devName,@PathVariable String cmd){
+	public String  updateDeviceState(@RequestParam String zoneName,@RequestParam String devName,@PathVariable String cmd){
 		try {
 			BinDevice binDev=new BinDevice();
 			binDev.setZoneName(zoneName);
@@ -72,33 +70,37 @@ public class BinDeviceController {
 			IoSession session=ProtocolHandler.sessions.get(zoneName);
 			if(session!=null&&session.isConnected()){
 				session.write(m);
+				return "devOffline";
 			}
+			return "success";
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "error";
 		}
 	}
 	
 	@RequestMapping(value="/params_update",method = {RequestMethod.POST})
 	public String updateDeviceParams(BinDeviceParams dp){
-		//broadcast
-				try {
-					BinDeviceParamsMessage msg = dp.convert();
-					if(Broadcast.broadcast(msg)){
-						bdps.addOrUpdate(dp);
-						return "success";
-					}else{
-						return "disconnected";
-					}
-				} catch (IOException e) {
-					e.printStackTrace();
-					return "failed";
+			try {
+				BinDeviceParamsMessage msg = dp.convert();
+				IoSession session=ProtocolHandler.sessions.get(dp.getZoneName());
+				if(session!=null&&session.isConnected()){
+					session.write(msg);
+					bdps.addOrUpdate(dp);
+					return "success";
+				}else{
+					return "disconnected";
 				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				return "failed";
+			}
 	}
 	
-	@RequestMapping(value="/params_load",method = {RequestMethod.GET})
-	public BinDeviceParams loadDeviceParams( String zoneName, String deviceName){
+	@RequestMapping(value="/params_load",method = {RequestMethod.POST})
+	public BinDeviceParams loadDeviceParams( String zoneName, String devName){
 		try{
-			BinDeviceParams bdp=bdps.getBinDeviceParams(zoneName,deviceName);
+			BinDeviceParams bdp=bdps.getBinDeviceParams(zoneName,devName);
 			return bdp;
 		}catch(Exception e){
 			e.printStackTrace();

@@ -14,7 +14,6 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import com.whck.mina.constants.Constants;
 import com.whck.mina.helper.Converter;
 import com.whck.mina.message.BinDeviceParamsMessage;

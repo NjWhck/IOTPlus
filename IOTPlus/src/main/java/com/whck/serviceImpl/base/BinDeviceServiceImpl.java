@@ -25,6 +25,7 @@ public class BinDeviceServiceImpl implements  BinDeviceService{
 		dev.setOnline(device.getOnline());
 		dev.setState(device.getState());
 		dev.setType(device.getType());
+		dev.setCtrlMode(device.getCtrlMode());
 		return deviceDao.save(dev);
 	}
 

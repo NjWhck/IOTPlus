@@ -77,7 +77,7 @@ public class ProtocolHandler implements IoHandler{
 				return;
 			}
 			RealData rData=(RealData)m.convert();
-	//		System.out.println("<Messsage:>"+rData);
+//			System.out.println("<Messsage:>"+rData);
 			rData.setDateTime(new Date());
 			realDataService.addOne(rData);
 			String zName=rData.getZoneName();
@@ -96,12 +96,12 @@ public class ProtocolHandler implements IoHandler{
 			Object msg=m.convert();
 			if(msg instanceof BinDevice){
 				BinDevice binDevice=(BinDevice)msg;
-	//			System.out.println("<Message:>"+binDevice);
+//				System.out.println("<Message:>"+binDevice);
 				binDeviceService.addOrUpdate(binDevice);
 				zoneName=binDevice.getZoneName();
 			}else if(msg instanceof SinDevice){
 				SinDevice sinDevice=(SinDevice)msg;
-	//			System.out.println("<Message:>"+sinDevice);
+//				System.out.println("<Message:>"+sinDevice);
 				sinDeviceService.addOrUpdate(sinDevice);
 				zoneName=sinDevice.getZoneName();
 			} 
@@ -112,7 +112,7 @@ public class ProtocolHandler implements IoHandler{
 				return;
 			}
 			SinDeviceParams sdp=m.convert();
-			System.out.println("<Message:>"+sdp);
+//			System.out.println("<Message:>"+sdp);
 			sinDeviceParamsService.addOrUpdate(sdp);
 			zoneName=sdp.getZoneName();
 		}else if(message instanceof BinDeviceParamsMessage){

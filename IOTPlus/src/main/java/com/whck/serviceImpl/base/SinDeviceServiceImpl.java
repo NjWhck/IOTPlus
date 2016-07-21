@@ -25,6 +25,7 @@ public class SinDeviceServiceImpl implements  SinDeviceService{
 		dev.setOnline(device.getOnline());
 		dev.setState(device.getState());
 		dev.setType(device.getType());
+		dev.setCtrlMode(device.getCtrlMode());
 		return deviceDao.save(dev);
 	}
 

@@ -1,9 +1,11 @@
 package com.whck.web.controller.base;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
-
 import org.apache.mina.core.session.IoSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,7 +17,6 @@ import com.whck.domain.base.SinDeviceParams;
 import com.whck.mina.handler.ProtocolHandler;
 import com.whck.mina.message.DeviceStateMessage;
 import com.whck.mina.message.SinDeviceParamsMessage;
-import com.whck.mina.server.Broadcast;
 import com.whck.service.base.SinDeviceParamsService;
 import com.whck.service.base.SinDeviceService;
 
@@ -51,7 +52,7 @@ public class SinDeviceController {
 		}
 	}
 	@RequestMapping(value="/operation/{cmd}",method = {RequestMethod.POST})
-	public void updateDeviceState(@RequestParam String zoneName, @RequestParam String devName,@PathVariable String cmd){
+	public String updateDeviceState(@RequestParam String zoneName, @RequestParam String devName,@PathVariable String cmd){
 		try {
 			SinDevice sinDev=new SinDevice();
 			sinDev.setZoneName(zoneName);
@@ -70,30 +71,91 @@ public class SinDeviceController {
 			IoSession session=ProtocolHandler.sessions.get(zoneName);
 			if(session!=null&&session.isConnected()){
 				session.write(m);
+				return "devOffline";
 			}
+			return "success";
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "error";
 		}
 	}
 	
 	@RequestMapping(value="/params_update",method = {RequestMethod.POST})
-	public String updateDeviceParams(SinDeviceParams dp){
+	public String updateDeviceParams(SinDeviceParams sp){
 		try {
-			SinDeviceParamsMessage	m = dp.convert();
-			if(!Broadcast.broadcast(m))
+			SinDeviceParamsMessage msg = sp.convert();
+			IoSession session=ProtocolHandler.sessions.get(sp.getZoneName());
+			if(session!=null&&session.isConnected()){
+				session.write(msg);
+				sdps.addOrUpdate(sp);
+				return "success";
+			}else{
 				return "disconnected";
-			sdps.addOrUpdate(dp);
-			return "success";
-		} catch (Exception e) {
+			}
+		} catch (IOException e) {
 			e.printStackTrace();
 			return "failed";
 		}
 	}
 	
 	@RequestMapping(value="/params_load",method = {RequestMethod.POST})
-	public SinDeviceParams loadDeviceParams(@RequestParam String zoneName,@RequestParam String deviceName){
+	public SinDeviceParams loadDeviceParams(@RequestParam String zoneName,@RequestParam String devName){
+		SinDeviceParams sdp=new SinDeviceParams();
+		sdp.setZoneName("31716071202");
+		sdp.setDeviceName("灯光");
+		sdp.setWorkDays(1);
+		sdp.setDownValue_1(0);
+		sdp.setDownValue_2(0);
+		sdp.setDownValue_3(0);
+		sdp.setDownValue_4(0);
+		sdp.setDownValueAction_1(0);
+		sdp.setDownValueAction_1(0);
+		sdp.setDownValueAction_1(0);
+		sdp.setDownValueAction_1(0);
+		sdp.setUpValue_1(9);
+		sdp.setUpValue_2(9);
+		sdp.setUpValue_3(9);
+		sdp.setUpValue_4(9);
+		sdp.setUpValueAction_1(1);
+		sdp.setUpValueAction_2(1);
+		sdp.setUpValueAction_3(1);
+		sdp.setUpValueAction_4(1);
+		sdp.setIdle_time_1(1);
+		sdp.setIdle_time_2(1);
+		sdp.setIdle_time_3(1);
+		sdp.setIdle_time_4(1);
+		sdp.setMidValueAction_1(1);
+		sdp.setMidValueAction_2(1);
+		sdp.setMidValueAction_3(1);
+		sdp.setMidValueAction_4(1);
+		sdp.setRun_time_1(1);
+		sdp.setRun_time_2(1);
+		sdp.setRun_time_3(1);
+		sdp.setRun_time_4(1);
+		sdp.setTime_1_end(new Date());
+		sdp.setTime_2_end(new Date());
+		sdp.setTime_3_end(new Date());
+		sdp.setTime_4_end(new Date());
+		sdp.setTime_1_start(new Date());
+		sdp.setTime_2_start(new Date());
+		sdp.setTime_3_start(new Date());
+		sdp.setTime_4_start(new Date());
+		sdp.setSensor_1_enable(1);
+		sdp.setSensor_2_enable(0);
+		sdp.setSensor_3_enable(1);
+		sdp.setSensor_4_enable(0);
+		sdp.setSensor_1_name("温度");
+		sdp.setSensor_2_name("湿度");
+		sdp.setSensor_3_name("红外");
+		sdp.setSensor_4_name("光照");
 		
-		return sdps.getSinDeviceParams(zoneName,deviceName);
+//		boolean[] sensorEnable={false,false,true,true};
+//		boolean[] weekDays={false,false,true,true,true,false,false};
+//		model.addAttribute("sinDevParams", sdp);
+//		model.addAttribute("sensorEnable", sensorEnable);
+//		model.addAttribute("weekDays", weekDays);
+		return sdp;
+//		return sdps.getSinDeviceParams(zoneName,devName);
 	}
 	
 	@RequestMapping(value="/sensor_bind",method={RequestMethod.POST})

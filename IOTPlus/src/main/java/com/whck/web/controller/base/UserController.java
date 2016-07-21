@@ -20,10 +20,10 @@ public class UserController {
 	private ZoneService zs;
 	@RequestMapping("/login")
 	public String login(){
-		User user=new User();
-		user.setName("JSexy");
-		user.setPassword("123456");
-		us.add(user);
+//		User user=new User();
+//		user.setName("JSexy");
+//		user.setPassword("123456");
+//		us.add(user);
 		return "login";
 	}
 	@RequestMapping("/checkuser")

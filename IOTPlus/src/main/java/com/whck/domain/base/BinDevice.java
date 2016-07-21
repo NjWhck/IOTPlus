@@ -52,75 +52,57 @@ public class BinDevice {
 	@JoinColumn(name="bs_id", referencedColumnName = "id")
 	private List<Sensor> sensors;
 	
-	
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public String getZoneName() {
 		return zoneName;
 	}
-
 	public void setZoneName(String zoneName) {
 		this.zoneName = zoneName;
 	}
-
 	public List<Sensor> getSensors() {
 		return sensors;
 	}
-
 	public void setSensors(List<Sensor> sensors) {
 		this.sensors = sensors;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getIp() {
 		return ip;
 	}
-
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-
 	public int getType() {
 		return type;
 	}
-
 	public void setType(int type) {
 		this.type = type;
 	}
-
 	public int getCtrlMode() {
 		return ctrlMode;
 	}
-
 	public void setCtrlMode(int ctrlMode) {
 		this.ctrlMode = ctrlMode;
 	}
-
 	public int getOnline() {
 		return online;
 	}
-
 	public void setOnline(int online) {
 		this.online = online;
 	}
-
 	public int getState() {
 		return state;
 	}
-
 	public void setState(int state) {
 		this.state = state;
 	}
@@ -156,7 +138,4 @@ public class BinDevice {
 		return "<电机设备>[ zoneName=" + zoneName + ", name=" + name + ", ip=" + ip + ", type=" + type
 				+ ", ctrlMode=" + ctrlMode + ", online=" + online + ", state=" + state + ", sensors=" + sensors + "]";
 	}
-	
-	
-	
 }
