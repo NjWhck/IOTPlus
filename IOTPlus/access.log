@@ -14775,3 +14775,508 @@ Using default security password: 2168dd6f-c765-4c49-8979-49614962897f
 2016-07-20 22:28:58.650  INFO 7056 --- [RMI TCP Connection(2)-192.168.1.105] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
 2016-07-20 22:28:58.651  INFO 7056 --- [RMI TCP Connection(2)-192.168.1.105] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
 2016-07-20 22:28:58.653  INFO 7056 --- [RMI TCP Connection(2)-192.168.1.105] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2016-07-25 10:50:19.840  INFO 8172 --- [main] com.whck.IotPlusApplication              : Starting IotPlusApplication on QH-20151211KFUD with PID 8172 (E:\StsRepository\IOTPlus\IOTPlus\target\classes started by Administrator in E:\StsRepository\IOTPlus\IOTPlus)
+2016-07-25 10:50:19.920  INFO 8172 --- [main] com.whck.IotPlusApplication              : No active profile set, falling back to default profiles: default
+2016-07-25 10:50:20.992  INFO 8172 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1b083826: startup date [Mon Jul 25 10:50:20 CST 2016]; root of context hierarchy
+2016-07-25 10:50:23.475  INFO 8172 --- [main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'beanNameViewResolver' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class]]
+2016-07-25 10:50:25.034  INFO 8172 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$3182d3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-07-25 10:50:31.688  INFO 8172 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2016-07-25 10:50:31.719  INFO 8172 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2016-07-25 10:50:31.719  INFO 8172 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.0.32
+2016-07-25 10:50:32.051  INFO 8172 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2016-07-25 10:50:32.051  INFO 8172 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 11079 ms
+2016-07-25 10:50:32.826  INFO 8172 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-07-25 10:50:32.827  INFO 8172 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-07-25 10:50:32.828  INFO 8172 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-07-25 10:50:32.830  INFO 8172 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'requestContextFilter' to: [/*]
+2016-07-25 10:50:32.832  INFO 8172 --- [localhost-startStop-1] .e.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
+2016-07-25 10:50:32.833  INFO 8172 --- [localhost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2016-07-25 10:50:33.540  INFO 8172 --- [localhost-startStop-1] b.a.s.AuthenticationManagerConfiguration : 
+
+Using default security password: 128259e4-5c97-4e21-b59c-aa696b3a760e
+
+2016-07-25 10:50:33.652  INFO 8172 --- [localhost-startStop-1] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2016-07-25 10:50:33.652  INFO 8172 --- [localhost-startStop-1] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2016-07-25 10:50:33.652  INFO 8172 --- [localhost-startStop-1] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2016-07-25 10:50:33.652  INFO 8172 --- [localhost-startStop-1] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/**/favicon.ico'], []
+2016-07-25 10:50:33.652  INFO 8172 --- [localhost-startStop-1] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/error'], []
+2016-07-25 10:50:33.877  INFO 8172 --- [localhost-startStop-1] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration$ApplicationNoWebSecurityConfigurerAdapter$1@63547ea8, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@38269e34, org.springframework.security.web.context.SecurityContextPersistenceFilter@74541200, org.springframework.security.web.header.HeaderWriterFilter@4fada11a, org.springframework.security.web.csrf.CsrfFilter@6941988, org.springframework.security.web.authentication.logout.LogoutFilter@138c53a9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@23b25a83, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6a31a90, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@49c69382, org.springframework.security.web.session.SessionManagementFilter@95eec4d, org.springframework.security.web.access.ExceptionTranslationFilter@18492742]
+2016-07-25 10:50:34.442  INFO 8172 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-07-25 10:50:34.474  INFO 8172 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2016-07-25 10:50:34.751  INFO 8172 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {4.3.11.Final}
+2016-07-25 10:50:34.762  INFO 8172 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2016-07-25 10:50:34.764  INFO 8172 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2016-07-25 10:50:35.761  INFO 8172 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2016-07-25 10:50:37.796  INFO 8172 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServer2008Dialect
+2016-07-25 10:50:37.847  INFO 8172 --- [main] o.h.e.jdbc.internal.LobCreatorBuilder    : HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+2016-07-25 10:50:38.239  INFO 8172 --- [main] o.h.h.i.ast.ASTQueryTranslatorFactory    : HHH000397: Using ASTQueryTranslatorFactory
+2016-07-25 10:50:39.025  INFO 8172 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2016-07-25 10:50:39.025  INFO 8172 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000102: Fetching database metadata
+2016-07-25 10:50:39.025  INFO 8172 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000396: Updating schema
+2016-07-25 10:50:41.606  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_bin_device_params
+2016-07-25 10:50:41.606  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [time_3_start, downvalue_4, sensor_2_name, zone_name, time_2_end, downvalue_1, downvalue_2, downvalue_3, device_name, time_1_end, sensor_4_name, id, midvalue_action_3, sensor_1_name, time_2_start, midvalue_action_4, downvalue_action_1, downvalue_action_2, downvalue_action_3, midvalue_action_1, downvalue_action_4, midvalue_action_2, sensor_4_enable, time_4_start, time_4_end, sensor_3_name, upvalue_1, upvalue_2, upvalue_3, upvalue_4, opening_4, opening_3, upvalue_action_1, upvalue_action_2, sensor_1_enable, sensor_2_enable, sensor_3_enable, time_1_start, time_3_end, upvalue_action_3, upvalue_action_4, work_days, opening_2, opening_1]
+2016-07-25 10:50:41.606  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-07-25 10:50:41.606  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_bin_d__3213e83f7f60ed59]
+2016-07-25 10:50:41.646  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_bindevice
+2016-07-25 10:50:41.646  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [ip, zb_id, name, ctrl_mode, online, zone_name, id, state, type]
+2016-07-25 10:50:41.646  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_2lcaam0yb2jlmkj4qhfuslv3e]
+2016-07-25 10:50:41.646  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_binde__3213e83f164452b1]
+2016-07-25 10:50:41.667  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_real_data
+2016-07-25 10:50:41.667  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [unit, date_time, name, zone_name, id, value]
+2016-07-25 10:50:41.667  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-07-25 10:50:41.667  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_real___3213e83f1cf15040]
+2016-07-25 10:50:41.687  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_role
+2016-07-25 10:50:41.687  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [name, id]
+2016-07-25 10:50:41.687  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-07-25 10:50:41.687  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_role__3213e83f20c1e124]
+2016-07-25 10:50:41.717  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_sensor
+2016-07-25 10:50:41.717  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [dev_name, up_value, ip, down_value, zone_name, zs_id, ss_id, unit, bs_id, name, online, id, state, value]
+2016-07-25 10:50:41.717  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_ns2ksbsrtxg9v7ngedhy99gi1, fk_3k8knktji6dnvuj45ivqko40e, fk_bwur3unyqr4recrnfw0q86eip]
+2016-07-25 10:50:41.717  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_senso__3213e83f24927208]
+2016-07-25 10:50:41.757  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_sin_device_params
+2016-07-25 10:50:41.757  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [time_3_start, idle_time_4, idle_time_3, idle_time_2, dmidvalue_action_3, idle_time_1, downvalue_4, sensor_2_name, zone_name, time_2_end, downvalue_1, downvalue_2, downvalue_3, device_name, time_1_end, sensor_4_name, id, sensor_1_name, time_2_start, midvalue_action_4, downvalue_action_1, downvalue_action_2, downvalue_action_3, midvalue_action_1, downvalue_action_4, midvalue_action_2, sensor_4_enable, time_4_start, run_time_1, time_4_end, run_time_3, run_time_2, run_time_4, sensor_3_name, upvalue_1, upvalue_2, upvalue_3, upvalue_4, upvalue_action_1, upvalue_action_2, sensor_1_enable, sensor_2_enable, sensor_3_enable, time_1_start, time_3_end, upvalue_action_3, upvalue_action_4, work_days]
+2016-07-25 10:50:41.757  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-07-25 10:50:41.757  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_sin_d__3213e83f2a4b4b5e]
+2016-07-25 10:50:41.797  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_sindevice
+2016-07-25 10:50:41.797  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [ip, name, ctrl_mode, online, zone_name, id, state, type, zs_id]
+2016-07-25 10:50:41.797  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_mmdy7y85s5g31hc87hvnjsgi6]
+2016-07-25 10:50:41.797  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_sinde__3213e83f44ff419a]
+2016-07-25 10:50:41.817  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_user
+2016-07-25 10:50:41.817  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [qq, password, address, phone, sex, name, remark, id, portrait_url, age, email]
+2016-07-25 10:50:41.817  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-07-25 10:50:41.817  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_user__3213e83f4bac3f29]
+2016-07-25 10:50:41.827  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_user_role
+2016-07-25 10:50:41.837  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [uid, rid]
+2016-07-25 10:50:41.837  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_l7lqretv74i37eucd0h37kgsl, fk_ii9kma7ibiseoxh6c8rdtn216]
+2016-07-25 10:50:41.837  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: []
+2016-07-25 10:50:41.877  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_zone
+2016-07-25 10:50:41.877  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [area, administrator, address, ip, latitude, name, alias, remark, zip_code, longitude]
+2016-07-25 10:50:41.877  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-07-25 10:50:41.887  INFO 8172 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_zone__72e12f1a5070f446]
+2016-07-25 10:50:41.887  INFO 8172 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000232: Schema update complete
+2016-07-25 10:50:42.089  INFO 8172 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2016-07-25 10:50:43.887  INFO 8172 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'clientInboundChannelExecutor'
+2016-07-25 10:50:43.918  INFO 8172 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'clientOutboundChannelExecutor'
+2016-07-25 10:50:44.060  INFO 8172 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'messageBrokerTaskScheduler'
+2016-07-25 10:50:44.260  INFO 8172 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/sensordata/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2016-07-25 10:50:44.261  INFO 8172 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/sindevdata/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2016-07-25 10:50:44.261  INFO 8172 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/bindevdata/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2016-07-25 10:50:44.261  INFO 8172 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/sindevparamdata/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2016-07-25 10:50:44.261  INFO 8172 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/bindevparamdata/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2016-07-25 10:50:44.282  INFO 8172 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'brokerChannelExecutor'
+2016-07-25 10:50:44.670  INFO 8172 --- [main] .WebSocketAnnotationMethodMessageHandler : Mapped "{[/sindevmsg],messageType=[MESSAGE]}" onto public void com.whck.web.controller.base.MessageController.sinDevInit(com.whck.domain.base.Message)
+2016-07-25 10:50:44.670  INFO 8172 --- [main] .WebSocketAnnotationMethodMessageHandler : Mapped "{[/sensormsg],messageType=[MESSAGE]}" onto public void com.whck.web.controller.base.MessageController.sensorInit(com.whck.domain.base.Message)
+2016-07-25 10:50:44.670  INFO 8172 --- [main] .WebSocketAnnotationMethodMessageHandler : Mapped "{[/bindevmsg],messageType=[MESSAGE]}" onto public void com.whck.web.controller.base.MessageController.binDevInit(com.whck.domain.base.Message)
+2016-07-25 10:50:44.670  INFO 8172 --- [main] .WebSocketAnnotationMethodMessageHandler : Mapped "{[/bindevparammsg],messageType=[MESSAGE]}" onto public void com.whck.web.controller.base.MessageController.binDevParamUpdate(com.whck.domain.base.Message)
+2016-07-25 10:50:44.670  INFO 8172 --- [main] .WebSocketAnnotationMethodMessageHandler : Mapped "{[/sindevparammsg],messageType=[MESSAGE]}" onto public void com.whck.web.controller.base.MessageController.sinDevParamUpdate(com.whck.domain.base.Message)
+2016-07-25 10:50:44.958  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1b083826: startup date [Mon Jul 25 10:50:20 CST 2016]; root of context hierarchy
+2016-07-25 10:50:45.216  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bindevctrl/add],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.BinDeviceController.addDevice(com.whck.domain.base.BinDevice)
+2016-07-25 10:50:45.226  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bindevctrl/delete],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.BinDeviceController.deleteDevice(com.whck.domain.base.BinDevice)
+2016-07-25 10:50:45.226  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bindevctrl/params_load],methods=[POST]}" onto public com.whck.domain.base.BinDeviceParams com.whck.web.controller.base.BinDeviceController.loadDeviceParams(java.lang.String,java.lang.String)
+2016-07-25 10:50:45.226  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bindevctrl/sensor_bind],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.BinDeviceController.bindSensor(java.util.List<com.whck.domain.base.Sensor>,java.lang.String,java.lang.String)
+2016-07-25 10:50:45.226  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bindevctrl/operation/{cmd}],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.BinDeviceController.updateDeviceState(java.lang.String,java.lang.String,java.lang.String)
+2016-07-25 10:50:45.226  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bindevctrl/params_update],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.BinDeviceController.updateDeviceParams(com.whck.domain.base.BinDeviceParams)
+2016-07-25 10:50:45.226  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/realdata/latest/{zone_name}/{name}]}" onto public com.whck.domain.base.RealData com.whck.web.controller.base.RealDataController.getLatest(java.lang.String,java.lang.String)
+2016-07-25 10:50:45.236  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensor/add],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.SensorController.addSensor(com.whck.domain.base.Sensor)
+2016-07-25 10:50:45.236  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensor/update],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.SensorController.updateSensor(com.whck.domain.base.Sensor)
+2016-07-25 10:50:45.236  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensor/delete],methods=[DELETE]}" onto public java.lang.String com.whck.web.controller.base.SensorController.deleteSensor(com.whck.domain.base.Sensor)
+2016-07-25 10:50:45.249  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sindevctrl/add],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.SinDeviceController.addDevice(com.whck.domain.base.SinDevice)
+2016-07-25 10:50:45.256  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sindevctrl/delete]}" onto public java.lang.String com.whck.web.controller.base.SinDeviceController.deleteDevice(com.whck.domain.base.SinDevice)
+2016-07-25 10:50:45.256  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sindevctrl/params_load],methods=[POST]}" onto public com.whck.domain.base.SinDeviceParams com.whck.web.controller.base.SinDeviceController.loadDeviceParams(java.lang.String,java.lang.String)
+2016-07-25 10:50:45.257  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sindevctrl/sensor_bind],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.SinDeviceController.bindSensor(java.util.List<com.whck.domain.base.Sensor>,java.lang.String,java.lang.String)
+2016-07-25 10:50:45.257  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sindevctrl/operation/{cmd}],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.SinDeviceController.updateDeviceState(java.lang.String,java.lang.String,java.lang.String)
+2016-07-25 10:50:45.258  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sindevctrl/params_update],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.SinDeviceController.updateDeviceParams(com.whck.domain.base.SinDeviceParams)
+2016-07-25 10:50:45.260  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/main]}" onto public java.lang.String com.whck.web.controller.base.TestController.main(org.springframework.ui.Model)
+2016-07-25 10:50:45.261  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/refresh]}" onto public java.lang.String com.whck.web.controller.base.TestController.refresh(javax.servlet.http.HttpSession)
+2016-07-25 10:50:45.261  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/sensor/add],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.TestController.addSensor(com.whck.domain.base.Sensor)
+2016-07-25 10:50:45.261  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/socket]}" onto public java.lang.String com.whck.web.controller.base.TestController.video()
+2016-07-25 10:50:45.261  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/login]}" onto public java.lang.String com.whck.web.controller.base.TestController.login(com.whck.domain.base.User,org.springframework.ui.Model)
+2016-07-25 10:50:45.262  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/main]}" onto public java.lang.String com.whck.web.controller.base.UserController.index(org.springframework.ui.Model)
+2016-07-25 10:50:45.263  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/checkuser]}" onto public java.lang.String com.whck.web.controller.base.UserController.check(com.whck.domain.base.User)
+2016-07-25 10:50:45.263  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/login]}" onto public java.lang.String com.whck.web.controller.base.UserController.login()
+2016-07-25 10:50:45.290  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/zone/getAll],methods=[GET]}" onto public java.util.List<com.whck.domain.base.Zone> com.whck.web.controller.base.ZoneController.getAll()
+2016-07-25 10:50:45.291  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/zone/add],methods=[POST]}" onto public com.whck.domain.base.Zone com.whck.web.controller.base.ZoneController.addZone(com.whck.domain.base.Zone)
+2016-07-25 10:50:45.292  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/zone/update],methods=[POST]}" onto public com.whck.domain.base.Zone com.whck.web.controller.base.ZoneController.updateZone(com.whck.domain.base.Zone)
+2016-07-25 10:50:45.302  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-07-25 10:50:45.303  INFO 8172 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-07-25 10:50:45.355  INFO 8172 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-07-25 10:50:45.355  INFO 8172 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-07-25 10:50:45.415  INFO 8172 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-07-25 10:50:46.924  INFO 8172 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2016-07-25 10:50:46.954  INFO 8172 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2016-07-25 10:50:46.954  INFO 8172 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2016-07-25 10:50:46.954  INFO 8172 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2016-07-25 10:50:46.954  INFO 8172 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2016-07-25 10:50:47.338  INFO 8172 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2016-07-25 10:50:48.792  INFO 8172 --- [main] com.whck.IotPlusApplication              : Started IotPlusApplication in 30.105 seconds (JVM running for 34.368)
+2016-07-25 10:51:03.504  INFO 8172 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-07-25 10:51:03.504  INFO 8172 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2016-07-25 10:51:03.535  INFO 8172 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 31 ms
+2016-07-25 10:51:44.278  INFO 8172 --- [MessageBroker-4] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[5 current WS(5)-HttpStream(0)-HttpPoll(0), 5 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(5)-CONNECTED(5)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 8, active threads = 0, queued tasks = 0, completed tasks = 135], outboundChannelpool size = 8, active threads = 0, queued tasks = 0, completed tasks = 38], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 6, completed tasks = 9]
+2016-07-25 11:21:44.302  INFO 8172 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[5 current WS(5)-HttpStream(0)-HttpPoll(0), 40 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(40)-CONNECTED(40)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 8, active threads = 0, queued tasks = 0, completed tasks = 4554], outboundChannelpool size = 8, active threads = 0, queued tasks = 0, completed tasks = 1332], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 6, completed tasks = 563]
+2016-07-25 11:51:44.328  INFO 8172 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[5 current WS(5)-HttpStream(0)-HttpPoll(0), 40 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(40)-CONNECTED(40)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 4878], outboundChannelpool size = 0, active threads = 0, queued tasks = 0, completed tasks = 1428], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 6, completed tasks = 1272]
+2016-07-25 12:21:44.350  INFO 8172 --- [MessageBroker-4] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[5 current WS(5)-HttpStream(0)-HttpPoll(0), 40 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(40)-CONNECTED(40)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 4878], outboundChannelpool size = 0, active threads = 0, queued tasks = 0, completed tasks = 1428], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 6, completed tasks = 1993]
+2016-07-25 12:51:44.374  INFO 8172 --- [MessageBroker-4] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[5 current WS(5)-HttpStream(0)-HttpPoll(0), 40 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(40)-CONNECTED(40)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 4878], outboundChannelpool size = 0, active threads = 0, queued tasks = 0, completed tasks = 1428], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 6, completed tasks = 2714]
+2016-07-25 13:21:44.400  INFO 8172 --- [MessageBroker-3] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[5 current WS(5)-HttpStream(0)-HttpPoll(0), 40 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(40)-CONNECTED(40)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 4878], outboundChannelpool size = 0, active threads = 0, queued tasks = 0, completed tasks = 1428], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 6, completed tasks = 3432]
+2016-07-25 13:51:44.443  INFO 8172 --- [MessageBroker-4] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[5 current WS(5)-HttpStream(0)-HttpPoll(0), 40 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(40)-CONNECTED(40)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 4878], outboundChannelpool size = 0, active threads = 0, queued tasks = 0, completed tasks = 1428], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 6, completed tasks = 4153]
+2016-07-25 14:21:44.452  INFO 8172 --- [MessageBroker-3] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[5 current WS(5)-HttpStream(0)-HttpPoll(0), 40 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(40)-CONNECTED(40)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 4878], outboundChannelpool size = 0, active threads = 0, queued tasks = 0, completed tasks = 1428], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 6, completed tasks = 4874]
+2016-07-25 14:41:56.113  INFO 8172 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <session created>:192.168.1.109:4888
+2016-07-25 14:41:56.113  INFO 8172 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <session opened>:192.168.1.109:4888
+2016-07-25 14:43:57.754  INFO 6240 --- [main] com.whck.IotPlusApplication              : Starting IotPlusApplication on QH-20151211KFUD with PID 6240 (E:\StsRepository\IOTPlus\IOTPlus\target\classes started by Administrator in E:\StsRepository\IOTPlus\IOTPlus)
+2016-07-25 14:43:57.784  INFO 6240 --- [main] com.whck.IotPlusApplication              : No active profile set, falling back to default profiles: default
+2016-07-25 14:43:58.666  INFO 6240 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1b083826: startup date [Mon Jul 25 14:43:58 CST 2016]; root of context hierarchy
+2016-07-25 14:44:01.211  INFO 6240 --- [main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'beanNameViewResolver' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class]]
+2016-07-25 14:44:02.056  INFO 6240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$3182d3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-07-25 14:44:02.716  INFO 6240 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2016-07-25 14:44:02.736  INFO 6240 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2016-07-25 14:44:02.736  INFO 6240 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.0.32
+2016-07-25 14:44:02.939  INFO 6240 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2016-07-25 14:44:02.939  INFO 6240 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4293 ms
+2016-07-25 14:44:03.463  INFO 6240 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-07-25 14:44:03.463  INFO 6240 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-07-25 14:44:03.463  INFO 6240 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-07-25 14:44:03.463  INFO 6240 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'requestContextFilter' to: [/*]
+2016-07-25 14:44:03.463  INFO 6240 --- [localhost-startStop-1] .e.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
+2016-07-25 14:44:03.463  INFO 6240 --- [localhost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2016-07-25 14:44:03.845  INFO 6240 --- [localhost-startStop-1] b.a.s.AuthenticationManagerConfiguration : 
+
+Using default security password: a6675e64-45a6-4074-8724-6fe01f6fb550
+
+2016-07-25 14:44:03.905  INFO 6240 --- [localhost-startStop-1] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2016-07-25 14:44:03.915  INFO 6240 --- [localhost-startStop-1] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2016-07-25 14:44:03.915  INFO 6240 --- [localhost-startStop-1] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2016-07-25 14:44:03.915  INFO 6240 --- [localhost-startStop-1] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/**/favicon.ico'], []
+2016-07-25 14:44:03.915  INFO 6240 --- [localhost-startStop-1] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/error'], []
+2016-07-25 14:44:04.037  INFO 6240 --- [localhost-startStop-1] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration$ApplicationNoWebSecurityConfigurerAdapter$1@6fc58887, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61c2c2b6, org.springframework.security.web.context.SecurityContextPersistenceFilter@44982a7, org.springframework.security.web.header.HeaderWriterFilter@516bee2d, org.springframework.security.web.csrf.CsrfFilter@52dc820c, org.springframework.security.web.authentication.logout.LogoutFilter@4eb62b1c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7264023a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21afe568, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1ed3eb59, org.springframework.security.web.session.SessionManagementFilter@ca2c88f, org.springframework.security.web.access.ExceptionTranslationFilter@14995757]
+2016-07-25 14:44:04.357  INFO 6240 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-07-25 14:44:04.367  INFO 6240 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2016-07-25 14:44:04.547  INFO 6240 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {4.3.11.Final}
+2016-07-25 14:44:04.547  INFO 6240 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2016-07-25 14:44:04.547  INFO 6240 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2016-07-25 14:44:05.029  INFO 6240 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2016-07-25 14:44:06.360  INFO 6240 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServer2008Dialect
+2016-07-25 14:44:06.380  INFO 6240 --- [main] o.h.e.jdbc.internal.LobCreatorBuilder    : HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+2016-07-25 14:44:06.621  INFO 6240 --- [main] o.h.h.i.ast.ASTQueryTranslatorFactory    : HHH000397: Using ASTQueryTranslatorFactory
+2016-07-25 14:44:07.151  INFO 6240 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2016-07-25 14:44:07.151  INFO 6240 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000102: Fetching database metadata
+2016-07-25 14:44:07.151  INFO 6240 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000396: Updating schema
+2016-07-25 14:44:10.221  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_bin_device_params
+2016-07-25 14:44:10.221  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [time_3_start, downvalue_4, sensor_2_name, zone_name, time_2_end, downvalue_1, downvalue_2, downvalue_3, device_name, time_1_end, sensor_4_name, id, midvalue_action_3, sensor_1_name, time_2_start, midvalue_action_4, downvalue_action_1, downvalue_action_2, downvalue_action_3, midvalue_action_1, downvalue_action_4, midvalue_action_2, sensor_4_enable, time_4_start, time_4_end, sensor_3_name, upvalue_1, upvalue_2, upvalue_3, upvalue_4, opening_4, opening_3, upvalue_action_1, upvalue_action_2, sensor_1_enable, sensor_2_enable, sensor_3_enable, time_1_start, time_3_end, upvalue_action_3, upvalue_action_4, work_days, opening_2, opening_1]
+2016-07-25 14:44:10.221  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-07-25 14:44:10.221  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_bin_d__3213e83f7f60ed59]
+2016-07-25 14:44:10.241  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_bindevice
+2016-07-25 14:44:10.241  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [ip, zb_id, name, ctrl_mode, online, zone_name, id, state, type]
+2016-07-25 14:44:10.241  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_2lcaam0yb2jlmkj4qhfuslv3e]
+2016-07-25 14:44:10.242  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_binde__3213e83f164452b1]
+2016-07-25 14:44:10.252  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_real_data
+2016-07-25 14:44:10.252  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [unit, date_time, name, zone_name, id, value]
+2016-07-25 14:44:10.252  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-07-25 14:44:10.252  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_real___3213e83f1cf15040]
+2016-07-25 14:44:10.292  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_role
+2016-07-25 14:44:10.292  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [name, id]
+2016-07-25 14:44:10.292  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-07-25 14:44:10.292  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_role__3213e83f20c1e124]
+2016-07-25 14:44:10.312  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_sensor
+2016-07-25 14:44:10.312  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [dev_name, up_value, ip, down_value, zone_name, zs_id, ss_id, unit, bs_id, name, online, id, state, value]
+2016-07-25 14:44:10.312  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_ns2ksbsrtxg9v7ngedhy99gi1, fk_3k8knktji6dnvuj45ivqko40e, fk_bwur3unyqr4recrnfw0q86eip]
+2016-07-25 14:44:10.312  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_senso__3213e83f24927208]
+2016-07-25 14:44:10.342  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_sin_device_params
+2016-07-25 14:44:10.342  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [time_3_start, idle_time_4, idle_time_3, idle_time_2, dmidvalue_action_3, idle_time_1, downvalue_4, sensor_2_name, zone_name, time_2_end, downvalue_1, downvalue_2, downvalue_3, device_name, time_1_end, sensor_4_name, id, sensor_1_name, time_2_start, midvalue_action_4, downvalue_action_1, downvalue_action_2, downvalue_action_3, midvalue_action_1, downvalue_action_4, midvalue_action_2, sensor_4_enable, time_4_start, run_time_1, time_4_end, run_time_3, run_time_2, run_time_4, sensor_3_name, upvalue_1, upvalue_2, upvalue_3, upvalue_4, upvalue_action_1, upvalue_action_2, sensor_1_enable, sensor_2_enable, sensor_3_enable, time_1_start, time_3_end, upvalue_action_3, upvalue_action_4, work_days]
+2016-07-25 14:44:10.342  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-07-25 14:44:10.342  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_sin_d__3213e83f2a4b4b5e]
+2016-07-25 14:44:10.362  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_sindevice
+2016-07-25 14:44:10.362  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [ip, name, ctrl_mode, online, zone_name, id, state, type, zs_id]
+2016-07-25 14:44:10.362  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_mmdy7y85s5g31hc87hvnjsgi6]
+2016-07-25 14:44:10.362  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_sinde__3213e83f44ff419a]
+2016-07-25 14:44:10.382  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_user
+2016-07-25 14:44:10.382  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [qq, password, address, phone, sex, name, remark, id, portrait_url, age, email]
+2016-07-25 14:44:10.382  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-07-25 14:44:10.382  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_user__3213e83f4bac3f29]
+2016-07-25 14:44:10.392  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_user_role
+2016-07-25 14:44:10.392  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [uid, rid]
+2016-07-25 14:44:10.392  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: [fk_l7lqretv74i37eucd0h37kgsl, fk_ii9kma7ibiseoxh6c8rdtn216]
+2016-07-25 14:44:10.392  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: []
+2016-07-25 14:44:10.412  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000261: Table found: Test.dbo.tb_zone
+2016-07-25 14:44:10.412  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000037: Columns: [area, administrator, address, ip, latitude, name, alias, remark, zip_code, longitude]
+2016-07-25 14:44:10.412  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000108: Foreign keys: []
+2016-07-25 14:44:10.412  INFO 6240 --- [main] o.hibernate.tool.hbm2ddl.TableMetadata   : HHH000126: Indexes: [pk__tb_zone__72e12f1a5070f446]
+2016-07-25 14:44:10.412  INFO 6240 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000232: Schema update complete
+2016-07-25 14:44:10.472  INFO 6240 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2016-07-25 14:44:11.338  INFO 6240 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'clientInboundChannelExecutor'
+2016-07-25 14:44:11.348  INFO 6240 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'clientOutboundChannelExecutor'
+2016-07-25 14:44:11.440  INFO 6240 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'messageBrokerTaskScheduler'
+2016-07-25 14:44:11.531  INFO 6240 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/sensordata/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2016-07-25 14:44:11.531  INFO 6240 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/sindevdata/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2016-07-25 14:44:11.531  INFO 6240 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/bindevdata/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2016-07-25 14:44:11.531  INFO 6240 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/sindevparamdata/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2016-07-25 14:44:11.531  INFO 6240 --- [main] o.s.w.s.s.s.WebSocketHandlerMapping      : Mapped URL path [/bindevparamdata/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2016-07-25 14:44:11.541  INFO 6240 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'brokerChannelExecutor'
+2016-07-25 14:44:11.733  INFO 6240 --- [main] .WebSocketAnnotationMethodMessageHandler : Mapped "{[/bindevparammsg],messageType=[MESSAGE]}" onto public void com.whck.web.controller.base.MessageController.binDevParamUpdate(com.whck.domain.base.Message)
+2016-07-25 14:44:11.733  INFO 6240 --- [main] .WebSocketAnnotationMethodMessageHandler : Mapped "{[/sindevparammsg],messageType=[MESSAGE]}" onto public void com.whck.web.controller.base.MessageController.sinDevParamUpdate(com.whck.domain.base.Message)
+2016-07-25 14:44:11.733  INFO 6240 --- [main] .WebSocketAnnotationMethodMessageHandler : Mapped "{[/sindevmsg],messageType=[MESSAGE]}" onto public void com.whck.web.controller.base.MessageController.sinDevInit(com.whck.domain.base.Message)
+2016-07-25 14:44:11.733  INFO 6240 --- [main] .WebSocketAnnotationMethodMessageHandler : Mapped "{[/sensormsg],messageType=[MESSAGE]}" onto public void com.whck.web.controller.base.MessageController.sensorInit(com.whck.domain.base.Message)
+2016-07-25 14:44:11.733  INFO 6240 --- [main] .WebSocketAnnotationMethodMessageHandler : Mapped "{[/bindevmsg],messageType=[MESSAGE]}" onto public void com.whck.web.controller.base.MessageController.binDevInit(com.whck.domain.base.Message)
+2016-07-25 14:44:11.935  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1b083826: startup date [Mon Jul 25 14:43:58 CST 2016]; root of context hierarchy
+2016-07-25 14:44:12.025  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bindevctrl/operation/{cmd}],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.BinDeviceController.updateDeviceState(java.lang.String,java.lang.String,java.lang.String)
+2016-07-25 14:44:12.025  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bindevctrl/params_update],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.BinDeviceController.updateDeviceParams(com.whck.domain.base.BinDeviceParams)
+2016-07-25 14:44:12.025  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bindevctrl/add],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.BinDeviceController.addDevice(com.whck.domain.base.BinDevice)
+2016-07-25 14:44:12.025  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bindevctrl/delete],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.BinDeviceController.deleteDevice(com.whck.domain.base.BinDevice)
+2016-07-25 14:44:12.025  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bindevctrl/params_load],methods=[POST]}" onto public com.whck.domain.base.BinDeviceParams com.whck.web.controller.base.BinDeviceController.loadDeviceParams(java.lang.String,java.lang.String)
+2016-07-25 14:44:12.025  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/bindevctrl/sensor_bind],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.BinDeviceController.bindSensor(java.util.List<com.whck.domain.base.Sensor>,java.lang.String,java.lang.String)
+2016-07-25 14:44:12.025  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/realdata/latest/{zone_name}/{name}]}" onto public com.whck.domain.base.RealData com.whck.web.controller.base.RealDataController.getLatest(java.lang.String,java.lang.String)
+2016-07-25 14:44:12.025  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensor/add],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.SensorController.addSensor(com.whck.domain.base.Sensor)
+2016-07-25 14:44:12.025  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensor/update],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.SensorController.updateSensor(com.whck.domain.base.Sensor)
+2016-07-25 14:44:12.025  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensor/delete],methods=[DELETE]}" onto public java.lang.String com.whck.web.controller.base.SensorController.deleteSensor(com.whck.domain.base.Sensor)
+2016-07-25 14:44:12.035  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sindevctrl/operation/{cmd}],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.SinDeviceController.updateDeviceState(java.lang.String,java.lang.String,java.lang.String)
+2016-07-25 14:44:12.035  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sindevctrl/params_update],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.SinDeviceController.updateDeviceParams(com.whck.domain.base.SinDeviceParams)
+2016-07-25 14:44:12.035  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sindevctrl/add],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.SinDeviceController.addDevice(com.whck.domain.base.SinDevice)
+2016-07-25 14:44:12.035  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sindevctrl/delete]}" onto public java.lang.String com.whck.web.controller.base.SinDeviceController.deleteDevice(com.whck.domain.base.SinDevice)
+2016-07-25 14:44:12.035  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sindevctrl/params_load],methods=[POST]}" onto public com.whck.domain.base.SinDeviceParams com.whck.web.controller.base.SinDeviceController.loadDeviceParams(java.lang.String,java.lang.String)
+2016-07-25 14:44:12.035  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sindevctrl/sensor_bind],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.SinDeviceController.bindSensor(java.util.List<com.whck.domain.base.Sensor>,java.lang.String,java.lang.String)
+2016-07-25 14:44:12.045  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/main]}" onto public java.lang.String com.whck.web.controller.base.TestController.main(org.springframework.ui.Model)
+2016-07-25 14:44:12.045  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/refresh]}" onto public java.lang.String com.whck.web.controller.base.TestController.refresh(javax.servlet.http.HttpSession)
+2016-07-25 14:44:12.045  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/sensor/add],methods=[POST]}" onto public java.lang.String com.whck.web.controller.base.TestController.addSensor(com.whck.domain.base.Sensor)
+2016-07-25 14:44:12.045  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/socket]}" onto public java.lang.String com.whck.web.controller.base.TestController.video()
+2016-07-25 14:44:12.045  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/login]}" onto public java.lang.String com.whck.web.controller.base.TestController.login(com.whck.domain.base.User,org.springframework.ui.Model)
+2016-07-25 14:44:12.055  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/main]}" onto public java.lang.String com.whck.web.controller.base.UserController.index(org.springframework.ui.Model)
+2016-07-25 14:44:12.055  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/checkuser]}" onto public java.lang.String com.whck.web.controller.base.UserController.check(com.whck.domain.base.User)
+2016-07-25 14:44:12.055  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/user/login]}" onto public java.lang.String com.whck.web.controller.base.UserController.login()
+2016-07-25 14:44:12.065  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/zone/getAll],methods=[GET]}" onto public java.util.List<com.whck.domain.base.Zone> com.whck.web.controller.base.ZoneController.getAll()
+2016-07-25 14:44:12.065  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/zone/add],methods=[POST]}" onto public com.whck.domain.base.Zone com.whck.web.controller.base.ZoneController.addZone(com.whck.domain.base.Zone)
+2016-07-25 14:44:12.065  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/zone/update],methods=[POST]}" onto public com.whck.domain.base.Zone com.whck.web.controller.base.ZoneController.updateZone(com.whck.domain.base.Zone)
+2016-07-25 14:44:12.065  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-07-25 14:44:12.065  INFO 6240 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-07-25 14:44:12.115  INFO 6240 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-07-25 14:44:12.115  INFO 6240 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-07-25 14:44:12.191  INFO 6240 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-07-25 14:44:13.119  INFO 6240 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2016-07-25 14:44:13.129  INFO 6240 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2016-07-25 14:44:13.129  INFO 6240 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2016-07-25 14:44:13.129  INFO 6240 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2016-07-25 14:44:13.129  INFO 6240 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2016-07-25 14:44:13.381  INFO 6240 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2016-07-25 14:44:14.081  INFO 6240 --- [main] com.whck.IotPlusApplication              : Started IotPlusApplication in 17.068 seconds (JVM running for 20.773)
+2016-07-25 14:44:15.961  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <session created>:192.168.1.109:4890
+2016-07-25 14:44:15.961  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <session opened>:192.168.1.109:4890
+2016-07-25 14:45:11.544  INFO 6240 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannelpool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2016-07-25 14:47:44.298  INFO 6240 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-07-25 14:47:44.298  INFO 6240 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2016-07-25 14:47:44.339  INFO 6240 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 41 ms
+2016-07-25 14:48:08.763  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:08.764  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:08.764  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:08.764  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:08.777  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:08.777  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:08.796  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:08.796  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:22.270  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:23.724  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:23.726  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:23.726  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:23.727  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:23.756  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:23.756  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:23.756  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:23.756  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:25.480  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:38.733  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:38.734  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:38.735  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:38.736  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:38.739  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:38.740  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:38.740  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:38.740  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:53.727  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:53.728  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:53.731  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:53.747  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:53.748  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:53.756  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:53.757  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:48:53.779  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:08.729  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:08.729  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:08.730  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:08.730  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:08.739  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:08.739  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:08.739  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:08.739  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:23.729  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:23.729  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:23.730  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:23.760  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:23.762  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:23.762  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:23.762  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:23.762  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:38.727  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:38.729  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:38.730  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:38.730  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:38.738  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:38.739  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:38.739  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:38.739  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:53.728  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:53.729  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:53.729  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:53.730  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:53.742  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:53.743  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:53.743  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:49:53.743  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:08.727  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:08.728  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:08.728  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:08.728  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:08.738  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:08.739  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:08.740  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:08.740  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:23.730  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:23.730  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:23.730  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:23.731  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:23.743  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:23.744  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:23.744  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:23.745  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:24.915  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:32.738  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:33.718  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:38.727  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:38.728  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:38.729  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:38.730  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:38.763  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:38.763  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:38.767  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:38.767  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:53.733  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:53.735  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:53.736  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:53.736  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:53.739  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:53.740  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:53.741  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:53.741  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4890
+2016-07-25 14:50:54.360  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <session created>:192.168.1.109:4891
+2016-07-25 14:50:54.360  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <session opened>:192.168.1.109:4891
+2016-07-25 14:50:54.703  INFO 6240 --- [NioProcessor-2] com.whck.mina.handler.ProtocolHandler    : <session closed>:192.168.1.109:4890
+2016-07-25 14:51:04.508  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:08.725  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:08.725  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:08.725  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:08.725  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:08.738  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:08.741  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:08.741  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:08.741  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:10.069  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:14.271  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:19.895  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:23.727  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:23.727  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:23.727  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:23.728  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:23.747  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:23.747  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:23.748  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:23.748  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:25.145  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:29.360  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:31.751  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:36.459  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:38.759  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:38.762  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:38.776  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:38.777  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:38.777  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:38.777  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:38.777  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:38.777  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:41.099  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:48.621  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:53.725  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:53.725  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:53.726  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:53.726  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:53.742  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:53.743  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:53.743  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:53.743  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:51:55.611  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:00.284  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:03.312  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:08.727  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:08.728  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:08.728  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:08.729  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:08.742  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:08.743  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:08.744  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:08.744  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:11.715  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:13.198  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:18.032  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:23.723  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:23.723  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:23.724  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:23.724  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:23.738  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:23.738  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:23.738  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:23.738  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:38.728  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:38.729  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:38.729  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:38.729  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:38.740  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:38.740  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:38.741  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:38.741  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:42.245  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:46.959  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:50.607  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:53.726  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:53.726  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:53.726  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:53.726  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:53.739  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:53.740  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:53.740  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:53.740  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4891
+2016-07-25 14:52:55.394  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <session created>:192.168.1.109:4892
+2016-07-25 14:52:55.394  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <session opened>:192.168.1.109:4892
+2016-07-25 14:52:55.838  INFO 6240 --- [NioProcessor-3] com.whck.mina.handler.ProtocolHandler    : <session closed>:192.168.1.109:4891
+2016-07-25 14:53:08.728  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4892
+2016-07-25 14:53:08.728  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4892
+2016-07-25 14:53:08.728  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4892
+2016-07-25 14:53:08.729  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4892
+2016-07-25 14:53:08.741  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4892
+2016-07-25 14:53:08.741  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4892
+2016-07-25 14:53:08.742  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4892
+2016-07-25 14:53:08.742  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4892
+2016-07-25 14:53:13.626  INFO 6240 --- [NioProcessor-5] com.whck.mina.handler.ProtocolHandler    : <session created>:192.168.1.109:4893
+2016-07-25 14:53:13.626  INFO 6240 --- [NioProcessor-5] com.whck.mina.handler.ProtocolHandler    : <session opened>:192.168.1.109:4893
+2016-07-25 14:53:23.738  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4892
+2016-07-25 14:53:23.739  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4892
+2016-07-25 14:53:23.754  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4892
+2016-07-25 14:53:23.762  INFO 6240 --- [NioProcessor-4] com.whck.mina.handler.ProtocolHandler    : <session closed>:192.168.1.109:4892
+2016-07-25 14:53:38.740  INFO 6240 --- [NioProcessor-5] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4893
+2016-07-25 14:53:38.741  INFO 6240 --- [NioProcessor-5] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4893
+2016-07-25 14:53:38.741  INFO 6240 --- [NioProcessor-5] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4893
+2016-07-25 14:53:38.741  INFO 6240 --- [NioProcessor-5] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4893
+2016-07-25 14:53:38.742  INFO 6240 --- [NioProcessor-5] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4893
+2016-07-25 14:53:38.742  INFO 6240 --- [NioProcessor-5] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4893
+2016-07-25 14:53:38.742  INFO 6240 --- [NioProcessor-5] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4893
+2016-07-25 14:53:38.742  INFO 6240 --- [NioProcessor-5] com.whck.mina.handler.ProtocolHandler    : <message has sent to>:192.168.1.109:4893
+2016-07-25 14:53:38.804  INFO 6240 --- [NioProcessor-5] com.whck.mina.handler.ProtocolHandler    : <session closed>:192.168.1.109:4893
+2016-07-25 15:15:11.575  INFO 6240 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[5 current WS(5)-HttpStream(0)-HttpPoll(0), 5 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(5)-CONNECTED(5)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 8, active threads = 0, queued tasks = 0, completed tasks = 5583], outboundChannelpool size = 8, active threads = 0, queued tasks = 0, completed tasks = 1640], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 6, completed tasks = 459]

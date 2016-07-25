@@ -455,7 +455,7 @@ function sinDevConfiguration(tar) {
 	var tabPane = tar.closest(".tab-pane");
 	var zoneName = $(tabPane).attr("id");
 	var panelHeading = $(tabPane).find(".panel-heading");
-	var devName = $($(panelHeading).find("h3")[0]).html();
+	var devName = $(panelHeading).find("h3").html();
 	var dialog=$("#sinDeviceCfg");
 	var payload = {
 		zoneName : zoneName,
@@ -483,7 +483,7 @@ function binDevConfiguration(tar) {
 	var tabPane = tar.closest(".tab-pane");
 	var zoneName = $(tabPane).attr("id");
 	var panelHeading = $(tabPane).find(".panel-heading");
-	var devName = $($(panelHeading).find("h3")[0]).html();
+	var devName = $(panelHeading).find("h3").html();
 	var dialog=$("#binDeviceCfg");
 	var payload = {
 		zoneName : zoneName,
@@ -648,14 +648,14 @@ function initBinDevConfigDialog(zoneName,devName,data,dialog) {
 		if ($(item).prop('checked')) {
 			rslt += Math.pow(2, i);
 		}
-		$($(this).closest("form").find(".workDays")[0]).val(rslt);
+		$(this).closest("form").find(".workDays").val(rslt);
 		$(item).click(function() {
 			if ($(item).prop('checked')) {
 				rslt += Math.pow(2, i);
 			} else {
 				rslt -= Math.pow(2, i);
 			}
-			$($(this).closest("form").find(".workDays")[0]).val(rslt);
+			$(this).closest("form").find(".workDays").val(rslt);
 		});
 	});
 }
